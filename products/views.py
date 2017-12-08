@@ -20,7 +20,7 @@ def product_create(request):
             product = form.save(commit=False)
             product.user = request.user
             product.save()
-            return redirect("/")
+            return redirect("product:list")
 
     context = {
         "form": form
@@ -38,7 +38,7 @@ def product_edit(request, pk):
             product = form.save(commit=False)
             product.user = request.user
             product.save()
-            return redirect("/")
+            return redirect("product:list")
 
     context = {
         "form": form
@@ -49,7 +49,7 @@ def product_edit(request, pk):
 @login_required()
 def product_list(request):
     product_list_data = Product.objects.all().order_by('product_name')
-    per_page = 10
+    per_page = 4
     paginator = Paginator(product_list_data, per_page)
     page = request.GET.get('page')
 
