@@ -1,0 +1,33 @@
+{% extends 'base_temp.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="card-deck">
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="/media/{{ product.image }}" alt="Card image"
+                                 style="width:100%">
+                            <div class="card-body text-center">
+                                <div style="margin-bottom: 10px;">
+                                    <span>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </span>
+                                </div>
+                                <h4 class="card-title">{{ product.product_name }}</h4>
+                                <p><span><i class="fa fa-inr"></i></span> {{ product.product_price }}</p>
+                                <a class="btn btn-block btn-success" href="#"><span><i class="fa fa-shopping-cart"></i></span> ADD TO CART</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

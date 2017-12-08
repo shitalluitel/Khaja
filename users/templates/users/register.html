@@ -1,0 +1,87 @@
+{% extends 'base_temp.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-dismissible alert-{{ message.tags }}">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <p>{{ message }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+
+                {% if form.non_field_errors %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {% for error in form.non_field_errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <div class="form-horizontal">
+                        <div class="row">
+                            {% for field in form.visible_fields %}
+                                <div class="form-group {% if field.errors %}has-error{% endif %}">
+                                    <div class="col-md-3">
+                                        <label class="control-label text-left">{{ field.label }}</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        {{ field }}
+                                        {% if field.errors %}
+                                            <div class="has-error">
+                                                <div class="help-block">{{ field.errors }}</div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="form-group">
+                                <div class="col-md-offset-3 col-md-2">
+                                    <button type="submit" name="submit" class="btn btn-primary ">Submit
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <br><br>
+{% endblock %}
+{% block footer %}
+    <footer style="background-color: #337ab7;" id="#aboutus">
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="text-center text-white"> Built With <i class="fa fa-heart text-danger"></i> In Biratnagar
+                    </p>
+                    <p class="text-center text-white">&copy; CopyRight <strong>TFC</strong></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base_temp.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            {% if form.instance %}
+                <img src="/media/{{ form.instance.image }}"
+                     style="height: auto; width: 200px; margin-bottom: 10px;">
+            {% endif %}
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

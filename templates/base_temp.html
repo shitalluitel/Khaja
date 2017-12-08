@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Khaja</title>
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap-4/dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap-4/dist/css/bootstrap-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.css' %}">
+{#    <link rel="stylesheet" href="{% static 'base/main_style.css' %}">#}
+    {% block extra_stylesheets %}
+
+    {% endblock %}
+</head>
+<body>
+{#{% if user.is_authenticated %}#}
+{#    {% block navigaton %}#}
+{#        <nav class="navbar">#}
+{##}
+{#            <div class="navbar-header">#}
+{#                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">#}
+{#                    <span class="icon-bar"></span>#}
+{#                    <span class="icon-bar"></span>#}
+{#                    <span class="icon-bar"></span>#}
+{#                    <span class="icon-bar"></span>#}
+{#                </button>#}
+{##}
+{##}
+{#                <a class="navbar-brand" href="{% url 'home_page' %}"><span#}
+{#                        class="text text-success">Home</span></a>#}
+{#            </div>#}
+{#            <div class="collapse navbar-collapse " id="myNavbar">#}
+{#                <ul class="nav navbar-nav">#}
+{#                    <li class="dropdown">#}
+{#                        <a class="dropdown-toggle text-success" data-toggle="dropdown" href="#"> <span><i#}
+{#                                class="fa fa-group">&nbsp;</i></span>Customer#}
+{#                            <span class="caret"></span></a>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li><a href="{% url 'customer_create' %}"><span><i class="fa fa-plus"></i></span> Add</a>#}
+{#                            </li>#}
+{#                            <li><a href="{% url 'customer_list' %}"><span><i class="fa fa-list-alt"></i></span> List</a>#}
+{#                            </li>#}
+{#                            <li><a href="{% url 'customer_list' %}?trash=True"><span><i class="fa fa-list-alt"></i></span> Trash</a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </li>#}
+{##}
+{#                    <li class="dropdown">#}
+{#                        <a class="dropdown-toggle text-success" data-toggle="dropdown" href="#"> <span><i#}
+{#                                class="fa fa-money">&nbsp;</i></span>Transaction#}
+{#                            <span class="caret"></span></a>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li><a href="{% url 'transaction_create' %}"><span><i class="fa fa-plus"></i></span> Add</a>#}
+{#                            </li>#}
+{#                            <li><a href="{% url 'transaction_list' %}"><span><i class="fa fa-list-alt"></i></span> List</a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </li>#}
+{#                    <li class="dropdown">#}
+{#                        <a class="dropdown-toggle text-success" data-toggle="dropdown" href="#"> <span><i#}
+{#                                class="fa fa-balance-scale">&nbsp;</i></span>Unit#}
+{#                            <span class="caret"></span></a>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li><a href="{% url 'unit_create' %}"><span><i class="fa fa-plus">&nbsp;</i></span>Add</a>#}
+{#                            </li>#}
+{#                            <li><a href="{% url 'unit_list' %}"><span><i#}
+{#                                    class="fa fa-list-alt">&nbsp;</i></span>List</a></li>#}
+{#                        </ul>#}
+{#                    </li>#}
+{##}
+{#                    <li class="dropdown">#}
+{#                        <a class="dropdown-toggle text-success" data-toggle="dropdown" href="#"> <span><i#}
+{#                                class="fa fa-shopping-cart">&nbsp;</i></span>Item#}
+{#                            <span class="caret"></span></a>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li><a href="{% url 'item_create' %}"><span><i class="fa fa-plus">&nbsp;</i></span>Add</a>#}
+{#                            </li>#}
+{#                            <li><a href="{% url 'item_list' %}"><span><i class="fa fa-list-alt ">&nbsp;</i></span>List</a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </li>#}
+{#                </ul>#}
+{##}
+{#                <ul class="nav navbar-nav navbar-right">#}
+{#                    <li>#}
+{#                        <a class="dropdown-toggle text-success" data-toggle="dropdown" href="#"><span><i#}
+{#                                class="fa fa-user-circle">&nbsp;</i></span>{{ user.get_full_name }}#}
+{#                            <span class="caret"></span></a>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li><a class="text-success" href="{% url 'logout_user' %}"> <span><i class="fa fa-sign-out">&nbsp;</i></span>LogOut</a>#}
+{#                            </li>#}
+{#                            <li><a class="text-success" href="{% url 'user_password_change' %}"> <span><i class="fa fa-edit">&nbsp;</i></span>Change Password</a>#}
+{#                            </li>#}
+{#                            <li><a href="{% url 'profile_edit' %}"><span><i class="fa fa-user">&nbsp;</i></span>Profile</a>#}
+{#                            </li>#}
+{##}
+{#                        </ul>#}
+{##}
+{#                    </li>#}
+{#                </ul>#}
+{#            </div>#}
+{#        </nav>#}
+{#    {% endblock %}#}
+{#{% endif %}#}
+{% block breadcrumb %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{#{% if user.is_authenticated %}#}
+{#    {% block footer %}#}
+{#        <footer style="background-color: #337ab7;" class="footer">#}
+{#            <div class="container-fluid">#}
+{#                <div class="row">#}
+{#                    <br>#}
+{#                    <div class=" col-sm-3">#}
+{#                        <h3 class="text-white text-thin"><span><i class="fa fa-map">&nbsp;</i></span>Address</h3>#}
+{#                        <p class="text-white marginleft">Biratnagar, Nepal</p>#}
+{#                    </div>#}
+{#                    <div class=" col-sm-3">#}
+{#                        <h3 class="text-white text-thin"><span><i class="fa fa-phone-square">&nbsp;</i></span>Phone#}
+{#                            Number#}
+{#                        </h3>#}
+{#                        <p class="text-white marginleft"><i class="fa fa-mobile-phone">&nbsp;</i>+977-9842574872</p>#}
+{#                    </div>#}
+{#                    <div class=" col-sm-3">#}
+{#                        <h3 class="text-white text-thin"><span><i class="fa fa-envelope">&nbsp;</i></span>Email</h3>#}
+{#                        <p class="text-white marginleft">ctalluitel@gmail.com</p>#}
+{#                    </div>#}
+{#                    <div class=" col-sm-3">#}
+{#                        <h3 class="text-white text-thin"><span><i class="fa fa-handshake-o">&nbsp;</i></span>Stay In#}
+{#                            Touch#}
+{#                        </h3>#}
+{#                        <span class="marginleft text-white">#}
+{#              <a href="https://facebook.com" target="_blank" style="text-decoration: none; color: white;"><i#}
+{#                      class="fa fa-facebook-square " style="font-size: 25px">&nbsp;</i></a>#}
+{#              <a href="https://twitter.com" target="_blank" style="text-decoration: none; color: white;"><i#}
+{#                      class="fa fa-twitter-square" style="font-size: 25px">&nbsp;</i></a>#}
+{#              <a href="https://youtube.com" target="_blank" style="text-decoration: none; color: white;"><i#}
+{#                      class="fa fa-youtube-square" style="font-size: 25px">&nbsp;</i></a>#}
+{#            </span>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{#            <br>#}
+{#            <br>#}
+{#            <div class="container-fluid">#}
+{#                <div class="row">#}
+{#                    <div class="col-sm-12">#}
+{#                        <p class="text-center text-white"> Built With <i class="fa fa-heart text-danger"></i> In#}
+{#                            Biratnagar#}
+{#                        </p>#}
+{#                        <p class="text-center text-white">&copy; CopyRight TFC</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </footer>#}
+{#    {% endblock %}#}
+{#{% endif %}#}
+<script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+<script src="{% static 'bower_components/bootstrap-4/dist/js/bootstrap.js' %}"></script>
+{% block extra_script %}
+{% endblock %}
+</body>
+</html>
