@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from requests import Response
+
 from .models import Product
 from users.decorators import is_restaurant, is_admin
 from .forms import ProductForm
@@ -46,7 +48,7 @@ def product_edit(request, pk):
     return render(request, 'product_edit.html', context)
 
 
-@login_required()
+@login_required
 def product_list(request):
     product_list_data = Product.objects.all().order_by('product_name')
     per_page = 4
@@ -61,3 +63,15 @@ def product_list(request):
         products = paginator.page(paginator.num_pages)
 
     return render(request, 'product_list.html', {'products': products})
+
+
+@login_required
+def product_detail(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    related = Product.objects.all().order_by('?')[:3]
+    content = {
+        'product': product,
+        'related': related,
+    }
+
+    return render(request, 'product_detail.html', content)

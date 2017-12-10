@@ -34,7 +34,7 @@
                             <h4 class="card-title" style="font-weight: bold;">{{ product.product_name }}</h4>
                             <p style="color: #696969;"><span><i
                                     class="fa fa-inr"></i></span> {{ product.product_price }}</p>
-                            <a class="btn btn-block btn-success" href="#">Detail Info</a>
+                            <a class="btn btn-block btn-success cart-btn" href="{% url 'product:detail' pk=product.pk %}">Detail Info</a>
                         </div>
                     </div>
                 </div>

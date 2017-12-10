@@ -1,0 +1,19 @@
+.navbar {
+    z-index: 2;
+    min-height: 50px;
+    margin-bottom: 0;
+    box-shadow: 0px 2px 10px #52504a;
+    background-color: white;
+}
+
+.navbar-brand {
+    padding: 10px 85px;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.navbar-nav > li > a {
+    font-size: larger;
+    font-weight: 300;
+}
+
