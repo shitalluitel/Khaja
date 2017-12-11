@@ -50,57 +50,9 @@
 {% block content %}
 {% endblock %}
 
-{#{% if user.is_authenticated %}#}
-{#    {% block footer %}#}
-{#        <footer style="background-color: #337ab7;" class="footer">#}
-{#            <div class="container-fluid">#}
-{#                <div class="row">#}
-{#                    <br>#}
-{#                    <div class=" col-sm-3">#}
-{#                        <h3 class="text-white text-thin"><span><i class="fa fa-map">&nbsp;</i></span>Address</h3>#}
-{#                        <p class="text-white marginleft">Biratnagar, Nepal</p>#}
-{#                    </div>#}
-{#                    <div class=" col-sm-3">#}
-{#                        <h3 class="text-white text-thin"><span><i class="fa fa-phone-square">&nbsp;</i></span>Phone#}
-{#                            Number#}
-{#                        </h3>#}
-{#                        <p class="text-white marginleft"><i class="fa fa-mobile-phone">&nbsp;</i>+977-9842574872</p>#}
-{#                    </div>#}
-{#                    <div class=" col-sm-3">#}
-{#                        <h3 class="text-white text-thin"><span><i class="fa fa-envelope">&nbsp;</i></span>Email</h3>#}
-{#                        <p class="text-white marginleft">ctalluitel@gmail.com</p>#}
-{#                    </div>#}
-{#                    <div class=" col-sm-3">#}
-{#                        <h3 class="text-white text-thin"><span><i class="fa fa-handshake-o">&nbsp;</i></span>Stay In#}
-{#                            Touch#}
-{#                        </h3>#}
-{#                        <span class="marginleft text-white">#}
-{#              <a href="https://facebook.com" target="_blank" style="text-decoration: none; color: white;"><i#}
-{#                      class="fa fa-facebook-square " style="font-size: 25px">&nbsp;</i></a>#}
-{#              <a href="https://twitter.com" target="_blank" style="text-decoration: none; color: white;"><i#}
-{#                      class="fa fa-twitter-square" style="font-size: 25px">&nbsp;</i></a>#}
-{#              <a href="https://youtube.com" target="_blank" style="text-decoration: none; color: white;"><i#}
-{#                      class="fa fa-youtube-square" style="font-size: 25px">&nbsp;</i></a>#}
-{#            </span>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#            </div>#}
-{#            <br>#}
-{#            <br>#}
-{#            <div class="container-fluid">#}
-{#                <div class="row">#}
-{#                    <div class="col-sm-12">#}
-{#                        <p class="text-center text-white"> Built With <i class="fa fa-heart text-danger"></i> In#}
-{#                            Biratnagar#}
-{#                        </p>#}
-{#                        <p class="text-center text-white">&copy; CopyRight TFC</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </footer>#}
-{#    {% endblock %}#}
-{#{% endif %}#}
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}
 
 <div id="fb-root"></div>
 <script>(function (d, s, id) {
