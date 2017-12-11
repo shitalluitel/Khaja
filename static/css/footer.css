@@ -67,25 +67,25 @@ footer {
     font-size: small;
 }
 
-.footer-divider {
-    width: 100%;
-    height: 60%;
-    background-color: #6bb998;
-    margin-top: 50px;
-    margin-bottom: 80px;
-    color: white;
-}
-
-@media (min-width: 767px) {
+@media (min-width: 960px) {
     .footer-divider .text {
-        padding-top: 10%;
-        padding-left: 25%;
+        padding-top: 7%;
+    }
+
+    .footer-divider .text h1 {
+        padding-left: 24%;
+    }
+
+    .footer-divider .text h5 {
+        padding-left: 10%;
+        margin-top: 15px;
     }
 
     .footer-divider .image img {
         height: auto;
         width: 35%;
         margin-left: 60%;
+
     }
 
     .footer-divider .image {
@@ -94,13 +94,75 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 960px) {
     .footer-divider .image {
         display: none;
     }
 
     .footer-divider .text {
         text-align: center;
-       padding-top: 20%;
+        padding-top: 20%;
     }
+}
+
+.footer-divider {
+    background: url("/media/food.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 100%;
+    height: 60%;
+    margin-top: 50px;
+    margin-bottom: 80px;
+    color: white;
+}
+
+/*.footer-divider {*/
+/*background-image: url("/media/food.jpg");*/
+/*height: 70%;*/
+/*background-position: center;*/
+/*background-repeat: no-repeat;*/
+/*background-size: cover;*/
+/*position: relative;*/
+/*margin-bottom: 85px;*/
+/*}*/
+
+.footer-divider .overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: rgba(90, 192, 149, 0.92) !important;
+    z-index: 1;
+}
+
+@media (min-width: 576px) {
+    .footer-divider .overlay .text h1 {
+        font-family: 'Pacifico', cursive;
+        font-size: 42px;
+    }
+
+    .footer-divider .overlay .text h5 {
+        font-family: inherit;
+        font-size: 46px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .footer-divider .text {
+        padding-top: 35%;
+    }
+
+    .footer-divider .overlay .text h1 {
+        font-size: 30px;
+    }
+
+    .footer-divider .overlay .text h5 {
+        font-size: 30px;
+    }
+
 }
