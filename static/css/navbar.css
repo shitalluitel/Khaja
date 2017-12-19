@@ -6,14 +6,36 @@
     background-color: white;
 }
 
-.navbar-brand {
-    padding: 10px 85px;
-    font-size: x-large;
-    font-weight: bold;
+@media (min-width: 768px) {
+    .navbar-brand {
+        padding: 10px 85px;
+        font-size: x-large;
+        font-weight: bold;
+    }
+
+    .navbar-nav > li > a {
+        font-size: larger;
+        font-weight: 300;
+    }
 }
 
-.navbar-nav > li > a {
-    font-size: larger;
-    font-weight: 300;
+@media (max-width: 768px) {
+    .navbar-brand {
+        padding: 10px 20px;
+        font-size: x-large;
+        font-weight: bold;
+    }
+
+    .navbar-nav > li > a {
+        font-size: large;
+        font-weight: 300;
+        /*padding: 0 20px;*/
+    }
+}
+
+
+div#collapsibleNavbar {
+    margin-right: 5%;
+    margin-left: 3%;
 }
 

@@ -89,7 +89,7 @@ footer {
     }
 
     .footer-divider .image {
-        margin: -6.8%;
+        margin: -5%;
         margin-right: 0;
     }
 }
@@ -101,7 +101,7 @@ footer {
 
     .footer-divider .text {
         text-align: center;
-        padding-top: 20%;
+        padding: 15% 0;
     }
 }
 
@@ -114,7 +114,7 @@ footer {
     width: 100%;
     height: 60%;
     margin-top: 50px;
-    margin-bottom: 80px;
+    margin-bottom: 100px;
     color: white;
 }
 
@@ -154,10 +154,11 @@ footer {
 @media (max-width: 576px) {
 
     .footer-divider .text {
-        padding-top: 35%;
+        padding: 15% 0;
     }
 
     .footer-divider .overlay .text h1 {
+        font-family: 'Pacifico', cursive;
         font-size: 30px;
     }
 
@@ -165,4 +166,126 @@ footer {
         font-size: 30px;
     }
 
+}
+
+.widget_noo_happyhours {
+    padding: 20px 0;
+    position: relative;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.widget-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 14px;
+    font-weight: 400;
+    color:  #79cba8;
+}
+
+.widget_noo_happyhours .widget-title:before {
+    background-image: url("/media/oliu-left.png");
+    top: 0;
+    left: -20px;
+}
+
+.widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.widget_noo_happyhours span:nth-of-type(1) {
+    top: 0px;
+    left: 0px;
+}
+
+.widget_noo_happyhours span:nth-of-type(2) {
+    top: 0px;
+    right: 0px;
+}
+
+.widget_noo_happyhours span:nth-of-type(3) {
+    bottom: 0px;
+    left: 0px;
+}
+
+.widget_noo_happyhours span:nth-of-type(4) {
+    bottom: 0px;
+    right: 0px;
+}
+
+
+.widget_noo_happyhours span {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border: none;
+    overflow: hidden;
+}
+
+
+.widget_noo_happyhours span:nth-of-type(1):before {
+    top: -20px;
+    left: -20px;
+}
+
+.widget_noo_happyhours span:nth-of-type(2):before {
+    top: -20px;
+    right: -20px;
+}
+
+.widget_noo_happyhours span:nth-of-type(3):before {
+    bottom: -20px;
+    left: -20px;
+}
+
+.widget_noo_happyhours span:nth-of-type(4):before {
+    bottom: -20px;
+    right: -20px;
+}
+
+
+.widget_noo_happyhours span:before {
+    content: '';
+    display: block;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ababab;
+    position: absolute;
+}
+
+.widget_noo_happyhours:after {
+    border: 2px solid #ababab;
+    position: absolute;
+    content: '';
+    display: block;
+    border-top: 0;
+    border-bottom: 0;
+    width: 100%;
+    height: calc(100% - 40px);
+    top: 50%;
+    left: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+}
+
+.widget_noo_happyhours:before {
+    border: 2px solid #ababab;
+    position: absolute;
+    content: '';
+    display: block;
+    border-left: 0;
+    border-right: 0;
+    width: calc(100% - 40px);
+    height: 100%;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
 }
