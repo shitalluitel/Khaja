@@ -39,3 +39,7 @@ div#collapsibleNavbar {
     margin-left: 3%;
 }
 
+.navbar {
+    z-index: 4;
+}
+

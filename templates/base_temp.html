@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Lato|Pacifico" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <style>
         body, html {
             font-family: 'Lato', sans-serif;
@@ -24,6 +25,8 @@
 {% block navigaton %}
     {% include 'navigation.html' %}
 {% endblock %}
+
+{% include 'login_model.html' %}
 
 {% block hero_image %}
 {% endblock %}

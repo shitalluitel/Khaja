@@ -4,7 +4,6 @@
 {% block extra_stylesheets %}
     <link rel="stylesheet" href="{% static 'css/product_css.css' %}">
     <link rel="stylesheet" href="{% static 'css/hero.css' %}">
-    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
 {% endblock %}
 
 {% block hero_image %}
@@ -49,13 +48,15 @@
                             </div>
                             <div class="quantity-operation">
                                 <div class="row">
-                                    <div class="col-md-12" style="font-size: 24px;">
-                                        <a class="text-primary" href="{% url 'product:edit' pk=product.pk %}"><span><i
-                                                class="fa fa-edit"></i></span></a>
-                                        &nbsp;
-                                        <a class="text-danger" href="{% url 'product:edit' pk=product.pk %}"><span><i
-                                                class="fa fa-trash"></i></span></a>
-                                    </div>
+{#                                    <div class="col-md-12" style="font-size: 24px;">#}
+{#                                        <a class="text-primary" href="{% url 'product:edit' pk=product.pk %}"><span><i#}
+{#                                                class="fa fa-edit"></i></span></a>#}
+{#                                        &nbsp;#}
+{#                                        <a class="text-danger" href="{% url 'product:edit' pk=product.pk %}"><span><i#}
+{#                                                class="fa fa-trash"></i></span></a>#}
+{#                                    </div>#}
+{#                                    #}
+                                    {% include 'add_product_form.html' with product=product cart=cart %}
                                 </div>
                             </div>
 
@@ -144,5 +145,6 @@
             </div>
         </div>
     </div>
-
+    {% include 'base_footer_divider.html' %}
 {% endblock %}
+

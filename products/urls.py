@@ -8,5 +8,5 @@ urlpatterns = [
     # url(r'^transactions/new/$', views.transaction_create, name='transaction_create'),
     url(r'^(?P<pk>\d+)/edit/$', views.product_edit, name='edit'),
     url(r'^(?P<pk>\d+)/$', views.product_detail, name='detail'),
-    # url(r'^transactions/(?P<pk>\d+)/paid/$', views.transaction_cash_paid, name='transaction_cash_paid'),
+    # url(r'^test/$', views.test, name='test'),
 ]

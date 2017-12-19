@@ -1,5 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
+from django.http import HttpResponse
+from django.template import loader
+
 from django.shortcuts import render, redirect, get_object_or_404
 from requests import Response
 
@@ -7,7 +11,7 @@ from .models import Product
 from users.decorators import is_restaurant, is_admin
 from .forms import ProductForm
 from django.urls import reverse
-
+from carts.models import Cart
 
 # Create your views here.
 
@@ -69,9 +73,17 @@ def product_list(request):
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     related = Product.objects.all().order_by('?')[:3]
+    cart, new_obj = Cart.objects.new_or_get(request)
     content = {
         'product': product,
         'related': related,
+        'cart': cart,
     }
 
     return render(request, 'product_detail.html', content)
+
+
+# def test(request):
+#     question_id = 10
+#     template = loader.get_template('base_temp.html')
+#     return HttpResponse(template.render())

@@ -22,5 +22,6 @@ urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^users/', include('users.urls', namespace="users")),
     url(r'^products/', include('products.urls', namespace="product")),
+    url(r'^carts/', include('carts.urls', namespace="cart")),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
