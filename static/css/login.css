@@ -38,8 +38,8 @@
 }
 
 .logo-height {
-    height: 160px;
-    width: 160px;
+    height: auto;
+    width: 200px;
     margin: 0 auto;
     display: block;
 }

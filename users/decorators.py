@@ -3,7 +3,7 @@ from django.core.exceptions import PermissionDenied
 
 def is_customer(function):
     def wrap(request, *args, **kwargs):
-        if request.user.is_customer():
+        if request.user.is_customer or request.user.is_admin:
             return function(request, *args, **kwargs)
         else:
             raise PermissionDenied
@@ -15,7 +15,7 @@ def is_customer(function):
 
 def is_restaurant(function):
     def wrap(request, *args, **kwargs):
-        if request.user.is_restaurant_user():
+        if request.user.is_restaurant_user or request.user.is_admin:
             return function(request, *args, **kwargs)
         else:
             raise PermissionDenied
@@ -27,7 +27,7 @@ def is_restaurant(function):
 
 def is_delivery(function):
     def wrap(request, *args, **kwargs):
-        if request.user.is_delivery_boy():
+        if request.user.is_delivery_boy or request.user.is_admin:
             return function(request, *args, **kwargs)
         else:
             raise PermissionDenied
@@ -39,7 +39,7 @@ def is_delivery(function):
 
 def is_admin(function):
     def wrap(request, *args, **kwargs):
-        if request.user.is_admin():
+        if request.user.is_admin:
             return function(request, *args, **kwargs)
         else:
             raise PermissionDenied

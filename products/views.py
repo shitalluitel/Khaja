@@ -13,6 +13,7 @@ from .forms import ProductForm
 from django.urls import reverse
 from carts.models import Cart
 
+
 # Create your views here.
 
 @login_required
@@ -31,7 +32,7 @@ def product_create(request):
     context = {
         "form": form
     }
-    return render(request, 'product_edit.html', context)
+    return render(request, 'product/product_edit.html', context)
 
 
 @login_required()
@@ -49,13 +50,13 @@ def product_edit(request, pk):
     context = {
         "form": form
     }
-    return render(request, 'product_edit.html', context)
+    return render(request, 'product/product_edit.html', context)
 
 
-@login_required
+# @login_required
 def product_list(request):
     product_list_data = Product.objects.all().order_by('product_name')
-    per_page = 4
+    per_page = 12
     paginator = Paginator(product_list_data, per_page)
     page = request.GET.get('page')
 
@@ -66,10 +67,14 @@ def product_list(request):
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
 
-    return render(request, 'product_list.html', {'products': products})
+    if request.user.is_authenticated:
+        if request.user.is_restaurant_user or request.user.is_admin:
+            return render(request, 'products/product_list.html', {'products': products})
+
+    return render(request, 'products/list.html', {'products': products})
 
 
-@login_required
+# @login_required
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     related = Product.objects.all().order_by('?')[:3]
@@ -80,8 +85,7 @@ def product_detail(request, pk):
         'cart': cart,
     }
 
-    return render(request, 'product_detail.html', content)
-
+    return render(request, 'products/product_detail.html', content)
 
 # def test(request):
 #     question_id = 10

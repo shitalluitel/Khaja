@@ -1,28 +1,39 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from products.models import Product
-from .models import Cart
+from .models import Cart, Quantity
+# from users.decorators import is_admin, is_customer, is_restaurant, is_delivery
 
 
 # Create your views here.
 
 
 def cart_home(request):
-    cart_obj, new_obj = Cart.objects.new_or_get(request)
-    return redirect("product:list")
+    cart, new_obj = Cart.objects.new_or_get(request)
+    quantity = Quantity.objects.all().filter(cart=cart)
+    context = {
+        'cart': cart,
+        'quantity': quantity,
+    }
+    return render(request, "display_cart.html", context=context)
 
 
+@login_required
 def cart_update(request):
-    product_id = request.POST.get('product')
-    # quantity = request.POST.get('quantity')
+    product_id = request.GET.get('product')
+    product_quantity = request.GET.get('quantity')
     if product_id is not None:
         try:
             product_obj = Product.objects.get(id=product_id)
-            print(product_obj)
+            # print(product_obj)
         except Product.DoesNotExist:
             return redirect("product:list")
         cart_obj, new_obj = Cart.objects.new_or_get(request)
         if product_obj in cart_obj.products.all():
-            cart_obj.products.remove(product_obj)
+            object = Quantity.objects.filter(cart=cart_obj, product=product_obj)
+            object.delete()
         else:
-            cart_obj.products.add(product_obj)
-    return redirect("product:list")
+            # cart_obj.products.add(product_obj)
+            # cart_obj.Quantity.product = product_obj
+            Quantity.objects.create(quantity=product_quantity, cart=cart_obj, product=product_obj)
+    return redirect("cart:display")

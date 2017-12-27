@@ -1,0 +1,60 @@
+{% extends 'base_temp.html' %}
+{% load split %}
+{% load mathfilters %}
+{% block content %}
+    <div class="container">
+        {% if cart.products.exists %}
+            <div class="row">
+                <div class="col">
+
+                    <table class="table table-bordered table-hover text-center">
+                        <thead>
+                        <tr>
+                            <th>S.N.</th>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+{#{{ quantity.products.all }}#}
+                        {% for product_item in quantity %}
+                            <tr>
+                                <td style="width: 5%;">{{ forloop.counter }}</td>
+                                <td style="width: 30%;"><a target="_blank" href="/media/{{ product_item.product.image }}">{{product_item.product.product_name }}</a></td>
+{#                                <td style="width: 35%;"><img src="/media/{{ product_item.product.image }}" style="width: 25%; height: auto;" alt="{{ product_item.product.image }}|split"></td>#}
+                                <td style="width: 15%">{{ product_item.quantity }}</td>
+                                <td style="width: 15%;">{{ product_item.product.product_price }}</td>
+                                <td style="width: 15%;">
+                                    {{product_item.quantity|mul:product_item.product.product_price }}
+                                </td>
+
+                                <td style="width: 10%">{% include "add_product_form.html" with product=product_item.product cart=cart cart_display=True %}</td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="4" class="text-right"><b>Subtotal:</b> </td>
+                            <td colspan="2">{{ cart.subtotal }}</td>
+                        </tr>
+
+                        <tr>
+
+                            <td colspan="4" class="text-right"><b>Grand Total:</b> </td>
+                            <td colspan="2">{{ cart.total}}</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        {% else %}
+            <h3>Cart is empty.</h3>
+        {% endif %}
+
+    </div>
+
+    {% include "base_footer_divider.html" %}
+{% endblock %}

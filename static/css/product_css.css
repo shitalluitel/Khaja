@@ -107,7 +107,16 @@
     }
 }
 
-.product-category{
+.product-category {
     margin-top: 45px;
     color: black;
+}
+
+.star-rating {
+    color: white;
+    text-shadow: -1px -1px 0 #f5a64a, 1px -1px 0 #f5a64a, -1px 1px 0 #f5a64a, 1px 1px 0 #f5a64a;
+}
+
+.star-rating .fa{
+    font-size: 12px;
 }

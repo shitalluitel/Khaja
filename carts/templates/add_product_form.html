@@ -1,24 +1,34 @@
 <div class="row">
-    <form method='POST' action="{% url 'cart:update' %}" class="form-inline">
+    <form method='GET' action="{% url 'cart:update' %}" class="form-inline">
         {% csrf_token %}
         <input type="hidden" name="product" value="{{ product.id }}">
-        {#    <div class="input-group">#}
-        <div class="input-group col-md-3">
-            <input type="number" min="1" value="1" name="quantity"
-                   class="form-control input-normal">
-        </div>
-        {% if product in cart.products.all %}
-            <div class="col-md-6">
-                <button type="submit" class="btn btn-danger btn-block"><span> <i
-                        class="fa fa-shopping-cart"></i></span>&nbsp;&nbsp;&nbsp;REMOVE FROM CART
-                </button>
-            </div>
+        {% if cart_display %}
+
+            {% if product in cart.products.all %}
+                <div class="col">
+                    <button type="submit" class="btn btn-danger btn-block">REMOVE
+                    </button>
+                </div>
+            {% endif %}
         {% else %}
-            <div class="col-md-6">
-                <button type="submit" class="btn btn-success btn-block"><span> <i
-                        class="fa fa-shopping-cart"></i></span>&nbsp;&nbsp;&nbsp;ADD TO CART
-                </button>
+            {#    <div class="input-group">#}
+            <div class="input-group col-md-3">
+                <input type="number" min="1" value="1" name="quantity"
+                       class="form-control input-normal">
             </div>
+            {% if product in cart.products.all %}
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-danger btn-block"><span> <i
+                            class="fa fa-shopping-cart"></i></span>&nbsp;&nbsp;&nbsp;REMOVE FROM CART
+                    </button>
+                </div>
+            {% else %}
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success btn-block"><span> <i
+                            class="fa fa-shopping-cart"></i></span>&nbsp;&nbsp;&nbsp;ADD TO CART
+                    </button>
+                </div>
+            {% endif %}
         {% endif %}
         {#    </div>#}
     </form>

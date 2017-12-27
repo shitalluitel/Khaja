@@ -104,7 +104,7 @@ def user_email_confirm(request):
         user.is_confirmed = True
         user.save()
         messages.success(request, "Email confirmed.")
-    return redirect('login_user')
+    return redirect('users:login_user')
 
 
 @login_required
@@ -117,7 +117,7 @@ def user_password_change(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Password changed successfully")
-            return redirect('user_password_change')
+            return redirect('users:user_password_change')
 
     context = {
         'form': form
@@ -137,7 +137,7 @@ def user_send_password_reset_email(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Password reset email sent. Please check your email for instructions.")
-            return redirect('send_password_reset_email')
+            return redirect('users:send_password_reset_email')
 
     context = {
         'form': form
@@ -160,26 +160,26 @@ def user_password_reset(request):
         payload = jwt.decode(token, settings.SECRET_KEY, algorithm='HS256')
     except jwt.ExpiredSignature:
         messages.error(request, 'Reset token has expired.')
-        return redirect('send_password_reset_email')
+        return redirect('users:send_password_reset_email')
     except jwt.DecodeError:
         messages.error(request, 'Error decoding reset token.')
-        return redirect('send_password_reset_email')
+        return redirect('users:send_password_reset_email')
     except jwt.InvalidTokenError:
         messages.error(request, 'Invalid reset token.')
-        return redirect('send_password_reset_email')
+        return redirect('users:send_password_reset_email')
 
     try:
         user = User.objects.get(pk=payload['reset'])
     except User.DoesNotExist:
         messages.error(request, 'Invalid token.')
-        return redirect('send_password_reset_email')
+        return redirect('users:send_password_reset_email')
 
     form = PasswordResetForm(data=request.POST or None, user=user)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             messages.success(request, "Password reset successfully.")
-            return redirect('login_user')
+            return redirect('users:login_user')
 
     context = {
         'form': form
@@ -194,7 +194,7 @@ def logout_user(request):
     """
     logout(request)
     messages.success(request, "Logged out successfully!")
-    return redirect('login_user')
+    return redirect('users:login_user')
 
 
 @login_required
@@ -208,7 +208,7 @@ def user_profile_edit(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Profile updated.")
-            return redirect('profile_edit')
+            return redirect('users:profile_edit')
 
     context = {
         'form': form
