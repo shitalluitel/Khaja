@@ -41,5 +41,6 @@ div#collapsibleNavbar {
 
 .navbar {
     z-index: 4;
+    margin-bottom: 50px;
 }
 

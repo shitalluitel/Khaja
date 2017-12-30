@@ -23,7 +23,19 @@
 <body>
 
 {% block navigaton %}
-    {% include 'navigation.html' %}
+    {% if request.user.is_authenticated %}
+        {% if request.user.is_restaurant_user %}
+            {% include 'navigation/navigation_resturent.htmla' %}
+        {% endif %}
+        {% if request.user.is_admin %}
+            {% include 'navigation/navigation_admin.html' %}
+        {% endif %}
+        {% if request.user.is_customer %}
+            {% include 'navigation/navigation_user.html' %}
+        {% endif %}
+    {% else %}
+        {% include 'navigation/navigation_user.html' %}
+    {% endif %}
 {% endblock %}
 
 {% include 'login_model.html' %}

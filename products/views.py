@@ -85,7 +85,11 @@ def product_detail(request, pk):
         'cart': cart,
     }
 
-    return render(request, 'products/product_detail.html', content)
+    if request.user.is_authenticated:
+        if request.user.is_restaurant_user or request.user.is_admin:
+            return render(request, 'products/product_detail.html', content)
+
+    return render(request, 'products/detail.html', content)
 
 # def test(request):
 #     question_id = 10
