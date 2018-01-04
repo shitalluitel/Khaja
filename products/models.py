@@ -12,7 +12,7 @@ class Product(models.Model):
     product_price = models.DecimalField(max_digits=8, decimal_places=2, null=False)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
-    image = models.ImageField(upload_to="dishes/", default=None)
+    image = models.ImageField(upload_to="dishes/", default=None, null=False, blank=True)
     description = models.TextField(max_length=512)
 
     def __str__(self):

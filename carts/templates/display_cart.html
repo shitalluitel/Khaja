@@ -23,7 +23,8 @@
                         {% for product_item in quantity %}
                             <tr>
                                 <td style="width: 5%;">{{ forloop.counter }}</td>
-                                <td style="width: 30%;"><a target="_blank" href="/media/{{ product_item.product.image }}">{{product_item.product.product_name }}</a></td>
+{#                                <td style="width: 30%;"><a target="_blank" href="/media/{{ product_item.product.image }}">{{product_item.product.product_name }}</a></td>#}
+                                <td style="width: 30%;"><a target="_blank" href="{% url 'product:detail' pk=product_item.product.id%}">{{product_item.product.product_name }}</a></td>
 {#                                <td style="width: 35%;"><img src="/media/{{ product_item.product.image }}" style="width: 25%; height: auto;" alt="{{ product_item.product.image }}|split"></td>#}
                                 <td style="width: 15%">{{ product_item.quantity }}</td>
                                 <td style="width: 15%;">{{ product_item.product.product_price }}</td>

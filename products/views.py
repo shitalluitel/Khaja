@@ -1,16 +1,16 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
-from django.http import HttpResponse
-from django.template import loader
+# from django.http import HttpResponse
+# from django.template import loader
 
 from django.shortcuts import render, redirect, get_object_or_404
-from requests import Response
+# from requests import Response
 
 from .models import Product
-from users.decorators import is_restaurant, is_admin
-from .forms import ProductForm
-from django.urls import reverse
+# from users.decorators import is_restaurant, is_admin
+from .forms import ProductCreateForm, ProductEditForm
+# from django.urls import reverse
 from carts.models import Cart
 
 
@@ -20,9 +20,9 @@ from carts.models import Cart
 # @is_admin
 # @is_restaurant
 def product_create(request):
-    form = ProductForm()
+    form = ProductCreateForm()
     if request.method == "POST":
-        form = ProductForm(request.POST, request.FILES)
+        form = ProductCreateForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save(commit=False)
             product.user = request.user
@@ -32,15 +32,15 @@ def product_create(request):
     context = {
         "form": form
     }
-    return render(request, 'product/product_edit.html', context)
+    return render(request, 'products/product_edit.html', context)
 
 
 @login_required()
 def product_edit(request, pk):
     data = Product.objects.get(pk=pk)
-    form = ProductForm(instance=data)
+    form = ProductEditForm(instance=data)
     if request.method == "POST":
-        form = ProductForm(request.POST, request.FILES, instance=data)
+        form = ProductEditForm(request.POST, request.FILES, instance=data)
         if form.is_valid():
             product = form.save(commit=False)
             product.user = request.user
@@ -50,7 +50,7 @@ def product_edit(request, pk):
     context = {
         "form": form
     }
-    return render(request, 'product/product_edit.html', context)
+    return render(request, 'products/product_edit.html', context)
 
 
 # @login_required

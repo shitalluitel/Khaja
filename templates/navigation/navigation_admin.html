@@ -20,9 +20,6 @@
                     <a class="dropdown-item" href="{% url 'product:create' %}">Add</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-success" href="{% url "cart:display" %}"><i class="fa fa-shopping-cart"></i></a>
-            </li>
             <li class="nav-item ">
                 {#                <a class="nav-link text-success" href="">Login</a>#}
                 {% if request.user.is_authenticated %}

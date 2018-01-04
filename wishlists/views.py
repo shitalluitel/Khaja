@@ -17,6 +17,7 @@ def create(request, pk):
         return redirect("wishlist:list")
 
     wishlist.delete()
+    request.session["wishlist_item"] = WishList.objects.filter(user=request.user).count()
     return redirect("wishlist:list")
 
 
@@ -33,4 +34,5 @@ def list(request):
     except EmptyPage:
         wishlists = paginator.page(paginator.num_pages)
 
+    request.session["wishlist_item"] = WishList.objects.filter(user=request.user).count()
     return render(request, 'wishlists/list.html', {'wishlists': wishlists})

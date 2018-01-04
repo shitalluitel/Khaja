@@ -33,7 +33,6 @@
     }
 }
 
-
 div#collapsibleNavbar {
     margin-right: 5%;
     margin-left: 3%;
@@ -41,6 +40,15 @@ div#collapsibleNavbar {
 
 .navbar {
     z-index: 4;
-    margin-bottom: 50px;
+    /*margin-bottom: 50px;*/
 }
 
+.fa-nav-heart {
+    color: white;
+    text-shadow: -1px -1px 0 red, 1px -1px 0 red, -1px 1px 0 red, 1px 1px 0 red;
+}
+
+.fa-cart {
+    color: white;
+    text-shadow: -1px -1px 0 #f5a64a, 1px -1px 0 #f5a64a, -1px 1px 0 #f5a64a, 1px 1px 0 #f5a64a;
+}

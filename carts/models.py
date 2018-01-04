@@ -35,6 +35,7 @@ class Cart(models.Model):
     products = models.ManyToManyField(Product, through='Quantity', blank=True)
     total = models.DecimalField(default=-0.00, max_digits=100, decimal_places=2)
     subtotal = models.DecimalField(default=-0.00, max_digits=100, decimal_places=2)
+    # is_active = models.BooleanField(default=False)
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 

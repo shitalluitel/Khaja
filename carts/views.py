@@ -15,6 +15,7 @@ def cart_home(request):
         'cart': cart,
         'quantity': quantity,
     }
+    request.session["cart_item"] = cart.products.count()
     return render(request, "display_cart.html", context=context)
 
 
@@ -36,4 +37,6 @@ def cart_update(request):
             # cart_obj.products.add(product_obj)
             # cart_obj.Quantity.product = product_obj
             Quantity.objects.create(quantity=product_quantity, cart=cart_obj, product=product_obj)
+
+        request.session["cart_item"] = cart_obj.products.count()
     return redirect("cart:display")

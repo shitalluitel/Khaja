@@ -8,10 +8,13 @@
     <div class="collapse navbar-collapse " id="collapsibleNavbar">
         <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link text-success" href="#">Link</a>
+                <a class="nav-link text-success" href="{% url "cart:display" %}"><i class="fa fa-shopping-cart fa-cart"></i>
+                    <sup>{{ request.session.cart_item  }}</sup></a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link text-success" href="{% url "cart:display" %}"><i class="fa fa-shopping-cart"></i></a>
+                <a class="nav-link text-success" href="{% url "wishlist:list" %}"><i class="fa fa-heart fa-nav-heart"></i>
+                    <sup>{{ request.session.wishlist_item  }}</sup></a>
             </li>
             <li class="nav-item ">
                 {#                <a class="nav-link text-success" href="">Login</a>#}
