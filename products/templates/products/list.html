@@ -4,34 +4,87 @@
 
 {% block extra_stylesheets %}
     <link rel="stylesheet" href="{% static 'css/product_css.css' %}">
+    <link rel="stylesheet" href="{% static 'css/image.css' %}"></link>
 {% endblock %}
 
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="text-right">
-                    <a href="{% url 'product:create' %}" class="btn btn-primary"><span><i class="fa fa-plus"></i></span>
-                        Add Product</a>
+{#    <div class="container-fluid">#}
+{#        <div class="vc_row">#}
+{#            <div class="vc_element">#}
+{#                <div class="noo-atributes">#}
+{#                    <img src="/static/image/burger.png" alt="" width="694">#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+    <div class="container-fluid">
+        <div class="vc_row wpb_row vc_row-fluid vc_custom_1454637962540">
+            <div class="container">
+                <div class="row">
+                    <div class="noo-traslate-atributes wpb_column column_container col-sm-12 col-lg-6 hidden-xs">
+                        <div class="vc_column-inner vc_custom_1452065622218">
+                            <div class="wpb_wrapper">
+                                <div class="noo-atributes">
+                                    <img width="694" src="/static/image/burger.png" class="attachment-full size-full" alt="image-01">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="noo-traslate-product wpb_column vc_column_container col-sm-12 col-lg-6">
+                        <div class="vc_column-inner vc_custom_1454662301959">
+                            <div class="wpb_wrapper">
+                                <div class="noo-short-intro">
+                                    <h4>Special Khaja</h4>
+                                    <h2>Khaja &nbsp; Store</h2>
+                                    <div class="price">
+                                        <span>Test's</span>
+                                        <span style="color: red">Exceptional</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <br>
+    </div>
+    <div class="our-products text-center">
+        <h1 style="font-family: 'Pacifico', cursive">Our Products</h1>
+        <p>Delightful local food. The best organic food delivered to your door.</p>
+        <ul class="product-list-group">
+            <li>
+                <span class="text-success"><i class="fa fa-2x fa-leaf"></i><p>All Product</p></span>
+            </li>
+            <li>
+                <span class="text-success"><i class="fa fa-2x fa-leaf"></i><p>All Product</p></span>
+            </li>
+            <li>
+                <span class="text-success"><i class="fa fa-2x fa-leaf"></i><p>All Product</p></span>
+            </li>
+            <li>
+                <span class="text-success"><i class="fa fa-2x fa-leaf"></i><p>All Product</p></span>
+            </li>
+            <li>
+                <span class="text-success"><i class="fa fa-2x fa-leaf"></i><p>All Product</p></span>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
         <div class="row">
             {% for product in products %}
                 <div class="col-md-4 col-sm-6 col-lg-3">
                     <div class="card">
                         <div class="card-header" style="border: none; background-color: transparent">
                             <img class="card-img-top" src="/media/{{ product.image }}" alt="Card image"
-                             style="width:100%;">
+                                 style="width:100%;">
                         </div>
                         <div class="card-body text-center">
                             <div style="margin-bottom: 10px; font-size: larger;">
                                 {#                                <a href="{% url 'product:edit' pk=product.pk %}"> <span><i#}
                                 {#                                        class="fa fa-edit text-info"></i></span></a>#}
                                 {#                                <span><i class="fa fa-trash text-danger"></i></span>#}
-                                <span class="star-rating" >
+                                <span class="star-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -43,9 +96,11 @@
                             <p style="color: #696969;"><span><i
                                     class="fa fa-inr"></i></span> {{ product.product_price }}</p>
                             <a class="btn btn-block btn-success cart-btn"
-                               href="{% url 'product:detail' pk=product.pk %}" style="margin-bottom:-5px"><i class="fa fa-shopping-cart">&nbsp;&nbsp; ADD TO CART</i></a>
+                               href="{% url 'product:detail' pk=product.pk %}" style="margin-bottom:-5px"><i
+                                    class="fa fa-shopping-cart">&nbsp;&nbsp; ADD TO CART</i></a>
                             <a class="btn btn-block btn-danger cart-btn"
-                               href="{% url 'wishlist:create' pk=product.pk %}"><i class="fa fa-heart">&nbsp;&nbsp; ADD TO WISHLIST</i></a>
+                               href="{% url 'wishlist:create' pk=product.pk %}"><i class="fa fa-heart">&nbsp;&nbsp; ADD
+                                TO WISHLIST</i></a>
                         </div>
                     </div>
                 </div>

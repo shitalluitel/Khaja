@@ -52,3 +52,6 @@ div#collapsibleNavbar {
     color: white;
     text-shadow: -1px -1px 0 #f5a64a, 1px -1px 0 #f5a64a, -1px 1px 0 #f5a64a, 1px 1px 0 #f5a64a;
 }
+/*nav.navbar.navbar-expand-md.navbar-light.sticky-top {*/
+    /*margin-bottom: 25px;*/
+/*}*/

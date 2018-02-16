@@ -106,7 +106,7 @@ footer {
 }
 
 .footer-divider {
-    background: url("/media/food.jpg");
+    background: url("/static/image/food.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

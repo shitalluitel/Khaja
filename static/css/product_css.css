@@ -131,3 +131,41 @@
     border-width: 3px;
     border-color: #28a745;
 }
+
+@media (max-width: 1400px) and (min-width: 992px) {
+    .noo-atributes {
+        padding-top: 50px !important;
+        margin-bottom: -51px;
+        margin-left: -100px;
+    }
+}
+
+.vc_row {
+    margin-bottom: 50px;
+}
+
+@media (max-width: 960px) {
+    .noo-atributes {
+        display: none;
+    }
+    .noo-short-intro{
+        margin-bottom: 100px;
+    }
+}
+
+.product-list-group li {
+    display: inline-block;
+    margin-right: 25px;
+    margin-top: 30px;
+
+}
+
+.product-list-group li p {
+    font-size: 14px;
+
+}
+
+.our-products {
+    margin-top: 150px;
+    margin-bottom: 50px;
+}
