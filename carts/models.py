@@ -9,7 +9,7 @@ from django.db.models.signals import pre_save, post_save, m2m_changed, post_dele
 class CartManager(models.Manager):
     def new_or_get(self, request):
         cart_id = request.session.get("cart_id", None)
-        qs = self.get_queryset().filter(id=cart_id)
+        qs = self.get_queryset().filter(id=cart_id, is_active=True)
         if qs.count() == 1:
             new_obj = False
             cart_obj = qs.first()
@@ -35,7 +35,7 @@ class Cart(models.Model):
     products = models.ManyToManyField(Product, through='Quantity', blank=True)
     total = models.DecimalField(default=-0.00, max_digits=100, decimal_places=2)
     subtotal = models.DecimalField(default=-0.00, max_digits=100, decimal_places=2)
-    # is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
@@ -51,32 +51,38 @@ class Quantity(models.Model):
     quantity = models.IntegerField(default=1)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 
+    def __str__(self):
+        return str(id)
 
-def post_save_quantity_receiver(sender, instance, *args, **kwargs):
-    calculate_total(instance)
+    def calculate_total(self):
+        try:
+            products = Quantity.objects.all().filter(cart_id=self.cart_id)
+        except:
+            products = self
+        print(self.cart_id)
+        if self.cart_id:
+            try:
+                cart = Cart.objects.get(id=self.cart_id)
+            except:
+                return
+            total = 0
+            for x in products:
+                total += x.product.product_price * x.quantity
+            if cart.subtotal != total:
+                cart.subtotal = total
+                cart.save()
+
+
+def post_save_quantity_receiver(sender, instance, created, *args, **kwargs):
+    if created:
+        instance.calculate_total()
 
 
 post_save.connect(post_save_quantity_receiver, sender=Quantity)
 
 
-def calculate_total(instance):
-    try:
-        products = Quantity.objects.all().filter(cart_id=instance.cart_id)
-    except:
-        products = instance
-    cart = Cart.objects.get(id=instance.cart_id)
-    total = 0
-    for x in products:
-        total += x.product.product_price * x.quantity
-        print(x.product.product_price)
-    print("Total: %s" % total)
-    if cart.subtotal != total:
-        cart.subtotal = total
-        cart.save()
-
-
 def post_delete_quantity_receiver(sender, instance, *args, **kwargs):
-    calculate_total(instance=instance)
+    instance.calculate_total()
 
 
 post_delete.connect(post_delete_quantity_receiver, sender=Quantity)

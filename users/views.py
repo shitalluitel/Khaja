@@ -192,9 +192,10 @@ def logout_user(request):
     """
     Logout a user
     """
+
     logout(request)
     messages.success(request, "Logged out successfully!")
-    return redirect('users:login_user')
+    return redirect('home')
 
 
 @login_required

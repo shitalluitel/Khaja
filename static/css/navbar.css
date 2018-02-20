@@ -1,14 +1,32 @@
 .navbar {
     z-index: 2;
+    padding: 0px;
     min-height: 50px;
     margin-bottom: 0;
     box-shadow: 0px 2px 10px #52504a;
     background-color: white;
 }
 
+.osh-btn.-plain.-cart > .label {
+    font-size: 12px;
+    line-height: 1.1em;
+    background: #f99047;
+    padding: 2px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    position: absolute;
+    color: #fff;
+    min-width: 22px;
+    min-height: 22px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -1px;
+    text-indent: -1px;
+}
+
 @media (min-width: 768px) {
     .navbar-brand {
-        padding: 10px 85px;
+        padding-left: 85px;
         font-size: x-large;
         font-weight: bold;
     }
@@ -17,11 +35,18 @@
         font-size: larger;
         font-weight: 300;
     }
+    .osh-btn.-plain.-cart > .label {
+        right: 100px;
+    }
 }
 
 @media (max-width: 768px) {
+    .navbar {
+        padding: .5rem 1rem;
+    }
+
     .navbar-brand {
-        padding: 10px 20px;
+        padding-left: 20px;
         font-size: x-large;
         font-weight: bold;
     }
@@ -30,6 +55,10 @@
         font-size: large;
         font-weight: 300;
         /*padding: 0 20px;*/
+    }
+
+    .osh-btn.-plain.-cart > .label {
+        left: 65px;
     }
 }
 
@@ -52,6 +81,32 @@ div#collapsibleNavbar {
     color: white;
     text-shadow: -1px -1px 0 #f5a64a, 1px -1px 0 #f5a64a, -1px 1px 0 #f5a64a, 1px 1px 0 #f5a64a;
 }
+
 /*nav.navbar.navbar-expand-md.navbar-light.sticky-top {*/
-    /*margin-bottom: 25px;*/
+/*margin-bottom: 25px;*/
 /*}*/
+
+.dropdown-item {
+    display: block;
+    font-size: small;
+    line-height: 20px;
+    color: #000;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000;
+}
+
+.navbar-light .navbar-nav .navbar-link:hover {
+    color: rgb(216, 216, 216);
+}
+
+.nav-user .nav-item {
+    margin-left: 10px;
+}
+
+.nav-user .form-inline .btn {
+    margin-right: 10px;
+    border-radius: 0;
+}
+
