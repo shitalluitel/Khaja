@@ -2,7 +2,7 @@
 {% load split %}
 {% load mathfilters %}
 {% block content %}
-    <div class="container">
+    <div class="container-fluid  mt-5">
         {% if cart.products.exists %}
             <div class="row">
                 <div class="col">
@@ -48,7 +48,11 @@
 
                         </tbody>
                     </table>
-                    <td colspan="6"><a class="btn btn-success " href="{% url "cart:checkout" %}">Checkout</a></td>
+                    <div class="text text-right">
+                        <a class="btn btn-danger" href="{% url "cart:destroy" pk=cart.id %}">Destroy Cart</a>
+                        <a class="btn btn-success " href="{% url "cart:checkout" %}">Checkout</a>
+                    </div>
+
 
                 </div>
             </div>
