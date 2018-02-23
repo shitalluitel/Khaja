@@ -1,41 +1,41 @@
 {% extends 'base_temp.html' %}
 
 {% block content %}
-    <div class="delete-page mt-5">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="offset-md-3 col-md-6">
-                    <p class="lead text-center">Are you sure, you want to delete cart ?
+<div class="delete-page mt-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <p class="lead text-center">Are you sure, you want to delete cart ?
 
-                    </p>
+                </p>
 
-                    <form method="POST" class="form-horizontal">
+                <form method="POST" class="form-horizontal">
 
-                        {% csrf_token %}
+                    {% csrf_token %}
 
-                        <div class="form-group">
+                    <div class="form-group">
 
-                            <div class="offset-md-3">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <button type="submit"
-                                                class="btn btn-danger btn-block">Delete
-                                        </button>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a href="{% url 'cart:display' %}"
-                                           class="btn btn-secondary btn-block">Cancel</a>
-                                    </div>
+                        <div class="offset-md-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button type="submit"
+                                            class="btn btn-danger btn-block">Delete
+                                    </button>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="{% url 'cart:display' %}"
+                                       class="btn btn-secondary btn-block">Cancel</a>
                                 </div>
                             </div>
-
                         </div>
-                    </form>
 
-                </div>
+                    </div>
+                </form>
+
             </div>
-
         </div>
+
     </div>
-    {% include 'base_footer_divider.html' %}
+</div>
+{% include 'base_footer_divider.html' %}
 {% endblock %}

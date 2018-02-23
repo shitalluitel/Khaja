@@ -7,7 +7,6 @@ import users.validators
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -20,8 +19,12 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('password', models.CharField(max_length=128, verbose_name='password')),
                 ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
-                ('username', models.CharField(error_messages={'unique': 'User with this username already exists.'}, max_length=255, unique=True, validators=[users.validators.UsernameValidator()])),
-                ('email', models.EmailField(error_messages={'unique': 'User with this email already exists.'}, max_length=254, unique=True)),
+                ('username',
+                 models.CharField(error_messages={'unique': 'User with this username already exists.'}, max_length=255,
+                                  unique=True, validators=[users.validators.UsernameValidator()])),
+                ('email',
+                 models.EmailField(error_messages={'unique': 'User with this email already exists.'}, max_length=254,
+                                   unique=True)),
                 ('first_name', models.CharField(max_length=40, null=True)),
                 ('last_name', models.CharField(max_length=40, null=True)),
                 ('is_confirmed', models.BooleanField(default=False)),
@@ -30,7 +33,8 @@ class Migration(migrations.Migration):
                 ('is_customer', models.BooleanField(default=True)),
                 ('is_restaurant_user', models.BooleanField(default=False)),
                 ('is_delivery_boy', models.BooleanField(default=False)),
-                ('image', models.ImageField(default='profile_picture/none/no_image_user.png', upload_to='profile_picture/')),
+                ('image',
+                 models.ImageField(default='profile_picture/none/no_image_user.png', upload_to='profile_picture/')),
             ],
             options={
                 'db_table': 'users',

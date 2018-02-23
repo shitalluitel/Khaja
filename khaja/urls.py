@@ -20,11 +20,10 @@ from django.conf.urls.static import static
 from products.views import product_list
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', product_list, name="home"),
-    url(r'^users/', include('users.urls', namespace="users")),
-    url(r'^products/', include('products.urls', namespace="product")),
-    url(r'^carts/', include('carts.urls', namespace="cart")),
-    url(r'^wishlists/', include('wishlists.urls', namespace="wishlist")),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+                  url(r'^admin/', admin.site.urls),
+                  url(r'^$', product_list, name="home"),
+                  url(r'^users/', include('users.urls', namespace="users")),
+                  url(r'^products/', include('products.urls', namespace="product")),
+                  url(r'^carts/', include('carts.urls', namespace="cart")),
+                  url(r'^wishlists/', include('wishlists.urls', namespace="wishlist")),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

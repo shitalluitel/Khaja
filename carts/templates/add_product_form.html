@@ -4,35 +4,37 @@
         <input type="hidden" name="product" value="{{ product.id }}">
         {% if cart_display %}
 
-            {% if product in cart.products.all %}
-                <div class="col">
-                    <button type="submit" class="btn btn-danger btn-block">REMOVE
-                    </button>
-                </div>
-            {% endif %}
+        {% if product in cart.products.all %}
+        <div class="col">
+            <button type="submit" class="btn btn-danger btn-block">REMOVE
+            </button>
+        </div>
+        {% endif %}
         {% else %}
-            {#    <div class="input-group">#}
+        <div class="input-group">
             <div class="input-group col-md-3">
                 <input type="number" min="1" value="1" name="quantity"
                        class="form-control input-normal">
             </div>
             {% if product in cart.products.all %}
-                <div class="col-md-6">
-                    <button type="submit" class="btn btn-danger btn-block"><span> <i
-                            class="fa fa-shopping-cart"></i></span>&nbsp;&nbsp;&nbsp;REMOVE FROM CART
-                    </button>
-                </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-danger btn-block"><span> <i
+                        class="fa fa-shopping-cart"></i></span>&nbsp;&nbsp;&nbsp;REMOVE FROM CART
+                </button>
+            </div>
             {% else %}
-                <div class="col-md-6">
-                    <button type="submit" class="btn btn-success btn-block"><span> <i
-                            class="fa fa-shopping-cart"></i></span>&nbsp;&nbsp;&nbsp;ADD TO CART
-                    </button>
-                </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success btn-block"><span> <i
+                        class="fa fa-shopping-cart"></i></span>&nbsp;&nbsp;&nbsp;ADD TO CART
+                </button>
+            </div>
             {% endif %}
             <div class="col-md-3">
                 <span class="star-rating"><i class="fa fa-heart "></i></span>
             </div>
-        {% endif %}
-        {#    </div>#}
+            {% endif %}
+
+        </div>
+
     </form>
 </div>

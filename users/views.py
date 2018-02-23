@@ -30,7 +30,7 @@ def user_register(request):
                 Please confirm your account by clicking on the confirmation link \
                 sent to your email.")
             login(request, user)
-            return redirect('/')
+            return redirect('home')
 
     context = {
         'form': form
@@ -192,10 +192,13 @@ def logout_user(request):
     """
     Logout a user
     """
+    if not request.session.get('cart_id'):
+        logout(request)
+        messages.success(request, "Logged out successfully!")
+        return redirect('home')
 
-    logout(request)
-    messages.success(request, "Logged out successfully!")
-    return redirect('home')
+    messages.error(request, "You have active cart. Please checkout your cart or it may get destroyed.")
+    return redirect('cart:display')
 
 
 @login_required
@@ -215,8 +218,3 @@ def user_profile_edit(request):
         'form': form
     }
     return render(request, 'users/profile_edit.html', context)
-
-
-
-
-

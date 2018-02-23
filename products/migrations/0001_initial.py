@@ -8,7 +8,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -26,7 +25,8 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateField(auto_now=True)),
                 ('product_photo', models.ImageField(upload_to='dishes/')),
                 ('description', models.TextField(max_length=512)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='product', to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='product',
+                                           to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

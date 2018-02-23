@@ -24,7 +24,7 @@ SECRET_KEY = 's0$n$+^sfk$1h7wl-tc3^q4mm72$p(^%!&y^b538sm2^8sdm&b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["khaja.com",'localhost']
+ALLOWED_HOSTS = ["khaja.com", 'localhost']
 
 # Application definition
 

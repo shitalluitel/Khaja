@@ -1,6 +1,7 @@
-.login-form-wrap .school-title-wrap h3{
+.login-form-wrap .school-title-wrap h3 {
     font-size: 24px;
 }
+
 .main-wrapper {
     margin-top: 20px;
     min-height: 460px;
@@ -58,7 +59,7 @@
     vertical-align: middle;
 }
 
-.btn-file>input {
+.btn-file > input {
     position: absolute;
     top: 0;
     right: 0;
@@ -74,4 +75,23 @@
 
 input[type=file] {
     display: block;
+}
+
+.form-wrap {
+    border: 1px solid #d4d4d4;
+    box-shadow: 2px 2px 4px #d4d4d4;
+    background: #ffffff;
+    padding: 15px;
+}
+
+.hr-small {
+    border: 1px solid #000;
+    width: 75px;
+    border-radius: 10px;
+    margin-top: 0px;
+    margin-bottom: 35px;
+}
+
+.text-decoration-none{
+    text-decoration: none;
 }

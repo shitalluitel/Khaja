@@ -35,6 +35,7 @@
         font-size: larger;
         font-weight: 300;
     }
+
     .osh-btn.-plain.-cart > .label {
         right: 100px;
     }
@@ -110,3 +111,15 @@ div#collapsibleNavbar {
     border-radius: 0;
 }
 
+.menu-item-big {
+    color: #000;
+    font-weight: 700;
+    margin-top: -5px;
+    font-size: 16px;
+}
+
+.menu-item-small {
+    color: #6E6E6E;
+    font-size: 16px;
+    font-weight: 500
+}

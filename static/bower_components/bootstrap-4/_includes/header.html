@@ -4,17 +4,17 @@
 
 <title>
   {%- if page.title -%}
-    {{ page.title }} &middot; {{ site.title }}
+  {{ page.title }} &middot; {{ site.title }}
   {%- else -%}
-    {{ site.title }} &middot; {{ site.description }}
+  {{ site.title }} &middot; {{ site.description }}
   {%- endif -%}
 </title>
 
 <!-- Bootstrap core CSS -->
 {% if site.github %}
-  <link href="{{ site.baseurl }}/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="{{ site.baseurl }}/dist/css/bootstrap.min.css" rel="stylesheet">
 {% else %}
-  <link href="{{ site.baseurl }}/dist/css/bootstrap.css" rel="stylesheet">
+<link href="{{ site.baseurl }}/dist/css/bootstrap.css" rel="stylesheet">
 {% endif %}
 
 <!-- Documentation extras -->
@@ -34,4 +34,5 @@
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-146052-10', 'getbootstrap.com');
   ga('send', 'pageview');
+
 </script>

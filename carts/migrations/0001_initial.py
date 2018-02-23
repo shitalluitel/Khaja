@@ -8,7 +8,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -34,7 +33,8 @@ class Migration(migrations.Migration):
                 ('quantity', models.IntegerField(default=1)),
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
                 ('cart', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='carts.Cart')),
-                ('product', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='products.Product')),
+                ('product',
+                 models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='products.Product')),
             ],
         ),
         migrations.AddField(
@@ -45,6 +45,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='cart',
             name='user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
+                                    to=settings.AUTH_USER_MODEL),
         ),
     ]

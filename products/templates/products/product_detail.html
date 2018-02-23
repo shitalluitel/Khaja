@@ -2,149 +2,148 @@
 {% load split %}
 {% load staticfiles %}
 {% block extra_stylesheets %}
-    <link rel="stylesheet" href="{% static 'css/product_css.css' %}">
-    <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+<link rel="stylesheet" href="{% static 'css/product_css.css' %}">
+<link rel="stylesheet" href="{% static 'css/hero.css' %}">
 {% endblock %}
 
 {% block hero_image %}
-    <div class="hero-image">
-        <div class="overlay">
-            <div class="hero-text">
-                <h1 class="cursive-font" style="font-size:56px; font-weight: 400; ">{{ product.product_name }}</h1>
-                <p>IN YOUR DOOR, ON YOUR DEMAND</p>
-            </div>
+<div class="hero-image">
+    <div class="overlay">
+        <div class="hero-text">
+            <h1 class="cursive-font" style="font-size:56px; font-weight: 400; ">{{ product.product_name }}</h1>
+            <p>IN YOUR DOOR, ON YOUR DEMAND</p>
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="row">
-                    <div class="col-md-5 image-container">
-                        <a href="/media/{{ product.image }}" target="_blank"><img src="/media/{{ product.image }}"
-                                                                                  alt="{{ product.image|split }}"
-                                                                                  style="height: auto; width: 100%;"></a>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="product-detail">
-                            <div class="product-price">
-                                <h3 style=" font-weight: 300;">{{ product.product_name }}</h3>
-                                <p class="font-weight-light"
-                                   style="font-size: 34px; font-weight: 500; color: #79cba8;"><span><i
-                                        class="fa fa-inr"></i> {{ product.product_price }}</span></p>
-                            </div>
-                            <hr>
-                            <div class="product-description">
-                                <p>My name is shital babu luitel. This section is for description of
-                                    this product. Please update this.</p>
-                            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-5 image-container">
+                    <a href="/media/{{ product.image }}" target="_blank"><img src="/media/{{ product.image }}"
+                                                                              alt="{{ product.image|split }}"
+                                                                              style="height: auto; width: 100%;"></a>
+                </div>
+                <div class="col-md-7">
+                    <div class="product-detail">
+                        <div class="product-price">
+                            <h3 style=" font-weight: 300;">{{ product.product_name }}</h3>
+                            <p class="font-weight-light"
+                               style="font-size: 34px; font-weight: 500; color: #79cba8;"><span><i
+                                    class="fa fa-inr"></i> {{ product.product_price }}</span></p>
+                        </div>
+                        <hr>
+                        <div class="product-description">
+                            <p>My name is shital babu luitel. This section is for description of
+                                this product. Please update this.</p>
+                        </div>
 
-                            <div class="product-data">
-                                <span class="product-category"> Categories: <a href="#">XYZ</a></span>
-                                <span class="product-tag"> Tag: <a href="#">XYZ</a></span>
-
-                            </div>
-                            <div class="quantity-operation">
-                                <div class="row">
-                                    <div class="col-md-12" style="font-size: 24px;">
-                                        <a class="text-primary" href="{% url 'product:edit' pk=product.pk %}"><span><i
-                                                class="fa fa-edit"></i></span></a>
-                                        &nbsp;
-                                        <a class="text-danger" href="{% url 'product:edit' pk=product.pk %}"><span><i
-                                                class="fa fa-trash"></i></span></a>
-                                    </div>
-
-{#                                    {% include 'add_product_form.html' with product=product cart=cart %}#}
-                                </div>
-                            </div>
+                        <div class="product-data">
+                            <span class="product-category"> Categories: <a href="#">XYZ</a></span>
+                            <span class="product-tag"> Tag: <a href="#">XYZ</a></span>
 
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="tabs">
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#description">Description</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#review">Review</a>
-                                </li>
-                            </ul>
+                        <div class="quantity-operation">
+                            <div class="row">
+                                <div class="col-md-12" style="font-size: 24px;">
+                                    <a class="text-primary" href="{% url 'product:edit' pk=product.pk %}"><span><i
+                                            class="fa fa-edit"></i></span></a>
+                                    &nbsp;
+                                    <a class="text-danger" href="{% url 'product:edit' pk=product.pk %}"><span><i
+                                            class="fa fa-trash"></i></span></a>
+                                </div>
 
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div id="description" class="container tab-pane active"><br>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                </div>
-                                <div id="review" class="container tab-pane fade"><br>
-                                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                        aliquip ex ea commodo consequat.</p>
-                                    <div class="fb-comments"
-                                         data-href="https://developers.facebook.com/docs/plugins/comments#khaja_{{ product.product_name }}"
-                                         data-numposts="5"></div>
-                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <h2 class="cursive-font detail-info">Related Khaja</h2>
-                        <div class="row">
-                            {% for data in related %}
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="card">
-                                        <img class="card-img-top" src="/media/{{ data.image }}"
-                                             alt="Card image"
-                                             style="width:100%">
-                                        <div class="card-body text-center">
-                                            <div style="margin-bottom: 10px; font-size: larger;">
-                                                <a href="{% url 'product:edit' pk=data.pk %}"> <span><i
-                                                        class="fa fa-edit text-info"></i></span></a>
-                                                <span><i class="fa fa-trash text-danger"></i></span>
-                                                </span>
-                                            </div>
-                                            <h4 class="card-title"
-                                                style="font-weight: bold;">{{ data.product_name }}</h4>
-                                            <p style="color: #696969;"><span><i
-                                                    class="fa fa-inr"></i></span> {{ data.product_price }}
-                                            </p>
-                                            <a class="btn btn-block btn-success cart-btn"
-                                               href="{% url 'product:detail' pk=data.pk %}">Detail
-                                                Info</a>
-                                        </div>
-                                    </div>
-                                </div>
 
-                            {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="tabs">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#description">Description</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#review">Review</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div id="description" class="container tab-pane active"><br>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                            <div id="review" class="container tab-pane fade"><br>
+                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                    aliquip ex ea commodo consequat.</p>
+                                <div class="fb-comments"
+                                     data-href="https://developers.facebook.com/docs/plugins/comments#khaja_{{ product.product_name }}"
+                                     data-numposts="5"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12">
+                    <h2 class="cursive-font detail-info">Related Khaja</h2>
+                    <div class="row">
+                        {% for data in related %}
+                        <div class="col-md-4 col-sm-6">
+                            <div class="card">
+                                <img class="card-img-top" src="/media/{{ data.image }}"
+                                     alt="Card image"
+                                     style="width:100%">
+                                <div class="card-body text-center">
+                                    <div style="margin-bottom: 10px; font-size: larger;">
+                                        <a href="{% url 'product:edit' pk=data.pk %}"> <span><i
+                                                class="fa fa-edit text-info"></i></span></a>
+                                        <span><i class="fa fa-trash text-danger"></i></span>
+                                        </span>
+                                    </div>
+                                    <h4 class="card-title"
+                                        style="font-weight: bold;">{{ data.product_name }}</h4>
+                                    <p style="color: #696969;"><span><i
+                                            class="fa fa-inr"></i></span> {{ data.product_price }}
+                                    </p>
+                                    <a class="btn btn-block btn-success cart-btn"
+                                       href="{% url 'product:detail' pk=data.pk %}">Detail
+                                        Info</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3">
-                <div class="product-operation">
-                    <div class="product-search">
-                        <h3 class="cursive-font">Search</h3>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for..."
-                                   aria-label="Search for...">
-                            <span class="input-group-btn">
+        </div>
+        <div class="col-md-3">
+            <div class="product-operation">
+                <div class="product-search">
+                    <h3 class="cursive-font">Search</h3>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for..."
+                               aria-label="Search for...">
+                        <span class="input-group-btn">
                         <button class="btn btn-default" type="button" style="z-index: 0;">Go!</button>
                       </span>
-                        </div>
                     </div>
+                </div>
 
-                    <div class="product-category">
-                        <h3 class="cursive-font">Category</h3>
-                        <div class="category-list">
+                <div class="product-category">
+                    <h3 class="cursive-font">Category</h3>
+                    <div class="category-list">
 
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {% include 'base_footer_divider.html' %}
+</div>
+{% include 'base_footer_divider.html' %}
 {% endblock %}
 
