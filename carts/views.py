@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from products.models import Product
 from .models import Cart, Quantity
 from orders.models import Order
+from addresses.models import Address
 
 
 # from users.decorators import is_admin, is_customer, is_restaurant, is_delivery
@@ -54,14 +55,18 @@ def cart_update(request):
 @login_required
 def checkout_home(request):
     cart, new_obj = Cart.objects.new_or_get(request)
-    order_obj = None
-    if new_obj or cart.products.count() == 0:
-        return redirect("cart:display")
+    address = Address.objects.get(user=request.user)
+    if not address:
+        return redirect("address:create")
     else:
-        order_obj, new_order_obj = Order.objects.get_or_create(cart=cart)
-        request.session["cart_item"] = 0
-        request.session['cart_id'] = None
-    return render(request, "checkout.html", {"order": order_obj})
+        order_obj = None
+        if new_obj or cart.products.count() == 0:
+            return redirect("cart:display")
+        else:
+            order_obj, new_order_obj = Order.objects.get_or_create(address=address, user=request.user, cart=cart)
+            request.session["cart_item"] = 0
+            request.session['cart_id'] = None
+        return render(request, "checkout.html", {"order": order_obj})
 
 
 @login_required

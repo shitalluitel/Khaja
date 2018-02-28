@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'wishlists',
     'orders',
+    'addresses',
 ]
 
 MIDDLEWARE = [

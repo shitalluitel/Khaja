@@ -72,7 +72,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_restaurant_user = models.BooleanField(default=False)
     is_delivery_boy = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
-    address = models.TextField(max_length=512, null=True)
+    # address = models.TextField(max_length=512, null=True)
     image = models.ImageField(upload_to="profile_picture/", default="profile_picture/none/no_image_user.png")
 
     objects = UserManager()

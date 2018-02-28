@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 # from requests import Response
 
 from .models import Product
-# from users.decorators import is_restaurant, is_admin
+from users.decorators import is_restaurant, is_admin
 from .forms import ProductCreateForm, ProductEditForm
 # from django.urls import reverse
 from carts.models import Cart
@@ -17,8 +17,8 @@ from carts.models import Cart
 # Create your views here.
 
 @login_required
-# @is_admin
-# @is_restaurant
+@is_admin
+@is_restaurant
 def product_create(request):
     form = ProductCreateForm()
     if request.method == "POST":
@@ -36,6 +36,8 @@ def product_create(request):
 
 
 @login_required()
+@is_admin
+@is_restaurant
 def product_edit(request, pk):
     data = Product.objects.get(pk=pk)
     form = ProductEditForm(instance=data)
@@ -56,7 +58,7 @@ def product_edit(request, pk):
 # @login_required
 def product_list(request):
     product_list_data = Product.objects.all().order_by('product_name')
-    per_page = 12
+    per_page = 8
     paginator = Paginator(product_list_data, per_page)
     page = request.GET.get('page')
 

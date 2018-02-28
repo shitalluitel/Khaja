@@ -123,3 +123,8 @@ div#collapsibleNavbar {
     font-size: 16px;
     font-weight: 500
 }
+
+.dropdown-item:active{
+    /*color: black;*/
+    background: transparent;
+}

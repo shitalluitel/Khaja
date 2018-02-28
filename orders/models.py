@@ -5,6 +5,7 @@ from django.db.models.signals import pre_save, post_save
 from carts.models import Cart
 from khaja.utils import unique_order_id_generator
 from users.models import User
+from addresses.models import Address
 
 ORDER_STATUS_CHOICES = (
     ('shipped', 'Shipped'),
@@ -14,11 +15,12 @@ ORDER_STATUS_CHOICES = (
 
 
 class Order(models.Model):
-    # user = models.ForeignKey(User)
     order_id = models.CharField(max_length=120, blank=True)
+    user = models.ForeignKey(User)
     cart = models.ForeignKey(Cart)
     status = models.CharField(max_length=120, default="processing", choices=ORDER_STATUS_CHOICES)
     total = models.DecimalField(default=0.0, max_digits=100, decimal_places=2)
+    address = models.ForeignKey(Address)
 
     def __str__(self):
         return self.order_id
