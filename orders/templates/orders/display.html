@@ -1,0 +1,91 @@
+{% extends 'base_temp.html' %}
+{% load staticfiles %}
+
+{% block extra_stylesheets %}
+    <link rel="stylesheet" href="{% static '/css/cart.css' %}">
+    <link rel="stylesheet" href="{% static '/css/order.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-dismissible alert-{{ message.tags }}">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <p>{{ message }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        {% if orders %}
+            <div class="row ">
+                <div class="col">
+                    <h6 style="font-weight: bolder;">MY ORDERS</h6>
+                    <hr class="mb-4">
+                    {% for order in orders %}
+                        <div class="text-center">
+                            <ul class="list-inline order-list-inline py-2">
+                            <span class="px-5 py-2">
+                                <li class="list-inline-item mr-5" style="color: #898989; font-weight: bold;">Order</li>
+                                <li class="list-inline-item mr-5"
+                                    style="font-weight: bold; color: #666;"># {{ order.order_id }}</li>
+                                <li class="list-inline-item mr-5" style="color: #6a6a6a;">{{ order.created_at }}</li>
+                                <li class="list-inline-item mx-5"
+                                    style="font-weight: 300;">Total &nbsp; Rs. {{ order.total }}</li>
+                                <li class="list-inline-item mx-4"
+                                    style="font-weight: bolder; color: #666;">{{ order.status }}</li>
+                                <li class="list-inline-item ml-4"
+                                    style="font-weight: bold; color: #898989;">Order Detail</li>
+                            </span>
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if orders.has_next %}
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        {% if orders.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{ orders.previous_page_number }}">&laquo;
+                                Previous</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a class="page-link">&laquo; Previous</a></li>
+                        {% endif %}
+                        {% for i in orders.paginator.page_range %}
+                            {% if orders.number == i %}
+                                <li class="page-item active"><a class="page-link" href="#">{{ i }} <span
+                                        class="sr-only">(current)</span></a>
+                                </li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if orders.has_next %}
+                            <li class="page-item"><a class="page-link"
+                                                     href="?page={{ orders.next_page_number }}">Next &raquo;</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a class="page-link">Next &raquo;</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+        {% else %}
+            {#            <div class="container my-2">#}
+            {#                <h2 style="font-size: 32px; font-weight: 700;">ORDER</h2>#}
+            {#                <div class="text-center mb-4">#}
+            {#                    <p style="font-size: 18px; font-weight: 500;">Your order is empty!</p>#}
+            {#                    <a class="btn btn-continue-shopping" href="{% url 'home' %}#product_list">CONTNUE SHOPPING</a>#}
+            {#                </div>#}
+            {#            </div>#}
+        {% endif %}
+
+    </div>
+
+    {% include "base_footer_divider.html" %}
+{% endblock %}

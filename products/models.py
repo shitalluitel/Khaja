@@ -15,6 +15,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to="dishes/", default=None, null=False, blank=True)
     description = models.TextField(max_length=512)
 
+    # featured = models.BooleanField(default=False)
     def __str__(self):
         return self.product_name
 

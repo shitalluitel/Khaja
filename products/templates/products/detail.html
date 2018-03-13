@@ -2,8 +2,8 @@
 {% load split %}
 {% load staticfiles %}
 {% block extra_stylesheets %}
-<link rel="stylesheet" href="{% static 'css/product_css.css' %}">
-<link rel="stylesheet" href="{% static 'css/hero.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product_css.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hero.css' %}">
 {% endblock %}
 
 {% block hero_image %}
@@ -68,12 +68,10 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div id="description" class="container tab-pane active"><br>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
+                                <p>{{ product.description }}</p>
                             </div>
                             <div id="review" class="container tab-pane fade"><br>
-                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip ex ea commodo consequat.</p>
+
                                 <div class="fb-comments"
                                      data-href="https://developers.facebook.com/docs/plugins/comments#khaja_{{ product.product_name }}"
                                      data-numposts="5"></div>
@@ -119,11 +117,7 @@
                 <div class="product-search">
                     <h3 class="cursive-font">Search</h3>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for..."
-                               aria-label="Search for...">
-                        <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" style="z-index: 0;">Go!</button>
-                      </span>
+                       {% include 'search/snippets/search-form.html' %}
                     </div>
                 </div>
 

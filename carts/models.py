@@ -4,8 +4,6 @@ from users.models import User
 from django.db.models.signals import pre_save, post_save, m2m_changed, post_delete
 
 
-# Create your models here.
-
 class CartManager(models.Manager):
     def new_or_get(self, request):
         cart_id = request.session.get("cart_id", None)
@@ -37,7 +35,8 @@ class Cart(models.Model):
     subtotal = models.DecimalField(default=-0.00, max_digits=100, decimal_places=2)
     is_active = models.BooleanField(default=True)
     updated = models.DateTimeField(auto_now=True)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
 
     objects = CartManager()
 

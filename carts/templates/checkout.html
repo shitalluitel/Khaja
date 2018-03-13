@@ -1,5 +1,49 @@
 {% extends 'base_temp.html' %}
-{% block content %}
-<h1>Order</h1>
+{% load staticfiles %}
 
+{% block extra_stylesheets %}
+    <link rel="stylesheet" href="{% static '/css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid  mt-5">
+
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-dismissible alert-{{ message.tags }}">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <p>{{ message }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+            <div class="row">
+            <div class="col">
+
+                <table class="table table-hover text-center">
+                    <thead>
+                    <tr>
+                        <th>Order</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>{{ order.order_id }}</td>
+                        <td>{{ order.created_at }}</td>
+                        <td>{{ order.status }}</td>
+                        <td>{{ order.total }}</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    {% include "base_footer_divider.html" %}
 {% endblock %}

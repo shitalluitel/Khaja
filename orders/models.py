@@ -21,6 +21,8 @@ class Order(models.Model):
     status = models.CharField(max_length=120, default="processing", choices=ORDER_STATUS_CHOICES)
     total = models.DecimalField(default=0.0, max_digits=100, decimal_places=2)
     address = models.ForeignKey(Address)
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.order_id

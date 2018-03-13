@@ -13,9 +13,6 @@ from .forms import ProductCreateForm, ProductEditForm
 # from django.urls import reverse
 from carts.models import Cart
 
-
-# Create your views here.
-
 @login_required
 @is_admin
 @is_restaurant

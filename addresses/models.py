@@ -12,7 +12,9 @@ class Address(models.Model):
     city = models.CharField(max_length=120)
     country = models.CharField(max_length=120, default='Nepal')
     state = models.CharField(max_length=120)
-    postal_code = models.CharField(max_length=32)
+    phone_number = models.CharField(max_length=16)
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
 
     def __str__(self):
         return str(self.address_line_1)

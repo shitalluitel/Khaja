@@ -55,7 +55,7 @@ def cart_update(request):
 @login_required
 def checkout_home(request):
     cart, new_obj = Cart.objects.new_or_get(request)
-    address = Address.objects.get(user=request.user)
+    address = Address.objects.get(id=request.GET.get("address"))
     if not address:
         return redirect("address:create")
     else:
@@ -65,7 +65,7 @@ def checkout_home(request):
         else:
             order_obj, new_order_obj = Order.objects.get_or_create(address=address, user=request.user, cart=cart)
             request.session["cart_item"] = 0
-            request.session['cart_id'] = None
+            request.session["cart_id"] = None
         return render(request, "checkout.html", {"order": order_obj})
 
 
