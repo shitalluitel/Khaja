@@ -24,13 +24,13 @@
 
 {% block navigaton %}
 {% if request.user.is_authenticated %}
-{% if request.user.is_restaurant_user %}
+{% if request.user.user_type == 2 %}
 {% include 'navigation/navigation_resturent.html' %}
 {% endif %}
 {% if request.user.is_admin %}
 {% include 'navigation/navigation_admin.html' %}
 {% endif %}
-{% if request.user.is_customer %}
+{% if request.user.user_type == 1 %}
 {% include 'navigation/navigation_user.html' %}
 {% endif %}
 {% else %}

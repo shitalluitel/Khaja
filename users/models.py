@@ -13,6 +13,7 @@ from django.utils.safestring import mark_safe
 from .validators import UsernameValidator
 from django.core.mail import EmailMessage
 from django.contrib.auth.models import PermissionsMixin
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class UserManager(BaseUserManager):
@@ -67,10 +68,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_confirmed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    is_customer = models.BooleanField(default=True)
-    # is_staff = models.BooleanField(default=True)
-    is_restaurant_user = models.BooleanField(default=False)
-    is_delivery_boy = models.BooleanField(default=False)
+    # is_customer = models.BooleanField(default=True)
+    # # is_staff = models.BooleanField(default=True)
+    # is_restaurant_user = models.BooleanField(default=False)
+    # is_delivery_boy = models.BooleanField(default=False)
+    user_type = models.IntegerField(default=1,validators=[MaxValueValidator(3), MinValueValidator(1)])
     is_admin = models.BooleanField(default=False)
     # address = models.TextField(max_length=512, null=True)
     image = models.ImageField(upload_to="profile_picture/", default="profile_picture/none/no_image_user.png")

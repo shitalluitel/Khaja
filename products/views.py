@@ -14,8 +14,8 @@ from .forms import ProductCreateForm, ProductEditForm
 from carts.models import Cart
 
 @login_required
-@is_admin
 @is_restaurant
+# @is_admin
 def product_create(request):
     form = ProductCreateForm()
     if request.method == "POST":
@@ -33,7 +33,7 @@ def product_create(request):
 
 
 @login_required()
-@is_admin
+# @is_admin
 @is_restaurant
 def product_edit(request, pk):
     data = Product.objects.get(pk=pk)
@@ -54,7 +54,17 @@ def product_edit(request, pk):
 
 # @login_required
 def product_list(request):
-    product_list_data = Product.objects.all().order_by('product_name')
+    try:
+        if request.user.is_authenticated:
+            print("YEs")
+            if request.user.user_type == 1:
+                product_list_data = Product.objects.all()
+            else:
+                product_list_data = Product.objects.filter(user_id=request.user.id)
+        else:
+            product_list_data = Product.objects.all().order_by('product_name')
+    except Product.DoesNotExist:
+        return redirect("product:create")
     per_page = 8
     paginator = Paginator(product_list_data, per_page)
     page = request.GET.get('page')
@@ -67,10 +77,12 @@ def product_list(request):
         products = paginator.page(paginator.num_pages)
 
     if request.user.is_authenticated:
-        if request.user.is_restaurant_user or request.user.is_admin:
+        if request.user.user_type == 2 or request.user.is_admin:
             return render(request, 'products/product_list.html', {'products': products})
 
     return render(request, 'products/list.html', {'products': products})
+
+
 
 
 # @login_required
@@ -85,7 +97,7 @@ def product_detail(request, pk):
     }
 
     if request.user.is_authenticated:
-        if request.user.is_restaurant_user or request.user.is_admin:
+        if request.user.user_type == 2 or request.user.is_admin:
             return render(request, 'products/product_detail.html', content)
 
     return render(request, 'products/detail.html', content)

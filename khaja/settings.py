@@ -24,7 +24,7 @@ SECRET_KEY = 's0$n$+^sfk$1h7wl-tc3^q4mm72$p(^%!&y^b538sm2^8sdm&b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["khaja.com", 'localhost']
+ALLOWED_HOSTS = ["khaja.com", 'localhost', '192.168.100.18']
 
 # Application definition
 
@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'khaja.middleware.Shital',
 ]
 
 ROOT_URLCONF = 'khaja.urls'
@@ -85,7 +86,7 @@ DATABASES = {
         'USER': 'shital',
         'PASSWORD': 'luitel@dell.com',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 
