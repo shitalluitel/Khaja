@@ -9,13 +9,23 @@ def random_string_generator(size=10, chars=string.ascii_lowercase + string.digit
 
 
 def unique_order_id_generator(instance):
-    oreder_new_id = random_string_generator()
+    order_new_id = random_string_generator()
 
     klass = instance.__class__
-    qs_exist = klass.objects.filter(order_id=oreder_new_id).exists()
+    qs_exist = klass.objects.filter(order_id=order_new_id).exists()
     if qs_exist:
         return unique_order_id_generator()
-    return oreder_new_id
+    return order_new_id
+
+
+def unique_company_id_generator(instance):
+    company_new_id = random_string_generator()
+
+    klass = instance.__class__
+    qs_exist = klass.objects.filter(company_id=company_new_id).exists()
+    if qs_exist:
+        return unique_company_id_generator()
+    return company_new_id
 
 
 def unique_slug_generator(instance, new_slug=None):

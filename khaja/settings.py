@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'orders',
     'addresses',
     'search',
+    'company',
 ]
 
 MIDDLEWARE = [

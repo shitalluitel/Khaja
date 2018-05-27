@@ -4,9 +4,15 @@
 
 {% block extra_stylesheets %}
     <link rel="stylesheet" href="{% static 'css/product_css.css' %}">
-    <link rel="stylesheet" href="{% static 'css/image.css' %}"></link>
+    <link rel="stylesheet" href="{% static 'css/image.css' %}">
+    <link rel="stylesheet" href="{% static 'css/infinite-slider.css' %}">
 {% endblock %}
 
+{% block extra_script%}
+  <script type="text/javascript" src="{% static 'js/carousel.js'%}">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+{%endblock%}
 
 {% block content %}
     <div class="container-fluid">
@@ -48,22 +54,19 @@
             <h1 style="font-family: 'Pacifico', cursive">Our Company's</h1>
             <p>Delightful local food. The best organic food delivered to your door.</p>
             <ul class="product-list-group">
-                <li>
-                    <span class="text-success"><i class="fa fa-2x fa-leaf"></i><p>All Product</p></span>
-                </li>
-                <li>
-                    <span class="text-success"><i class="fa fa-2x fa-leaf"></i><p>All Product</p></span>
-                </li>
-                <li>
-                    <span class="text-success"><i class="fa fa-2x fa-leaf"></i><p>All Product</p></span>
-                </li>
-                <li>
-                    <span class="text-success"><i class="fa fa-2x fa-leaf"></i><p>All Product</p></span>
-                </li>
-                <li>
-                    <span class="text-success"><i class="fa fa-2x fa-leaf"></i><p>All Product</p></span>
-                </li>
+                {%for company in companies%}
+                  <li>
+                    <a href="#" style="text-decoration:none;"><span class="text-success"><i class="fa fa-2x fa-leaf"></i><p>{{company.company_name}}</p></span></a>
+                  </li>
+                {%endfor%}
             </ul>
+            <!--{# <section class="customer-logos slider">
+                {% for company in companies %}
+                  <div class="slide">
+                      <a href="#" style="text-decoration: none"><i class="fa fa-2x fa-leaf"></i><p>All Product</p></a>
+                  </div>
+                {% endfor %}
+            </section> #}-->
         </div>
         <div class="container">
             <div class="row justify-content-center">

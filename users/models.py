@@ -9,7 +9,7 @@ from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import safe
 from django.utils.safestring import mark_safe
-
+from company.models import Company
 from .validators import UsernameValidator
 from django.core.mail import EmailMessage
 from django.contrib.auth.models import PermissionsMixin
@@ -68,12 +68,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_confirmed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # is_customer = models.BooleanField(default=True)
-    # # is_staff = models.BooleanField(default=True)
-    # is_restaurant_user = models.BooleanField(default=False)
-    # is_delivery_boy = models.BooleanField(default=False)
     user_type = models.IntegerField(default=1,validators=[MaxValueValidator(3), MinValueValidator(1)])
     is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    company = models.ForeignKey(Company, null=True, blank=True)
     # address = models.TextField(max_length=512, null=True)
     image = models.ImageField(upload_to="profile_picture/", default="profile_picture/none/no_image_user.png")
 
@@ -107,11 +106,19 @@ class User(AbstractBaseUser, PermissionsMixin):
         # Simplest possible answer: Yes, always
         return True
 
+    #changed this part
     @property
     def is_staff(self):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+    # @property
+    # def is_admin(self):
+    #     """
+    #     Is the user a member of staff?
+    #     """
+    #     return self.is_staff
 
     def generate_confirmation_token(self):
         payload = {

@@ -1,13 +1,13 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 
-from users.models import User
+from company.models import Company
 
 
 # Create your models here.
 
 class Product(models.Model):
-    user = models.ForeignKey(User, related_name='product', on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, related_name='product', on_delete=models.CASCADE)
     product_name = models.CharField(max_length=32)
     product_price = models.DecimalField(max_digits=8, decimal_places=2, null=False)
     created_at = models.DateField(auto_now_add=True)

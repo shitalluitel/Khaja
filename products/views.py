@@ -10,6 +10,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product
 from users.decorators import is_restaurant, is_admin
 from .forms import ProductCreateForm, ProductEditForm
+from company.models import Company
 # from django.urls import reverse
 from carts.models import Cart
 
@@ -22,7 +23,7 @@ def product_create(request):
         form = ProductCreateForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save(commit=False)
-            product.user = request.user
+            product.company = request.user.company
             product.save()
             return redirect("product:list")
 
@@ -42,7 +43,7 @@ def product_edit(request, pk):
         form = ProductEditForm(request.POST, request.FILES, instance=data)
         if form.is_valid():
             product = form.save(commit=False)
-            product.user = request.user
+            product.company = request.user.company
             product.save()
             return redirect("product:list")
 
@@ -54,14 +55,16 @@ def product_edit(request, pk):
 
 # @login_required
 def product_list(request):
+
     try:
         if request.user.is_authenticated:
-            print("YEs")
             if request.user.user_type == 1:
                 product_list_data = Product.objects.all()
+                companies = Company.objects.all()
             else:
-                product_list_data = Product.objects.filter(user_id=request.user.id)
+                product_list_data = Product.objects.filter(company=request.user.company)
         else:
+            companies = Company.objects.all()
             product_list_data = Product.objects.all().order_by('product_name')
     except Product.DoesNotExist:
         return redirect("product:create")
@@ -80,7 +83,7 @@ def product_list(request):
         if request.user.user_type == 2 or request.user.is_admin:
             return render(request, 'products/product_list.html', {'products': products})
 
-    return render(request, 'products/list.html', {'products': products})
+    return render(request, 'products/list.html', {'products': products, 'companies':companies})
 
 
 
