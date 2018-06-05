@@ -30,7 +30,7 @@ urlpatterns = [
                   url(r'^address/', include('addresses.urls', namespace="address")),
                   url(r'^search/', include('search.urls', namespace="search")),
                   url(r'^customer/', include('orders.urls', namespace="order")),
-                  url(r'^api/company/', include('company.urls', namespace="company")),
+                  url(r'^company/', include('company.urls', namespace="company")),
                   # url(r'^customer/(?P<pk>\d+)/product/list$', views.product_detail, name='detail'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

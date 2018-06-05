@@ -1,0 +1,6 @@
+<select class="custom-select" id="{{ data.pk }}">
+  <option value="New" {% if data.status == 'New'%} selected {% endif %}>New</option>
+  <option value="Received" {% if data.status == 'Received' %}selected{% endif %}>Received</option>
+  <option value="Preparing" {% if data.status == 'Preparing' %}selected{% endif %}>Preparing</option>
+  <option value="Cooked" {% if data.status == 'Cooked' %}selected{% endif %} >Coocked</option>
+</select>

@@ -24,7 +24,11 @@ def order_list(request):
     except Quantity.DoesNotExist:
         return render(request, 'company/notification.html', {'count': 0})
 
-    per_page = 1
+
+    if request.GET.get('per_page'):
+        per_page = request.GET.get('per_page')
+    else:
+        per_page = 1
     paginator = Paginator(data, per_page)
     page = request.GET.get('page')
 
@@ -34,4 +38,4 @@ def order_list(request):
         products = paginator.page(1)
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
-    return render(request, 'company/order_list.html', {'datas': products})
+    return render(request, 'company/order_list.html', {'datas': products, 'per_page': per_page})

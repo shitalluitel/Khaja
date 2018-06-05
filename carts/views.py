@@ -1,11 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from products.models import Product
 from .models import Cart, Quantity
 from orders.models import Order
 from addresses.models import Address
-
+from users.decorators import is_restaurant
 
 # from users.decorators import is_admin, is_customer, is_restaurant, is_delivery
 
@@ -89,3 +89,18 @@ def cart_destroy(request, pk):
         'cart': cart
     }
     return render(request, 'delete.html', context)
+
+@login_required
+@is_restaurant
+def change_status(request):
+    check = ['New','Received', 'Preparing', 'Cooked']
+    id = request.GET.get('id')
+    value = request.GET.get('value')
+    if value in check:
+        try:
+            quantity = Quantity.objects.get(id=id)
+            quantity.status = value
+            quantity.save()
+            return HttpResponse("<p>Successfully Updated the status of reservation.</p>")
+        except Quantity.DoesNotExist:
+            return HttpResponse("unable to change the state of reservation.")
