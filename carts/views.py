@@ -64,6 +64,8 @@ def checkout_home(request):
             return redirect("cart:display")
         else:
             order_obj, new_order_obj = Order.objects.get_or_create(address=address, user=request.user, cart=cart)
+            cart.is_active = False
+            cart.save()
             request.session["cart_item"] = 0
             request.session["cart_id"] = None
         return render(request, "checkout.html", {"order": order_obj})

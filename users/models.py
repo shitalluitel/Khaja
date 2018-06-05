@@ -73,7 +73,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     company = models.ForeignKey(Company, null=True, blank=True)
-    # address = models.TextField(max_length=512, null=True)
     image = models.ImageField(upload_to="profile_picture/", default="profile_picture/none/no_image_user.png")
 
     objects = UserManager()

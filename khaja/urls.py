@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from products.views import product_list
+from .tasks import *
 
 urlpatterns = [
                   url(r'^admin/', admin.site.urls),
@@ -29,4 +30,8 @@ urlpatterns = [
                   url(r'^address/', include('addresses.urls', namespace="address")),
                   url(r'^search/', include('search.urls', namespace="search")),
                   url(r'^customer/', include('orders.urls', namespace="order")),
+                  url(r'^api/company/', include('company.urls', namespace="company")),
+                  # url(r'^customer/(?P<pk>\d+)/product/list$', views.product_detail, name='detail'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+display.delay()

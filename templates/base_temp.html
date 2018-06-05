@@ -10,6 +10,12 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Pacifico" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    {% if request.user.user_type == 2 %}
+      <link rel="stylesheet" href="{% static 'css/notification.css'%}">
+    {% else %}
+      <link rel="stylesheet" href="{% static 'css/user_notification.css'%}">
+    {% endif%}
+    <link rel="shortcut icon" type="image/png" href="{{STATIC_URL}}/favicon.ico"/>
     <style>
         body, html {
             font-family: 'Lato', sans-serif;
@@ -69,6 +75,11 @@
 <script src="{% static 'js/popper.min.js' %}"></script>
 <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
 <script src="{% static 'bower_components/bootstrap-4/dist/js/bootstrap.min.js' %}"></script>
+{% if request.user.is_authenticated %}
+  {% if request.user.user_type == 2 %}
+    <script type="text/javascript" src="{% static 'js/async.js'%}"></script>
+  {% endif %}
+{% endif %}
 {% block extra_script %}
 {% endblock %}
 </body>

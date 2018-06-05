@@ -22,7 +22,7 @@ def create(request, pk):
 
 
 def list(request):
-    wishlist_list_data = WishList.objects.all()
+    wishlist_list_data = WishList.objects.all().order_by('created_at')
     per_page = 12
     paginator = Paginator(wishlist_list_data, per_page)
     page = request.GET.get('page')

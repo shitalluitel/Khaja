@@ -1,18 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
-# from django.http import HttpResponse
-# from django.template import loader
-
 from django.shortcuts import render, redirect, get_object_or_404
-# from requests import Response
-
 from .models import Product
 from users.decorators import is_restaurant, is_admin
 from .forms import ProductCreateForm, ProductEditForm
 from company.models import Company
-# from django.urls import reverse
-from carts.models import Cart
+from carts.models import Cart, Quantity
+# from .tasks import *c
 
 @login_required
 @is_restaurant
@@ -55,7 +49,7 @@ def product_edit(request, pk):
 
 # @login_required
 def product_list(request):
-
+    # display.delay()
     try:
         if request.user.is_authenticated:
             if request.user.user_type == 1:
@@ -81,11 +75,10 @@ def product_list(request):
 
     if request.user.is_authenticated:
         if request.user.user_type == 2 or request.user.is_admin:
+            request.session["order_no"] = Quantity.objects.filter(cart__is_active= False, product__company = request.user.company).count()
             return render(request, 'products/product_list.html', {'products': products})
 
     return render(request, 'products/list.html', {'products': products, 'companies':companies})
-
-
 
 
 # @login_required
@@ -105,7 +98,6 @@ def product_detail(request, pk):
 
     return render(request, 'products/detail.html', content)
 
-# def test(request):
-#     question_id = 10
-#     template = loader.get_template('base_temp.html')
-#     return HttpResponse(template.render())
+
+# def company_product(request,pk):
+#     pass

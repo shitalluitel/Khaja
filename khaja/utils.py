@@ -17,6 +17,14 @@ def unique_order_id_generator(instance):
         return unique_order_id_generator()
     return order_new_id
 
+def unique_cart_id_generator(instance):
+    new_cart_id = random_string_generator()
+
+    klass = instance.__class__
+    qs_exist = klass.objects.filter(order_id=new_cart_id).exists()
+    if qs_exist:
+        return unique_cart_id_generator()
+    return new_cart_id
 
 def unique_company_id_generator(instance):
     company_new_id = random_string_generator()

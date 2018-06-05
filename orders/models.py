@@ -17,7 +17,7 @@ ORDER_STATUS_CHOICES = (
 class Order(models.Model):
     order_id = models.CharField(max_length=120, blank=True)
     user = models.ForeignKey(User)
-    cart = models.ForeignKey(Cart)
+    cart = models.OneToOneField(Cart, primary_key=True)
     status = models.CharField(max_length=120, default="processing", choices=ORDER_STATUS_CHOICES)
     total = models.DecimalField(default=0.0, max_digits=100, decimal_places=2)
     address = models.ForeignKey(Address)

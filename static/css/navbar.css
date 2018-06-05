@@ -7,23 +7,6 @@
     background-color: white;
 }
 
-.osh-btn.-plain.-cart > .label {
-    font-size: 12px;
-    line-height: 1.1em;
-    background: #f99047;
-    padding: 2px;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    position: absolute;
-    color: #fff;
-    min-width: 22px;
-    min-height: 22px;
-    font-weight: 700;
-    text-align: center;
-    letter-spacing: -1px;
-    text-indent: -1px;
-}
-
 @media (min-width: 768px) {
     .navbar-brand {
         padding-left: 85px;
@@ -34,10 +17,6 @@
     .navbar-nav > li > a {
         font-size: larger;
         font-weight: 300;
-    }
-
-    .osh-btn.-plain.-cart > .label {
-        right: 100px;
     }
 }
 
@@ -56,10 +35,6 @@
         font-size: large;
         font-weight: 300;
         /*padding: 0 20px;*/
-    }
-
-    .osh-btn.-plain.-cart > .label {
-        left: 65px;
     }
 }
 

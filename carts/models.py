@@ -2,7 +2,14 @@ from django.db import models
 from products.models import Product
 from users.models import User
 from django.db.models.signals import pre_save, post_save, m2m_changed, post_delete
+from khaja.utils import unique_cart_id_generator
 
+ORDER_STATUS_CHOICES = (
+    ('New', 'New'),
+    ('Recieved', 'Recieved'),
+    ('Preparing', 'Preparing'),
+    ('Cooked', 'Cooked'),
+)
 
 class CartManager(models.Manager):
     def new_or_get(self, request):
@@ -34,20 +41,27 @@ class Cart(models.Model):
     total = models.DecimalField(default=-0.00, max_digits=100, decimal_places=2)
     subtotal = models.DecimalField(default=-0.00, max_digits=100, decimal_places=2)
     is_active = models.BooleanField(default=True)
-    updated = models.DateTimeField(auto_now=True)
-    created_at = models.DateField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
+    cart_id = models.CharField(max_length=120, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     objects = CartManager()
 
     def __str__(self):
         return str(self.id)
 
+def pre_save_create_cart_id(sender, instance, *args, **kwargs):
+    if not instance.cart_id:
+        instance.cart_id = unique_cart_id_generator(instance)
+
+
+pre_save.connect(pre_save_create_cart_id, sender=Cart)
 
 class Quantity(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
     quantity = models.IntegerField(default=1)
+    status = models.CharField(max_length=32, default="New", choices=ORDER_STATUS_CHOICES)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __str__(self):
