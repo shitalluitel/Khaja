@@ -37,7 +37,7 @@
 
         {% if datas %}
             <table class="table table-stripped table-hover table-responsive-sm">
-              <thead class="thead-dark">
+              <thead style="background-color:#28a745; color: white;">
                 <tr>
                   <th>S.N.</th>
                   <th>Cart ID</th>
@@ -115,17 +115,15 @@
 {% block extra_script %}
     <script type="text/javascript" src="{% static 'js/order_list.js' %}"></script>
     <script type="text/javascript">
+      var per_page = {{ per_page }};
       $('body').on('change', '.per-page-selector', function () {
           var get_data = $('.per-page-selector');
           location.href = '{% url "company:order_list" %}'+'?page=1&per_page=' + get_data.val();
       });
 
-      var per_page = {{ per_page }};
-
       $("select option").each(function () {
           if ($(this).val() == per_page)
               $(this).attr("selected", "selected");
       });
-
     </script>
 {% endblock %}

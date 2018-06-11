@@ -93,7 +93,7 @@ def cart_destroy(request, pk):
 @login_required
 @is_restaurant
 def change_status(request):
-    check = ['New','Received', 'Preparing', 'Cooked']
+    check = ['New','Received', 'Preparing', 'Cooked', 'Delivered']
     id = request.GET.get('id')
     value = request.GET.get('value')
     if value in check:

@@ -9,6 +9,7 @@ ORDER_STATUS_CHOICES = (
     ('Recieved', 'Recieved'),
     ('Preparing', 'Preparing'),
     ('Cooked', 'Cooked'),
+    ('Delivered','Delivered'),
 )
 
 class CartManager(models.Manager):

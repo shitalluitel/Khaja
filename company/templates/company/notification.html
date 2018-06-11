@@ -1,8 +1,5 @@
 <a class="nav-link osh-btn -plain -cart" href="#">
   <i class="fa fa-bell " style="font-size: 32px;"></i>
-{% if count %}
-<span class="label js-store"> {{ request.session.order_no }}</span>
-{% endif %}
-
-<span style="font-size: 20px; font-weight: 700;"><sub>Order</sub></span>
+  <span class="label js-store"> {{ request.session.order_no }}</span>
+  <span style="font-size: 20px; font-weight: 700;"><sub>Order</sub></span>
 </a>
