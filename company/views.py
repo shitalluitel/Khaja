@@ -5,13 +5,17 @@ from users.decorators import is_restaurant
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from datetime import timedelta
 from django.utils import timezone
+from products.models import Product
+import json
+
+status_list = ["New","Recieved","Preparing","Cooked","Delivered"]
 
 @login_required
 @is_restaurant
 def check_notification(request):
     company = request.user.company
     try:
-        request.session['order_no'] = Quantity.objects.filter(cart__is_active= False, product__company = company).count()
+        request.session['order_no'] = Quantity.objects.filter(cart__is_active= False, product__company = company, status="New").count()
         return render(request, 'company/notification.html')
     except Quantity.DoesNotExist:
         return render(request, 'company/notification.html')
@@ -19,10 +23,16 @@ def check_notification(request):
 
 @login_required
 @is_restaurant
-def order_list(request):
+def order_new_list(request):
     company = request.user.company
+    status = request.GET.get("status")
+    if status not in status_list:
+        status= "New"
+
+    print(status)
     try:
-        data = Quantity.objects.filter(cart__is_active= False, product__company = company)
+        data = Quantity.objects.filter(cart__is_active= False, product__company = company, status =status ).order_by("-timestamp")
+        print(data.count())
     except Quantity.DoesNotExist:
         return render(request, 'company/notification.html', {'count': 0})
 
@@ -45,6 +55,7 @@ def order_list(request):
 @login_required
 @is_restaurant
 def chart(request):
+    request.session['order_no'] = Quantity.objects.filter(cart__is_active= False, product__company = request.user.company, status="New").count()
     return render(request, 'dashboard.html')
 
 
@@ -91,8 +102,32 @@ def get_year_total(request):
         total += data.product.product_price * data.quantity
     return HttpResponse("<strong><i class=\"fa fa-money \"></i> &nbsp; %s </strong> "%(total))
 
+@login_required
+@is_restaurant
+def total_product(request):
+    return HttpResponse("<strong> %s</strong>" % (Product.objects.filter(company = request.user.company).count()))
+
 
 @login_required
 @is_restaurant
 def get_day_data(request):
-    pass
+    start_time = (timezone.now() - timedelta(hours=24))
+    end_time = timezone.now()
+    datas = Quantity.objects.filter(timestamp__range = (start_time, end_time))
+
+    labels = []
+    return_data = [] # data that gets returned
+
+    for i in range(0,24):
+        total = 0
+        new_data = datas.filter(timestamp__range =(start_time + timedelta(hours = i), start_time + timedelta(hours=(i+1)) ))
+        for data in new_data:
+            total += data.product.product_price * data.quantity
+        return_data.append(total)
+        labels.append("%s-%s"%((timezone.now() - timedelta(hours = 24 -i)).hour,(timezone.now() - timedelta(hours = 24 -i-1)).hour))
+
+    response_data = {}
+    response_data['labels'] = labels
+    response_data['data'] = return_data
+    response_data['label'] = "Transaction within 24 hrs"
+    return HttpResponse(json.dumps(response_data), content_type="application/json")

@@ -5,8 +5,67 @@
   <div class="container">
     <div class="dashboard">
       <div class="row">
+
         <div class="col-md-12">
           <div class="row my-5">
+            <div class="col-md-6">
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="card card-margin pb-3" style="border: none;">
+                    <div class="pt-5 pb-4 bg-success"></div>
+                    <span class="text-center" style="margin-top: -45px;">
+                      <i class="fa fa-user-circle fa-5x text-warning" style="background-color: white; display: inline-block; border-radius: 60px; box-shadow: 0px 0px 10px 2px #8e8d8d;"></i>
+                    </span>
+                    <div class="card-body">
+                      <div class="text-center">
+                        <div class="title">
+                          {{request.user.username | title}}
+                        </div>
+                        <div class="desc" style="font-size:18px; font-weight: 500; line-height:20px">{{request.user.company.company_name | title}}</div>
+                        <div class="desc">Location</div>
+                        <div class="desc">Phone</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="card card-margin" >
+                    <div class="card-body">
+                      <div class="text-center">
+                        <h4>Notification</h4>
+                        <a class="nav-link osh-btn -plain -cart text-success" href="{% url 'company:order_new_list' %}">
+                          <span class="label notification js-store"> {{ request.session.order_no }}</span>
+                          <i class="fa fa-bell " style="font-size: 32px;"></i>
+                        </a>
+                      </div>
+                      <hr>
+                      <div class="text-center">
+                        <h5 class="card-title">Products</h5>
+                        {# <h6 class="card-subtitle mb-2 text-muted">{% now "d F Y, D" %}</h6> #}
+                        <p class="card-text">Total:  <span class="total-products"></span> </p>
+                        <a href="#" class="btn btn-secondary"><i class="fa fa-plus "></i>  Add</a>
+                        <a href="#" class="btn btn-success"><i class="fa fa-eye"></i>  View</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-margin px-2 py-2">
+                <canvas id="myChart" ></canvas>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="row">
 
             <div class="col-md-4">
               <div class="card" >
@@ -14,7 +73,7 @@
                   <h5 class="card-title">Daily</h5>
                   <h6 class="card-subtitle mb-2 text-muted">{% now "d F Y, D" %}</h6>
                   <p class="card-text">Total:  <span class="day-total"></span> </p>
-                  <a href="#" class="btn btn-block btn-success">View Chart</a>
+                  <a href="#" onclick="view_daily_chart()" class="btn btn-block btn-success">View Chart</a>
                 </div>
               </div>
             </div>
@@ -43,74 +102,20 @@
           </div>
         </div>
 
-        <div class="col-md-12">
-          <div class="row pt-3">
-            <div class="col-md-6">
-              <canvas id="myChart"></canvas>
-            </div>
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col-md-12">
-
-                </div>
-                <div class="col-md-12">
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 {% endblock %}
 
 {% block extra_script %}
-  <script type="text/javascript" src="{% static 'js/dashboard.js' %}"></script>
   <script type="text/javascript" src="{% static 'bower_components/chart.js/dist/Chart.js' %}"></script>
-  <script type="text/javascript">
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-      datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-              'rgba(255,99,132,1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-          yAxes: [{
-              ticks: {
-                  beginAtZero:true
-              }
-          }]
-      }
-    }
-    });
-  </script>
+  <script type="text/javascript" src="{% static 'js/dashboard.js' %}"></script>
+
 {% endblock %}
 
 {% block extra_stylesheets %}
   <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 {% endblock %}
 {% block footer %}
+  {% include 'dashboardFooter.html' %}
 {% endblock %}

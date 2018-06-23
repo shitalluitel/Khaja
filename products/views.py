@@ -6,6 +6,7 @@ from users.decorators import is_restaurant, is_admin
 from .forms import ProductCreateForm, ProductEditForm
 from company.models import Company
 from carts.models import Cart, Quantity
+from company.views import chart
 # from .tasks import *c
 
 @login_required
@@ -101,3 +102,13 @@ def product_detail(request, pk):
 
 # def company_product(request,pk):
 #     pass
+
+def redirectUrl(request):
+    if request.user.is_authenticated:
+        if request.user.user_type == 1:
+            return product_list(request=request)
+        else:
+            return chart(request=request)
+    else:
+        # return redirect('product:list')
+        return product_list(request=request)

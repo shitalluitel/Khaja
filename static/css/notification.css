@@ -15,14 +15,6 @@
     text-indent: -1px;
 }
 
-@media (min-width: 768px) {
-    .osh-btn.-plain.-cart > .label {
-        right: 120px;
-    }
-}
-
-@media (max-width: 768px) {
-    .osh-btn.-plain.-cart > .label {
-        left: 50px;
-    }
+.btn{
+  border-radius: 0px;
 }

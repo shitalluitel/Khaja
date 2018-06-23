@@ -44,6 +44,7 @@
                   <th>Product</th>
                   <th>Quantity</th>
                   <th>Status</th>
+                  {# <th></th> #}
                 </tr>
               </thead>
               <tbody>
@@ -56,6 +57,7 @@
                     <td>
                       {% include "company/select_status.html" with data=data %}
                     </td>
+                    {# <td>{{ data.timestamp }}</td> #}
                   </tr>
                 {% endfor %}
               </tbody>
@@ -118,7 +120,7 @@
       var per_page = {{ per_page }};
       $('body').on('change', '.per-page-selector', function () {
           var get_data = $('.per-page-selector');
-          location.href = '{% url "company:order_list" %}'+'?page=1&per_page=' + get_data.val();
+          location.href = '{% url "company:order_new_list" %}'+'?page=1&per_page=' + get_data.val();
       });
 
       $("select option").each(function () {

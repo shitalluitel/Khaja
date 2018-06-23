@@ -101,6 +101,7 @@ def change_status(request):
             quantity = Quantity.objects.get(id=id)
             quantity.status = value
             quantity.save()
+            # request.session['order_no'] = Quantity.objects.filter(cart__is_active= False, product__company = request.user.company, status="New").count()
             return HttpResponse("<p>Successfully Updated the status of reservation.</p>")
         except Quantity.DoesNotExist:
             return HttpResponse("unable to change the state of reservation.")

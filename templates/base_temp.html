@@ -60,6 +60,16 @@
 {% endblock %}
 
 <div id="fb-root"></div>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+<script src="{% static 'bower_components/bootstrap-4/dist/js/bootstrap.min.js' %}"></script>
+{% if request.user.is_authenticated %}
+  {% if request.user.user_type == 2 %}
+    <script type="text/javascript" src="{% static 'js/async.js'%}"></script>
+  {% endif %}
+{% endif %}
+{% block extra_script %}
+{% endblock %}
 <script>
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -71,16 +81,5 @@
     }(document, 'script', 'khaja'));
 
 </script>
-
-<script src="{% static 'js/popper.min.js' %}"></script>
-<script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
-<script src="{% static 'bower_components/bootstrap-4/dist/js/bootstrap.min.js' %}"></script>
-{% if request.user.is_authenticated %}
-  {% if request.user.user_type == 2 %}
-    <script type="text/javascript" src="{% static 'js/async.js'%}"></script>
-  {% endif %}
-{% endif %}
-{% block extra_script %}
-{% endblock %}
 </body>
 </html>
