@@ -164,3 +164,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'thefidgetcoders@gmail.com'
 EMAIL_HOST_PASSWORD = 'fidget@c0d3r5'
 EMAIL_PORT = 587
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
