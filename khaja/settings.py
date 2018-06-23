@@ -24,7 +24,7 @@ SECRET_KEY = 's0$n$+^sfk$1h7wl-tc3^q4mm72$p(^%!&y^b538sm2^8sdm&b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["khaja.com", 'localhost', '192.168.100.18','0.0.0.0']
+ALLOWED_HOSTS = ["khaja.com", 'localhost', '192.168.100.18','0.0.0.0',"khaja.herokuapp.com"]
 
 # Application definition
 
@@ -87,13 +87,24 @@ WSGI_APPLICATION = 'khaja.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'khaja',
+#         'USER': 'shital',
+#         'PASSWORD': 'luitel@dell.com',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'khaja',
-        'USER': 'shital',
-        'PASSWORD': 'luitel@dell.com',
-        'HOST': 'localhost',
+        'NAME': 'd2bkr9banve9gb',
+        'USER': 'aazqahnactrgfx',
+        'PASSWORD': '5c621cc3523dd44e9654e09a34651df3ca6d59a7e61089da4d2388c8b00720b9',
+        'HOST': 'ec2-54-247-100-44.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
