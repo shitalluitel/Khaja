@@ -4,4 +4,5 @@
   <option value="Preparing" {% if data.status == 'Preparing' %}selected{% endif %}>Preparing</option>
   <option value="Cooked" {% if data.status == 'Cooked' %}selected{% endif %} >Cooked</option>
   <option value="Delivered" {% if data.status == 'Delivered' %}selected{% endif %} >Delivered</option>
+  <option value="Canceled" {% if data.status == 'Canceled' %}selected{% endif %} style="background-color: red; color:white;" >Cancel</option>
 </select>

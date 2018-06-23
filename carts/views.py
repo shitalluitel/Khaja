@@ -6,7 +6,7 @@ from .models import Cart, Quantity
 from orders.models import Order
 from addresses.models import Address
 from users.decorators import is_restaurant
-
+from company.views import order_list_query
 # from users.decorators import is_admin, is_customer, is_restaurant, is_delivery
 
 
@@ -102,6 +102,12 @@ def change_status(request):
             quantity.status = value
             quantity.save()
             # request.session['order_no'] = Quantity.objects.filter(cart__is_active= False, product__company = request.user.company, status="New").count()
-            return HttpResponse("<p>Successfully Updated the status of reservation.</p>")
+            status = request.GET.get('next')
+            try:
+                status = status.split("=")[1]
+            except IndexError:
+                status="New"
+            products, per_page = order_list_query(request=request, status=status)
+            return render(request, 'order_list_table.html', {'datas': products, 'per_page': per_page})
         except Quantity.DoesNotExist:
-            return HttpResponse("unable to change the state of reservation.")
+            return HttpResponse("Unable to change the state of reservation.")

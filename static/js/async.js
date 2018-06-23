@@ -1,3 +1,5 @@
+var pre_data = 0;
+
 function get_data(){
   setInterval(function(){
     jQuery.ajax({
@@ -8,6 +10,10 @@ function get_data(){
       },
       success: function (data) {
         $('.notification').html(data);
+        if (pre_data != data){
+          pre_data = data;
+          toastr.warning("New order has been placed.");
+        }
         // console.log(data);
       },
       type: 'GET'

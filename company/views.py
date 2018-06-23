@@ -8,7 +8,7 @@ from django.utils import timezone
 from products.models import Product
 import json
 
-status_list = ["New","Recieved","Preparing","Cooked","Delivered"]
+status_list = ["New","Received","Preparing","Cooked","Delivered","Canceled"]
 
 @login_required
 @is_restaurant
@@ -24,15 +24,17 @@ def check_notification(request):
 @login_required
 @is_restaurant
 def order_new_list(request):
-    company = request.user.company
     status = request.GET.get("status")
+    products, per_page = order_list_query(request=request, status=status)
+    return render(request, 'company/order_list.html', {'datas': products, 'per_page': per_page})
+
+
+def order_list_query(request, status):
+    company = request.user.company
     if status not in status_list:
         status= "New"
-
-    print(status)
     try:
         data = Quantity.objects.filter(cart__is_active= False, product__company = company, status =status ).order_by("-timestamp")
-        print(data.count())
     except Quantity.DoesNotExist:
         return render(request, 'company/notification.html', {'count': 0})
 
@@ -49,8 +51,8 @@ def order_new_list(request):
         products = paginator.page(1)
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
-    return render(request, 'company/order_list.html', {'datas': products, 'per_page': per_page})
 
+    return products, per_page
 
 @login_required
 @is_restaurant
@@ -113,7 +115,12 @@ def total_product(request):
 def get_day_data(request):
     start_time = (timezone.now() - timedelta(hours=24))
     end_time = timezone.now()
-    datas = Quantity.objects.filter(timestamp__range = (start_time, end_time))
+    datas = Quantity.objects.filter(
+        timestamp__range = (start_time, end_time),
+        cart__is_active = False,
+        product__company = request.user.company,
+        status='Delivered'
+        )
 
     labels = []
     return_data = [] # data that gets returned

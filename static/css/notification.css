@@ -18,3 +18,7 @@
 .btn{
   border-radius: 0px;
 }
+
+a:hover, a:focus, a{
+  text-decoration: none;
+}

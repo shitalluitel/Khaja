@@ -61,8 +61,10 @@
 
 <div id="fb-root"></div>
 <script src="{% static 'js/popper.min.js' %}"></script>
-<script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+<script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
 <script src="{% static 'bower_components/bootstrap-4/dist/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/toastr/toastr.js'%}"></script>
+<link rel="stylesheet" href="{% static 'bower_components/toastr/toastr.css'%}">
 {% if request.user.is_authenticated %}
   {% if request.user.user_type == 2 %}
     <script type="text/javascript" src="{% static 'js/async.js'%}"></script>

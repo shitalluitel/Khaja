@@ -41,14 +41,29 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-expanded="false">
-                    <span class="menu-item-small">Hello,</span>
-                    <p class="menu-item-big">{{ request.user.company }}
+                    <span class="menu-item-small">Product,</span>
+                    <p class="menu-item-big">Action
                         <i class="fa fa-caret-down"></i></p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">My Account</a>
-                    <div class="dropdown-divider"></div>
-                    <span class="dropdown-item"><a class="btn btn-block btn-secondary" href="{% url 'users:logout_user' %}">Logout</a></span>
+                    <a class="dropdown-item" href="{% url 'product:create'%}">Add</a>
+                    <a class="dropdown-item" href="{% url 'product:list'%}">View</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-expanded="false">
+                    <span class="menu-item-small">Order,</span>
+                    <p class="menu-item-big">Status
+                        <i class="fa fa-caret-down"></i></p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'company:order_new_list'%}?status=Received">Recieved</a>
+                    <a class="dropdown-item" href="{% url 'company:order_new_list'%}?status=Preparing">Preparing</a>
+                    <a class="dropdown-item" href="{% url 'company:order_new_list'%}?status=Cooked">Cooked</a>
+                    <a class="dropdown-item" href="{% url 'company:order_new_list'%}?status=Delivered">Delivered</a>
+                    <a class="dropdown-item" href="{% url 'company:order_new_list'%}?status=Canceled">Canceled</a>
                 </div>
             </li>
 

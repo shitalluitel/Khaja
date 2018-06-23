@@ -34,7 +34,7 @@
                     {% for product in  products %}
                       <tr>
                         <td>
-                          <h6 class="card-title" style="font-weight: bold;">{{ product.product_name }}</h4>
+                          <a href="{% url 'product:detail' pk=product.pk %}"><h6 class="text-success card-title" style="font-weight: bold;">{{ product.product_name }}</h4></a>
                         </td>
 
                         <td>
