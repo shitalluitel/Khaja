@@ -6,7 +6,7 @@ from django.db.models.signals import pre_save
 class Company(models.Model):
     company_name = models.CharField(max_length=120)
     company_id = models.CharField(max_length=120, blank=True)
-    location = models.CharField(max_length=150, blank=True, null=True)
+    location = models.CharField(max_length=150)
     phone_no = models.CharField(max_length=20)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

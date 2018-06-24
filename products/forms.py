@@ -15,12 +15,17 @@ class ProductCreateForm(forms.ModelForm):
 
     description = forms.CharField(
         label="Description",
-        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Write something about this food.'}),
+        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Write something about this food.', 'rows': 2}),
     )
 
     image = forms.ImageField(
         label='Photo',
-        widget=forms.FileInput(),
+        widget=forms.FileInput(attrs={'class':'form-control-file product-image-btn'}),
+    )
+
+    time = forms.IntegerField(
+        label="Time to Prepare",
+        widget = forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '120'})
     )
 
     class Meta:
@@ -29,6 +34,7 @@ class ProductCreateForm(forms.ModelForm):
             'product_name',
             'product_price',
             'description',
+            'time',
             'image',
         ]
 
@@ -46,13 +52,17 @@ class ProductEditForm(forms.ModelForm):
 
     description = forms.CharField(
         label="Description",
-        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Write something about this food.'}),
+        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Write something about this food.', 'rows': 2}),
     )
 
     image = forms.ImageField(
         label='Photo',
         widget=forms.FileInput(),
         required=False,
+    )
+    time = forms.IntegerField(
+        label="Time to Prepare",
+        widget = forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '120'})
     )
 
     class Meta:
@@ -62,4 +72,5 @@ class ProductEditForm(forms.ModelForm):
             'product_price',
             'description',
             'image',
+            'time',
         ]

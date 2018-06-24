@@ -22,3 +22,7 @@
 a:hover, a:focus, a{
   text-decoration: none;
 }
+
+.fa-size{
+  font-size: 26px;
+}

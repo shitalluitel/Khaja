@@ -13,8 +13,20 @@
 
                 <div class="col-md-6">
                   <div class="card card-margin pb-3" style="border: none;">
-                    <div class="pt-5 pb-4 bg-success"></div>
-                    <span class="text-center" style="margin-top: -45px;">
+                    <div class="pt-4  bg-success">
+                      <div class="row">
+                        <div class="col-6">
+                          <a href="#" class="btn btn-small btn-success">Logout</a>
+                        </div>
+                        <div class="col-6">
+                          <div class="text-right">
+                            <a href="#" class="btn btn-small btn-success">Profile</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <span class="text-center" style="margin-top: -40px;">
                       <i class="fa fa-user-circle fa-5x text-warning" style="background-color: white; display: inline-block; border-radius: 60px; box-shadow: 0px 0px 10px 2px #8e8d8d;"></i>
                     </span>
                     <div class="card-body">
@@ -23,8 +35,8 @@
                           {{request.user.username | title}}
                         </div>
                         <div class="desc" style="font-size:18px; font-weight: 500; line-height:20px">{{request.user.company.company_name | title}}</div>
-                        <div class="desc">Location</div>
-                        <div class="desc">Phone</div>
+                        <div class="desc">{{ request.user.company.location }}</div>
+                        <div class="desc">{{request.user.company.phone_no}}</div>
                       </div>
                     </div>
                   </div>
@@ -45,8 +57,8 @@
                         <h5 class="card-title">Products</h5>
                         {# <h6 class="card-subtitle mb-2 text-muted">{% now "d F Y, D" %}</h6> #}
                         <p class="card-text">Total:  <span class="total-products"></span> </p>
-                        <a href="#" class="btn btn-secondary"><i class="fa fa-plus "></i>  Add</a>
-                        <a href="#" class="btn btn-success"><i class="fa fa-eye"></i>  View</a>
+                        <a href="{% url 'product:create' %}" class="btn btn-secondary"><i class="fa fa-plus "></i>  Add</a>
+                        <a href="{% url 'product:list' %}" class="btn btn-success"><i class="fa fa-eye"></i>  View</a>
                       </div>
                     </div>
                   </div>

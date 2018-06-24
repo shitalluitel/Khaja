@@ -1,6 +1,6 @@
-var pre_data = 0;
-
 function get_data(){
+  var pre_data = 0;
+  var flag = false;
   setInterval(function(){
     jQuery.ajax({
       url: '/company/notification/',
@@ -10,11 +10,13 @@ function get_data(){
       },
       success: function (data) {
         $('.notification').html(data);
-        if (pre_data != data){
+        if(pre_data < data && flag){
           pre_data = data;
-          toastr.warning("New order has been placed.");
+          toastr.warning("<i class=\"fa fa-bell\" style=\"margin-left:-30px;\"></i>&nbsp; &nbsp; &nbsp;<strong >"+ data +" </strong> &nbsp;new order detected.");
+        }else if(!flag){
+          pre_data = data;
         }
-        // console.log(data);
+        flag = true;
       },
       type: 'GET'
     });

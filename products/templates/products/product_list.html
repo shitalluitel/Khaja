@@ -18,16 +18,16 @@
             </div>
         </div> #} -->
 
-        <section id="product_list" class="mt-4">
+        <section id="product_list" class="mt-5">
             <div class="row justify-content-center">
                 <table class="table table-sm table-stripped table-hover table-responsive-sm">
                   <thead style="background-color:#28a745; color: white;">
                     <tr>
-                      <th>Item</th>
-                      <th>Price</th>
-                      <th>Time</th>
-                      <th>Category</th>
-                      <th></th>
+                      <th style="width: 25%">Item</th>
+                      <th style="width: 20%">Price( Rs.)</th>
+                      <th style="width: 20%">Time( min. )</th>
+                      <th style="width: 20%">Category</th>
+                      <th style="width: 15%"></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -42,7 +42,7 @@
                         </td>
 
                         <td>
-                          <p>{% now 'jS F Y H:i' %}</p>
+                          <p>{{ product.time}}</p>
                         </td>
 
                         <td>
@@ -50,15 +50,18 @@
                         </td>
 
                         <td>
+                          <a href="{% url 'product:detail' pk=product.pk %}">
+                            <span><i class="fa fa-eye text-success fa-size"></i></span>
+                          </a>
+                          &nbsp;&nbsp;
                           <a href="{% url 'product:edit' pk=product.pk %}">
                              <span><i class="fa fa-edit text-info fa-size"></i></span>
                            </a>
+                           &nbsp;&nbsp;
                           <a href="#">
                             <span><i class="fa fa-trash text-danger fa-size"></i></span>
                           </a>
-                          <a href="{% url 'product:detail' pk=product.pk %}">
-                            Detail Info
-                           </a>
+
                         </span>
                       </td>
                       </tr>
