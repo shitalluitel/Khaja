@@ -68,7 +68,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_confirmed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    user_type = models.IntegerField(default=1,validators=[MaxValueValidator(3), MinValueValidator(1)])
+    user_type = models.IntegerField(default=0,validators=[MaxValueValidator(3), MinValueValidator(1)])
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)

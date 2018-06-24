@@ -25,7 +25,9 @@ def user_register(request):
     form = RegisterForm(data=request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.user_type = 1
+            user.save()
             messages.success(request, "We have sent you confirmation email \
                 Please confirm your account by clicking on the confirmation link \
                 sent to your email.")
