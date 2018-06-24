@@ -3,7 +3,7 @@ from products.models import Product
 from users.models import User
 from django.db.models.signals import pre_save, post_save, m2m_changed, post_delete
 from khaja.utils import unique_cart_id_generator
-
+from django.db.models import Q
 class CartManager(models.Manager):
     def new_or_get(self, request):
         cart_id = request.session.get("cart_id", None)
@@ -62,6 +62,7 @@ class Quantity(models.Model):
 
     def calculate_total(self):
         try:
+            # products = Quantity.objects.all().filter(cart_id=self.cart_id).exclude(status="Canceled")
             products = Quantity.objects.all().filter(cart_id=self.cart_id)
         except:
             products = self

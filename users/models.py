@@ -147,10 +147,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         print('http://localhost:8000/users/confirm_email?token={}'.format(token))
 
         # for gmail mail confirmation api
-        # email = EmailMessage('subject: Email Confirmation ', html, to=[self.email])
-        # email.content_subtype = "html"
-        # email.send()
-        # email.attach(html)
+        email = EmailMessage('subject: Email Confirmation ', html, to=[self.email])
+        email.content_subtype = "html"
+        email.send()
+        email.attach(html)
 
     def generate_password_reset_token(self):
         payload = {

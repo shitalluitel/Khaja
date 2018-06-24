@@ -7,6 +7,7 @@ from datetime import timedelta
 from django.utils import timezone
 from products.models import Product
 import json
+from .models  import Company
 
 status_list = ["New","Received","Preparing","Cooked","Delivered","Canceled"]
 
@@ -20,6 +21,26 @@ def check_notification(request):
     except Quantity.DoesNotExist:
         return render(request, 'company/notification.html')
 
+def company_product_list(request):
+    company_id = request.GET.get("company")
+    company_name = Company.objects.get(company_id= company_id)
+    try:
+        product_list_data = Product.objects.filter(company= company_name)
+    except Product.DoesNotExist:
+        return redirect("product:list")
+
+    per_page = 8
+    paginator = Paginator(product_list_data, per_page)
+    page = request.GET.get('page')
+
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
+    return render(request, 'company/company_product_list.html', {'products': products, 'company':company_name})
 
 @login_required
 @is_restaurant

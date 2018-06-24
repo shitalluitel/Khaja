@@ -4,71 +4,25 @@
 
 {% block extra_stylesheets %}
     <link rel="stylesheet" href="{% static 'css/product_css.css' %}">
-    <link rel="stylesheet" href="{% static 'css/image.css' %}">
-    <link rel="stylesheet" href="{% static 'css/infinite-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hero.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
 {% endblock %}
 
-{% block extra_script%}
-  <script type="text/javascript" src="{% static 'js/carousel.js'%}">
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
-{%endblock%}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="vc_row wpb_row vc_row-fluid vc_custom_1454637962540">
-            <div class="container">
-                <div class="row">
-                    <div class="noo-traslate-atributes wpb_column column_container col-sm-12 col-lg-6 hidden-xs">
-                        <div class="vc_column-inner vc_custom_1452065622218">
-                            <div class="wpb_wrapper">
-                                <div class="noo-atributes">
-                                    <img width="694" src="/static/image/burger.png" class="attachment-full size-full"
-                                         alt="image-01">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="noo-traslate-product wpb_column vc_column_container col-sm-12 col-lg-6">
-                        <div class="vc_column-inner vc_custom_1454662301959">
-                            <div class="wpb_wrapper">
-                                <div class="noo-short-intro">
-                                    <h4 style="font-family: 'Pacifico', cursive">Special Khaja</h4>
-                                    <h2>Khaja &nbsp; Ghar</h2>
-                                    <div class="price">
-                                        <span>Test's</span>
-                                        <span style="color: red">Exceptional</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="hero-image wishlist-image">
+        <div class="overlay">
+            <div class="hero-text">
+                <h1 class="cursive-font" style="font-size:56px; font-weight: 400; ">{{company.company_name}}</h1>
+                <p class="pt-4">YOUR FAVOURITE'S ARE HERE</p>
             </div>
         </div>
     </div>
 
-    <section id="product_list">
-        <div class="our-products text-center">
-            <h1 style="font-family: 'Pacifico', cursive">Our Company's</h1>
-            <p>Delightful local food. The best organic food delivered to your door.</p>
-            <ul class="product-list-group">
-                {%for company in companies%}
-                  <li>
-                    <a href="{% url 'company:product_list' %}?company={{company.company_id}}" style="text-decoration:none;"><span class="text-success"><i class="fa fa-2x fa-leaf"></i><p>{{company.company_name}}</p></span></a>
-                  </li>
-                {%endfor%}
-            </ul>
-            <!--{# <section class="customer-logos slider">
-                {% for company in companies %}
-                  <div class="slide">
-                      <a href="#" style="text-decoration: none"><i class="fa fa-2x fa-leaf"></i><p>All Product</p></a>
-                  </div>
-                {% endfor %}
-            </section> #}-->
-        </div>
-        <div class="container">
+    {# <div class="container"> #}
+
+        {% if products %}
+          <div class="container">
             <div class="row justify-content-center">
                 {% for product in products %}
                     <div class="col-md-4 col-sm-6 col-lg-3">
@@ -104,7 +58,8 @@
                 {% endfor %}
             </div>
 
-            <nav aria-label="Page navigation example">
+            {% if products.has_other_pages %}
+              <nav aria-label="Page navigation example">
                 <ul class="pagination pagination-sm justify-content-center">
                     {% if products.has_previous %}
                         <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}">&laquo;
@@ -129,9 +84,20 @@
                     {% endif %}
                 </ul>
             </nav>
+            {% endif %}
 
         </div>
-    </section>
+        {% else %}
+            <div class="container my-2">
+                <h2 style="font-size: 32px; font-weight: 700;">WISHLIST</h2>
+                <div class="text-center mb-4">
+                    <p style="font-size: 18px; font-weight: 500;">Your wishlist is empty!</p>
+                    <a class="btn btn-continue-shopping" href="{% url 'home' %}#product_list">CONTNUE ADDING</a>
+                </div>
+            </div>
+        {% endif %}
+
+    {# </div> #}
 
     {% include 'base_footer_divider.html' %}
 {% endblock %}

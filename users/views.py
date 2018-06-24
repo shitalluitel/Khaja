@@ -194,14 +194,9 @@ def logout_user(request):
     """
     Logout a user
     """
-    # if not request.session.get('cart_id'):
     logout(request)
-    messages.success(request, "Logged out successfully!")
+    # messages.success(request, "Logged out successfully!")
     return redirect('home')
-    #
-    # messages.error(request, "You have active cart. Please checkout your cart or it may get destroyed.")
-    # return redirect('cart:display')
-
 
 @login_required
 def user_profile_edit(request):
