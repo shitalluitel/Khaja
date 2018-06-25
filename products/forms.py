@@ -20,7 +20,7 @@ class ProductCreateForm(forms.ModelForm):
 
     image = forms.ImageField(
         label='Photo',
-        widget=forms.FileInput(attrs={'class':'form-control product-image-btn'}),
+        widget=forms.FileInput(attrs={'class':'form-control-file product-image-btn'}),
     )
 
     time = forms.IntegerField(
