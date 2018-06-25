@@ -88,7 +88,7 @@ def product_list(request):
 def product_delete(request, pk):
     try:
         item = Product.objects.get(company=request.user.company, id=pk)  # item is a database
-    except Item.DoesNotExist:
+    except Product.DoesNotExist:
         raise Http404()
 
     if request.method == 'POST':
