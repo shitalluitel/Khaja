@@ -7,6 +7,7 @@ from .forms import ProductCreateForm, ProductEditForm
 from company.models import Company
 from carts.models import Cart, Quantity
 from company.views import chart
+from django.contrib import messages
 # from .tasks import *c
 
 @login_required
@@ -20,6 +21,7 @@ def product_create(request):
             product = form.save(commit=False)
             product.company = request.user.company
             product.save()
+            messages.success("Product " + product.product_name + "Created Successfully.")
             return redirect("product:create")
 
     context = {
