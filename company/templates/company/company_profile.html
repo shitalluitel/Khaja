@@ -20,7 +20,7 @@
     </div>
 
     <div class="row">
-        <div class=" offset-md-3 col-md-6 mt-2">
+        <div class=" offset-md-3 col-md-6 mt-3 mb-3">
 
               {% if form.non_field_errors %}
 
@@ -42,39 +42,39 @@
                     {% csrf_token %}
 
                             <div class="form-group {% if form.first_name.errors %}has-danger{% endif %}">
-                              <label>{{ form.first_name.label }}</label>
-                              {% if form.first_name.errors %}
-                                {{ form.first_name | add_class:"is-invalid" }}
+                              <label>{{ form.company_name.label }}</label>
+                              {% if form.company_name.errors %}
+                                {{ form.company_name | add_class:"is-invalid" }}
                                 <div class="has-danger">
-                                    <div class="help-block">{{ form.first_name.errors }}</div>
+                                    <div class="help-block">{{ form.company_name.errors }}</div>
                                 </div>
                               {% else %}
-                                {{ form.first_name}}
+                                {{ form.company_name}}
                               {% endif %}
                             </div>
 
-                            <div class="form-group {% if form.last_name.errors %}has-danger{% endif %}">
-                              <label>{{ form.last_name.label }}</label>
-                              {% if form.last_name.errors %}
-                                {{ form.last_name | add_class:"is_invalid" }}
+                            <div class="form-group {% if form.location.errors %}has-danger{% endif %}">
+                              <label>{{ form.location.label }}</label>
+                              {% if form.location.errors %}
+                                {{ form.location | add_class:"is_invalid" }}
                                 <div class="has-danger">
-                                    <div class="help-block">{{ form.last_name.errors }}</div>
+                                    <div class="help-block">{{ form.location.errors }}</div>
                                 </div>
                               {% else %}
-                                {{ form.last_name }}
+                                {{ form.location }}
                               {% endif %}
                             </div>
 
-                            <div class="form-group {% if form.email.errors %}has-danger{% endif %}">
-                              <label>{{ form.email.label }}</label>
+                            <div class="form-group {% if form.phone_no.errors %}has-danger{% endif %}">
+                              <label>{{ form.phone_no.label }}</label>
 
-                              {% if form.email.errors %}
-                                {{ form.email }}
+                              {% if form.phone_no.errors %}
+                                {{ form.phone_no }}
                                 <div class="has-danger">
-                                    <div class="help-block">{{ form.email.errors }}</div>
+                                    <div class="help-block">{{ form.phone_no.errors }}</div>
                                 </div>
                               {% else %}
-                                {{ form.email }}
+                                {{ form.phone_no }}
                               {% endif %}
                             </div>
 

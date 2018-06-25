@@ -8,8 +8,27 @@ from django.utils import timezone
 from products.models import Product
 import json
 from .models  import Company
+from .forms import CompanyForm
 
 status_list = ["New","Received","Preparing","Cooked","Delivered","Canceled"]
+
+@login_required
+@is_restaurant
+def company_edit(request):
+    data = Company.objects.get(company_id = request.user.company.company_id)
+    form = CompanyForm(instance=data)
+    if request.method == "POST":
+        form = CompanyForm(request.POST, instance=data)
+        if form.is_valid():
+            company = form.save()
+            return redirect("home")
+
+    context = {
+        "form": form
+    }
+    return render(request, 'company/company_profile.html', context)
+
+
 
 @login_required
 @is_restaurant
