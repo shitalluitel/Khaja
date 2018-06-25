@@ -75,7 +75,7 @@
                             {{ form.image.errors }}
                         </div>
                     {% else %}
-                      {{ form.image}}
+                      {{ form.image }}
                     {% endif %}
 
                     {% if form.instance.image %}
@@ -96,9 +96,7 @@
 {% endblock %}
 
 {% block extra_script %}
-  <script type="text/javascript" src={% static 'js/productNew.js'%}>
-
-  </script>
+  <script type="text/javascript" src={% static 'js/productNew.js'%}></script>
 {% endblock %}
 {% block footer %}
   {% include "dashboardFooter.html" %}

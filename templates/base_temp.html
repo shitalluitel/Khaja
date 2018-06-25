@@ -61,8 +61,6 @@
 {% endblock %}
 
 <div id="fb-root"></div>
-{% block extra_script %}
-{% endblock %}
 <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
 <script src="{% static 'js/popper.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/toastr/toastr.js'%}"></script>
@@ -84,5 +82,7 @@
     }(document, 'script', 'khaja'));
 
 </script>
+{% block extra_script %}
+{% endblock %}
 </body>
 </html>

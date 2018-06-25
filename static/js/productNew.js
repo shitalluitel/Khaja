@@ -10,6 +10,6 @@ function readIMG(input) {
    }
 }
 
-$('body').on('change','.product-image-btn',function(){
+$('body').on('change','#id_image',function(){
  readIMG(this);
 });
