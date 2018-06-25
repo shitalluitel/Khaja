@@ -65,11 +65,15 @@ def product_list(request):
             product_list_data = Product.objects.all().order_by('product_name')
     except Product.DoesNotExist:
         return redirect("product:create")
-        
-    if request.user.user_type == 1:
-        per_page = 8
+
+    if request.user.is_authenticated:
+        if request.user.user_type == 1:
+            per_page = 8
+        else:
+            per_page = 10
     else:
-        per_page = 10
+        per_page = 8
+
     paginator = Paginator(product_list_data, per_page)
     page = request.GET.get('page')
 

@@ -103,9 +103,9 @@ WSGI_APPLICATION = 'khaja.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd2bkr9banve9gb',
-        'USER': 'aazqahnactrgfx',
-        'PASSWORD': '5c621cc3523dd44e9654e09a34651df3ca6d59a7e61089da4d2388c8b00720b9',
+        'NAME': 'd73r6tk635hhs0',
+        'USER': 'izghiuqtdnftik',
+        'PASSWORD': '1f914ec207fa48316b1408e31990c3add034c6953a6f3907d005304dfede547d',
         'HOST': 'ec2-54-247-100-44.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
