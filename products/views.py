@@ -21,7 +21,7 @@ def product_create(request):
             product = form.save(commit=False)
             product.company = request.user.company
             product.save()
-            messages.success("Product " + product.product_name + "Created Successfully.")
+            messages.success(request, "Product " + product.product_name + "Created Successfully.")
             return redirect("product:create")
 
     context = {
