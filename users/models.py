@@ -146,11 +146,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         #               data=data)
         print('http://localhost:8000/users/confirm_email?token={}'.format(token))
 
+        print('http://khaja.herokuapp.com/users/confirm_email?token={}'.format(token))
+
         # for gmail mail confirmation api
-        email = EmailMessage('subject: Email Confirmation ', html, to=[self.email])
-        email.content_subtype = "html"
-        # email.attach(html)
-        email.send()
+        # email = EmailMessage('subject: Email Confirmation ', html, to=[self.email])
+        # email.content_subtype = "html"
+        # # email.attach(html)
+        # email.send()
 
     def generate_password_reset_token(self):
         payload = {
@@ -179,10 +181,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         #               auth=("api", settings.MAILGUN_API_KEY),
         #               data=data)
         print('http://localhost:8000/users/password_reset?token={}'.format(token))
-        email = EmailMessage('subject: Reset Password ', html, to=[self.email])
-        email.content_subtype = "html"
-        # email.attach(html)
-        email.send()
+
+        print('http://khaja.herokuapp.com/users/password_reset?token={}'.format(token))
+        # email = EmailMessage('subject: Reset Password ', html, to=[self.email])
+        # email.content_subtype = "html"
+        # # email.attach(html)
+        # email.send()
 
     class Meta:
         db_table = "users"
