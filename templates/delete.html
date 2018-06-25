@@ -1,0 +1,37 @@
+{% extends 'base_temp.html' %}
+
+{% block content %}
+    <div class="delete-page mt-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="offset-md-3 col-md-6">
+                    <p class="lead text-center">Are you sure, you want to delete item
+                        <strong>{{ item.name }}</strong> ?
+
+                    </p>
+
+                    <form method="POST" class="form-horizontal">
+
+                        {% csrf_token %}
+
+                        <div class="form-row">
+                          <div class="col-md-6 mt-3 mb-2">
+                            <button type="submit" class="btn btn-danger btn-block ">
+                              Delete
+                            </button>
+                          </div>
+
+                          <div class="col-md-6 mt-3">
+                            <a href="{% url 'product:list' %}" class="btn btn-secondary  btn-block ">Cancel</a>
+                          </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% include "base_footer_divider.html" %}
+{% endblock %}

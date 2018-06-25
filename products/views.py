@@ -20,7 +20,7 @@ def product_create(request):
             product = form.save(commit=False)
             product.company = request.user.company
             product.save()
-            return redirect("product:list")
+            return redirect("product:create")
 
     context = {
         "form": form
@@ -81,6 +81,23 @@ def product_list(request):
 
     return render(request, 'products/list.html', {'products': products, 'companies':companies})
 
+@login_required
+@is_restaurant
+def product_delete(request, pk):
+    try:
+        item = Product.objects.get(company=request.user.company, id=pk)  # item is a database
+    except Item.DoesNotExist:
+        raise Http404()
+
+    if request.method == 'POST':
+        item.delete()
+        # messages.success(request, "Transaction %s deleted." % (item.title))
+        return redirect('product:list')
+
+    context = {
+        'item': item
+    }
+    return render(request, 'delete.html', context)
 
 # @login_required
 def product_detail(request, pk):
