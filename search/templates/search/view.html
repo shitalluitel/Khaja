@@ -47,20 +47,31 @@
                                 <h4 class="card-title" style="font-weight: bold;">{{ product.product_name }}</h4>
                                 <p style="color: #696969;"><span><i
                                         class="fa fa-inr"></i></span> {{ product.product_price }}</p>
-                                <a class="btn btn-block btn-success cart-btn"
-                                   href="{% url 'product:detail' pk=product.pk %}" style="margin-bottom:-5px"><i
-                                        class="fa fa-shopping-cart">&nbsp;&nbsp; ADD TO CART</i></a>
-                                <a class="btn btn-block btn-danger cart-btn"
-                                   href="{% url 'wishlist:create' pk=product.pk %}"><i class="fa fa-heart">&nbsp;&nbsp;
-                                    ADD
-                                    TO WISHLIST</i></a>
+                                {% if request.user.user_type == 1 %}
+                                  <a class="btn btn-block btn-success cart-btn"
+                                     href="{% url 'product:detail' pk=product.pk %}" style="margin-bottom:-5px"><i
+                                          class="fa fa-shopping-cart">&nbsp;&nbsp; ADD TO CART</i></a>
+                                  <a class="btn btn-block btn-danger cart-btn"
+                                     href="{% url 'wishlist:create' pk=product.pk %}"><i class="fa fa-heart">&nbsp;&nbsp;
+                                      ADD
+                                      TO WISHLIST</i></a>
+                                {% endif %}
+
+                                {% if request.user.user_type == 2 %}
+                                  <a class="btn btn-block btn-success cart-btn"
+                                     href="{% url 'product:detail' pk=product.pk %}" style="margin-bottom:-5px"><i
+                                          class="fa fa-eye">&nbsp;&nbsp; Details</i></a>
+                                  <a class="btn btn-block btn-danger cart-btn"
+                                     href="{% url 'product:edit' pk=product.pk %}"><i class="fa fa-edit">&nbsp;&nbsp;
+                                      Edit</i>
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
 
                 {% endfor %}
             </div>
-
             {% if is_paginated %}
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
