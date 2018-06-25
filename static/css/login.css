@@ -85,13 +85,17 @@ input[type=file] {
 }
 
 .hr-small {
-    border: 1px solid #000;
+    border: 1px solid #bfbfbf;
     width: 75px;
     border-radius: 10px;
-    margin-top: 0px;
-    margin-bottom: 35px;
+    margin-top: -10px;
+    margin-bottom: 30px;
 }
 
 .text-decoration-none{
     text-decoration: none;
+}
+
+a:hover{
+  text-decoration: none;
 }

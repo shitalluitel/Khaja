@@ -7,7 +7,7 @@ from company.models import Company
 
 class Product(models.Model):
     company = models.ForeignKey(Company, related_name='product', on_delete=models.CASCADE)
-    product_name = models.CharField(max_length=32)
+    product_name = models.CharField(max_length=20)
     product_price = models.DecimalField(max_digits=8, decimal_places=2, null=False)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
