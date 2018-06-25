@@ -1,41 +1,37 @@
 //chart
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
-  type: 'bar',
+  type: 'line',
   data: {
     labels: [],
     datasets: [{
         label: '',
         data: [],
         backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
+            'rgb(0, 186, 156)',
+          ],
+          borderColor: [
+              'rgb(0, 186, 156)',
+          ],
     }]
   },
   options: {
     scales: {
+        xAxes: [{
+          ticks: {
+            fontSize: 10,
+          }
+        }],
         yAxes: [{
             ticks: {
-                beginAtZero:true
+                beginAtZero:true,
+                fontSize: 10,
             }
         }]
     }
   }
 });
+
 
 function get_day_total_data(){
     $.ajax({
@@ -123,6 +119,7 @@ total_product();
 
 
 function view_daily_chart(){
+
   $.ajax({
     url: '/company/get-day-data',
     cache: false,

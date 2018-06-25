@@ -49,7 +49,8 @@ def order_new_list(request):
     products, per_page = order_list_query(request=request, status=status)
     return render(request, 'company/order_list.html', {'datas': products, 'per_page': per_page})
 
-
+@login_required
+@is_restaurant
 def order_list_query(request, status):
     company = request.user.company
     if status not in status_list:
@@ -151,8 +152,9 @@ def get_day_data(request):
         new_data = datas.filter(timestamp__range =(start_time + timedelta(hours = i), start_time + timedelta(hours=(i+1)) ))
         for data in new_data:
             total += data.product.product_price * data.quantity
-        return_data.append(total)
-        labels.append("%s-%s"%((timezone.now() - timedelta(hours = 24 -i)).hour,(timezone.now() - timedelta(hours = 24 -i-1)).hour))
+        if total > 0:
+            return_data.append(str(total))
+            labels.append("%s"%((timezone.now() - timedelta(hours = 24 -i)).strftime("%I %p")))
 
     response_data = {}
     response_data['labels'] = labels
