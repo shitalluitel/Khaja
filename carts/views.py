@@ -103,10 +103,6 @@ def change_status(request):
             quantity.save()
             # request.session['order_no'] = Quantity.objects.filter(cart__is_active= False, product__company = request.user.company, status="New").count()
             status = request.GET.get('next')
-            try:
-                status = status.split("=")[1]
-            except IndexError:
-                status="New"
             products, per_page = order_list_query(request=request, status=status)
             return render(request, 'order_list_table.html', {'datas': products, 'per_page': per_page})
         except Quantity.DoesNotExist:

@@ -1,8 +1,13 @@
-<select class="custom-select" id="{{ data.pk }}">
-  <option value="New" {% if data.status == 'New'%} selected {% endif %}>New</option>
-  <option value="Received" {% if data.status == 'Received' %}selected{% endif %}>Received</option>
-  <option value="Preparing" {% if data.status == 'Preparing' %}selected{% endif %}>Preparing</option>
-  <option value="Cooked" {% if data.status == 'Cooked' %}selected{% endif %} >Cooked</option>
-  <option value="Delivered" {% if data.status == 'Delivered' %}selected{% endif %} >Delivered</option>
-  <!--<option value="Canceled" {% if data.status == 'Canceled' %}selected{% endif %} style="background-color: red; color:white;" >Cancel</option>-->
-</select>
+{% if data.status == 'Delivered' %}
+  <h6>Delivered</h6>
+{% else %}
+  <select class="custom-select" id="{{ data.pk }}">
+    <option value="New" {% if data.status == 'New'%} selected {% endif %}>New</option>
+    <option value="Received" {% if data.status == 'Received' %}selected{% endif %}>Received</option>
+    <!--<option value="Preparing" {% if data.status == 'Preparing' %}selected{% endif %}>Preparing</option>
+    <option value="Cooked" {% if data.status == 'Cooked' %}selected{% endif %} >Cooked</option>-->
+    <option value="Delivered" {% if data.status == 'Delivered' %}selected{% endif %} >Delivered</option>
+    <!--<option value="Canceled" {% if data.status == 'Canceled' %}selected{% endif %} style="background-color: red; color:white;" >Cancel</option>-->
+  </select>
+
+{% endif %}

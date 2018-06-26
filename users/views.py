@@ -195,8 +195,9 @@ def logout_user(request):
     Logout a user
     """
     logout(request)
-    # messages.success(request, "Logged out successfully!")
-    return redirect('home')
+
+    return redirect("product:list")
+
 
 @login_required
 def user_profile_edit(request):

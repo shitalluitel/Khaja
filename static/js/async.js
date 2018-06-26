@@ -10,17 +10,25 @@ function get_data(){
       },
       success: function (data) {
         $('.notification').html(data);
-        if(pre_data < data && flag){
-          pre_data = data;
-          toastr.warning("<i class=\"fa fa-bell\" style=\"margin-left:-30px;\"></i>&nbsp; &nbsp; &nbsp;<strong >"+ data +" </strong> &nbsp;new order detected.");
-        }else if(!flag){
-          pre_data = data;
+        if(parseInt(data) <= 0){
+          document.title ="Khaja";
+        }else{
+          document.title ="("+data+") Khaja";
         }
-        flag = true;
+        if(pre_data < parseInt(data) && flag){
+          pre_data = parseInt(data);
+          flag = true;
+          toastr.warning("<i class=\"fa fa-bell\" style=\"margin-left:-30px;\"></i>&nbsp; &nbsp; &nbsp;<strong >"+ data +" </strong> &nbsp;new order detected.");
+        }
+        if(!flag && pre_data < parseInt(data)){
+          pre_data = parseInt(data);
+          flag = true;
+        }
+        flag = false;
       },
       type: 'GET'
     });
-  },1000 * 60);
+  },1000 * 60 );
 }
 
 async function asyncCall() {

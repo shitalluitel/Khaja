@@ -17,12 +17,12 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from products.views import redirectUrl
+from products.views import homeURL
 from .tasks import *
 
 urlpatterns = [
                   url(r'^admin/', admin.site.urls),
-                  url(r'^$', redirectUrl, name="home"),
+                  url(r'^$', homeURL, name="home"),
                   url(r'^users/', include('users.urls', namespace="users")),
                   url(r'^products/', include('products.urls', namespace="product")),
                   url(r'^carts/', include('carts.urls', namespace="cart")),

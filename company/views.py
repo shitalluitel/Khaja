@@ -35,10 +35,11 @@ def company_edit(request):
 def check_notification(request):
     company = request.user.company
     try:
-        request.session['order_no'] = Quantity.objects.filter(cart__is_active= False, product__company = company, status="New").count()
-        return render(request, 'company/notification.html')
+        count = Quantity.objects.filter(cart__is_active= False, product__company = company, status="New").count()
+        request.session['order_no'] = count
+        return render(request, 'company/notification.html',{'count': count})
     except Quantity.DoesNotExist:
-        return render(request, 'company/notification.html')
+        return render(request, 'company/notification.html',{'count': count})
 
 def company_product_list(request):
     company_id = request.GET.get("company")
@@ -64,16 +65,17 @@ def company_product_list(request):
 @login_required
 @is_restaurant
 def order_new_list(request):
+    request.session['order_no'] = Quantity.objects.filter(cart__is_active= False, product__company = request.user.company, status="New").count()
     status = request.GET.get("status")
+    if status not in status_list:
+        status= "New"
     products, per_page = order_list_query(request=request, status=status)
-    return render(request, 'company/order_list.html', {'datas': products, 'per_page': per_page})
+    return render(request, 'company/order_list.html', {'datas': products, 'per_page': per_page, 'status': status })
 
 @login_required
 @is_restaurant
 def order_list_query(request, status):
     company = request.user.company
-    if status not in status_list:
-        status= "New"
     try:
         data = Quantity.objects.filter(cart__is_active= False, product__company = company, status =status ).order_by("-timestamp")
     except Quantity.DoesNotExist:
@@ -84,15 +86,14 @@ def order_list_query(request, status):
     else:
         per_page = 1
     paginator = Paginator(data, per_page)
-    page = request.GET.get('page')
 
+    page = request.GET.get('page')
     try:
         products = paginator.page(page)
     except PageNotAnInteger:
         products = paginator.page(1)
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
-
     return products, per_page
 
 @login_required

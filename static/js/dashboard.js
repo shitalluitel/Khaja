@@ -10,9 +10,10 @@ var myChart = new Chart(ctx, {
         backgroundColor: [
             'rgb(0, 186, 156)',
           ],
-          borderColor: [
-              'rgb(0, 186, 156)',
-          ],
+        borderColor: [
+            'rgb(0, 186, 156)',
+        ],
+        fill: false
     }]
   },
   options: {

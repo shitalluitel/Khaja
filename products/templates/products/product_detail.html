@@ -51,7 +51,7 @@
                                     <a class="text-primary" href="{% url 'product:edit' pk=product.pk %}"><span><i
                                             class="fa fa-edit"></i></span></a>
                                     &nbsp;
-                                    <a class="text-danger" href="{% url 'product:edit' pk=product.pk %}"><span><i
+                                    <a class="text-danger" href="{% url 'product:delete' pk=product.pk %}"><span><i
                                             class="fa fa-trash"></i></span></a>
                                 </div>
 
@@ -76,39 +76,6 @@
                                      data-numposts="5"></div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-
-                <div class="col-md-12">
-                    <h2 class="cursive-font detail-info">Related Khaja</h2>
-                    <div class="row">
-                        {% for data in related %}
-                        <div class="col-md-4 col-sm-6">
-                            <div class="card">
-                                <img class="card-img-top" src="/media/{{ data.image }}"
-                                     alt="Card image"
-                                     style="width:100%">
-                                <div class="card-body text-center">
-                                    <div style="margin-bottom: 10px; font-size: larger;">
-                                        <a href="{% url 'product:edit' pk=data.pk %}"> <span><i
-                                                class="fa fa-edit text-info"></i></span></a>
-                                        <span><i class="fa fa-trash text-danger"></i></span>
-                                        </span>
-                                    </div>
-                                    <h4 class="card-title"
-                                        style="font-weight: bold;">{{ data.product_name }}</h4>
-                                    <p style="color: #696969;"><span><i
-                                            class="fa fa-inr"></i></span> {{ data.product_price }}
-                                    </p>
-                                    <a class="btn btn-block btn-success cart-btn"
-                                       href="{% url 'product:detail' pk=data.pk %}">Detail
-                                        Info</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        {% endfor %}
                     </div>
                 </div>
             </div>

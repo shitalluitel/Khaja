@@ -130,7 +130,7 @@ def product_detail(request, pk):
 # def company_product(request,pk):
 #     pass
 
-def redirectUrl(request):
+def homeURL(request):
     if request.user.is_authenticated:
         if request.user.user_type == 1:
             return product_list(request=request)
