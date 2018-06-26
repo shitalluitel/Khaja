@@ -195,8 +195,7 @@ def logout_user(request):
     Logout a user
     """
     logout(request)
-
-    return redirect("product:list")
+    return redirect("home")
 
 
 @login_required
