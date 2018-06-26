@@ -34,4 +34,4 @@ urlpatterns = [
                   # url(r'^customer/(?P<pk>\d+)/product/list$', views.product_detail, name='detail'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# display.delay()
+display.delay()
