@@ -86,7 +86,7 @@ def product_list(request):
 
     if request.user.is_authenticated:
         if request.user.user_type == 2 or request.user.is_admin:
-            request.session["order_no"] = Quantity.objects.filter(cart__is_active= False, product__company = request.user.company).count()
+            request.session["order_no"] = Quantity.objects.filter(cart__is_active= False, product__company = request.user.company, status='New').count()
             return render(request, 'products/product_list.html', {'products': products})
 
     return render(request, 'products/list.html', {'products': products, 'companies':companies})
