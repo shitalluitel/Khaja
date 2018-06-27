@@ -26,17 +26,16 @@
         {% if cart.products.exists %}
             <div class="row">
                 <div class="col">
-
-                    <table class="table table-bordered table-hover text-center">
+                    <table class="table table-bordered table-responsive table-hover text-center">
                         <thead>
-                        <tr>
-                            <th>S.N.</th>
-                            <th>Product Name</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Total</th>
-                            <th></th>
-                        </tr>
+                          <tr>
+                              <th>S.N.</th>
+                              <th>Product Name</th>
+                              <th>Quantity</th>
+                              <th>Price</th>
+                              <th>Total</th>
+                              <th></th>
+                          </tr>
                         </thead>
                         <tbody></tbody>
                         {% for product_item in quantity %}
@@ -57,13 +56,14 @@
                             </tr>
                         {% endfor %}
                         <tr>
-                            <td colspan="4" class="text-right"><b>Subtotal:</b></td>
+                            <td colspan="3"></td>
+                            <td style="border-right-style: hidden;" class="text-right"><b>Subtotal:</b></td>
                             <td colspan="2">{{ cart.subtotal }}</td>
                         </tr>
 
                         <tr>
-
-                            <td colspan="4" class="text-right"><b>Grand Total:</b></td>
+                            <td style="border-top-style: hidden;" colspan="3" class="text-right"><strong class="text-success">Note: 10% of subtotal is added as delivery charge.</strong></td>
+                            <td style="border-right-style: hidden;" class="text-right"><b>Grand Total:</b></td>
                             <td colspan="2">{{ cart.total }}</td>
 
                         </tr>
