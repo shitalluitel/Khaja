@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
 
         <div class="row">
             <div class="offset-md-3 col-md-6">
@@ -25,26 +25,44 @@
         {% if orders %}
             <div class="row ">
                 <div class="col">
-                    <h6 style="font-weight: bolder;">MY ORDERS</h6>
-                    <hr class="mb-4">
-                    {% for order in orders %}
-                        <div class="text-center">
-                            <ul class="list-inline order-list-inline py-2">
-                            <span class="px-5 py-2">
-                                <li class="list-inline-item mr-5" style="color: #898989; font-weight: bold;">Order</li>
-                                <li class="list-inline-item mr-5"
-                                    style="font-weight: bold; color: #666;"># {{ order.order_id }}</li>
-                                <li class="list-inline-item mr-5" style="color: #6a6a6a;">{{ order.created_at }}</li>
-                                <li class="list-inline-item mx-5"
-                                    style="font-weight: 300;">Total &nbsp; Rs. {{ order.total }}</li>
-                                <li class="list-inline-item mx-4"
-                                    style="font-weight: bolder; color: #666;">{{ order.status }}</li>
-                                <li class="list-inline-item ml-4"
-                                    style="font-weight: bold; color: #898989;">Order Detail</li>
-                            </span>
-                            </ul>
-                        </div>
-                    {% endfor %}
+                    <table class="table table-sm table-stripped table-hover table-responsive-sm">
+                      <thead style="background-color:#28a745; color: white;">
+                        <th>Order</th>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Total Cost (Rs)</th>
+                        <th>Status</th>
+                        <th></th>
+                      </thead>
+                      <tbody>
+                        {% for order in orders %}
+                        <tr>
+                          <td style="width:8%;">
+                            {{ forloop.counter0|add:orders.start_index }}
+                          </td>
+                          <td style="width:27%;">
+                            <p># {{ order.order_id }}</p>
+                          </td>
+                          <td style="width:25%;">
+                            <emp>{{ order.created_at }}</emp>
+                          </td>
+                          <td style="width:20%;">
+                            <p>{{ order.total }}</p>
+                          </td>
+                          <td style="width:15%;">
+                            <p   style="font-weight: bolder; color: #666;">{{ order.status }}</p>
+                          </td>
+                          <td style="width:5%;"
+                            <a class="display-cart" id="{{order.order_id}}" data-toggle="tooltip" data-placement="left" title="Display Chart">
+                              <span>
+                                <i class="fa fa-eye" style="font-size: 20px"></i>
+                              </span>
+                            </a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -76,16 +94,19 @@
                 </nav>
             {% endif %}
         {% else %}
-            {#            <div class="container my-2">#}
-            {#                <h2 style="font-size: 32px; font-weight: 700;">ORDER</h2>#}
-            {#                <div class="text-center mb-4">#}
-            {#                    <p style="font-size: 18px; font-weight: 500;">Your order is empty!</p>#}
-            {#                    <a class="btn btn-continue-shopping" href="{% url 'home' %}#product_list">CONTNUE SHOPPING</a>#}
-            {#                </div>#}
-            {#            </div>#}
+             <div class="container my-2">
+                 <h2 style="font-size: 32px; font-weight: 700;">ORDER</h2>
+                 <div class="text-center mb-4">
+                     <p style="font-size: 18px; font-weight: 500;">Your order is empty!</p>
+                     <a class="btn btn-continue-shopping" href="{% url 'home' %}#product_list">CONTNUE SHOPPING</a>
+                 </div>
+              </div>
         {% endif %}
 
     </div>
 
     {% include "base_footer_divider.html" %}
+{% endblock %}
+{% block extra_script %}
+  <script type="text/javascript" src="{% static 'js/customer_order_list.js'%}"></script>
 {% endblock %}

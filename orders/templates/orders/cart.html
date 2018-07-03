@@ -1,0 +1,63 @@
+
+{% load mathfilters %}
+
+
+<div class="container-fluid">
+  {% if cart.products.exists %}
+      <div class="row">
+          <div class="col">
+              <table class="table table-bordered table-responsive-sm table-hover text-center">
+                  <thead style="color: white; background-color: #4ca845;">
+                    <tr>
+                        <th>S.N.</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                  {% for product_item in quantity %}
+                      <tr>
+                          <td style="width: 5%;">{{ forloop.counter }}</td>
+                          <td style="width: 30%;"><a target="_blank"
+                                                     href="{% url 'product:detail' pk=product_item.product.id %}">
+                              {{ product_item.product.product_name }}</a>
+                          </td>
+                          <td style="width: 15%">{{ product_item.quantity }}</td>
+                          <td style="width: 15%;">{{ product_item.product.product_price }}</td>
+                          <td style="width: 15%;">
+                              {{ product_item.quantity|mul:product_item.product.product_price }}
+                          </td>
+                      </tr>
+                  {% endfor %}
+                  <tr>
+                      <td colspan="3"></td>
+                      <td style="border-right-style: hidden;" class="text-right"><b>Subtotal:</b></td>
+                      <td colspan="2">{{ cart.subtotal }}</td>
+                  </tr>
+
+                  <tr>
+                      <td style="border-top-style: hidden;" colspan="3" class="text-right"><strong class="text-success">Note: 10% of subtotal is added as delivery charge.</strong></td>
+                      <td style="border-right-style: hidden;" class="text-right"><b>Grand Total:</b></td>
+                      <td colspan="2">{{ cart.total }}</td>
+
+                  </tr>
+
+                  </tbody>
+              </table>
+              <!--<div class="text text-right">
+
+              </div> -->
+          </div>
+      </div>
+  {% else %}
+      <div class="container my-2">
+          <h2 style="font-size: 32px; font-weight: 700;">CART</h2>
+          <div class="text-center mb-4">
+              <p style="font-size: 18px; font-weight: 500;">Your cart is empty!</p>
+              <a class="btn btn-continue-shopping" href="{% url 'home' %}#product_list">CONTNUE SHOPPING</a>
+          </div>
+      </div>
+  {% endif %}
+</div>

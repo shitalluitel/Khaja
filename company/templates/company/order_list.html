@@ -115,9 +115,12 @@
         </div>
       </div>
     </div>
-
-    {% include "base_footer_divider.html" %}
 {% endblock %}
+
+{% block footer %}
+  {% include "dashboardFooter.html" %}
+{% endblock %}
+
 {% block extra_script %}
     <script type="text/javascript" src="{% static 'js/order_list.js' %}"></script>
     <script type="text/javascript">
