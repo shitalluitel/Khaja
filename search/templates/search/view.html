@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="{% static 'css/hero.css' %}">
 {% endblock %}
 
+
 {% block hero_image %}
+  {% if not request.user.is_authenticated or request.user.user_type == 1 %}
     <div class="hero-image">
         <div class="overlay">
             <div class="hero-text">
@@ -17,10 +19,12 @@
             </div>
         </div>
     </div>
+  {% endif %}
 {% endblock %}
 
+
 {% block content %}
-    <p class="text-center cursive-font" style="font-size: xx-large;">Search Result</p>
+    <p class="text-center cursive-font {% if request.user.user_type == 2 %} mt-5{% endif %}" style="font-size: xx-large;">Search Result</p>
 
     <hr class="hr-small mt-3">
 
@@ -47,17 +51,8 @@
                                 <h4 class="card-title" style="font-weight: bold;">{{ product.product_name }}</h4>
                                 <p style="color: #696969;"><span><i
                                         class="fa fa-inr"></i></span> {{ product.product_price }}</p>
-                                {% if request.user.user_type == 1 %}
-                                  <a class="btn btn-block btn-success cart-btn"
-                                     href="{% url 'product:detail' pk=product.pk %}" style="margin-bottom:-5px"><i
-                                          class="fa fa-shopping-cart">&nbsp;&nbsp; ADD TO CART</i></a>
-                                  <a class="btn btn-block btn-danger cart-btn"
-                                     href="{% url 'wishlist:create' pk=product.pk %}"><i class="fa fa-heart">&nbsp;&nbsp;
-                                      ADD
-                                      TO WISHLIST</i></a>
-                                {% endif %}
+                                {% if request.user.user_type == 2 and request.user.is_authenticated %}
 
-                                {% if request.user.user_type == 2 %}
                                   <a class="btn btn-block btn-success cart-btn"
                                      href="{% url 'product:detail' pk=product.pk %}" style="margin-bottom:-5px"><i
                                           class="fa fa-eye">&nbsp;&nbsp; Details</i></a>
@@ -65,6 +60,15 @@
                                      href="{% url 'product:edit' pk=product.pk %}"><i class="fa fa-edit">&nbsp;&nbsp;
                                       Edit</i>
                                     </a>
+                              {% else %}
+                                  <a class="btn btn-block btn-success cart-btn"
+                                     href="{% url 'product:detail' pk=product.pk %}" style="margin-bottom:-5px"><i
+                                          class="fa fa-shopping-cart">&nbsp;&nbsp; ADD TO CART</i></a>
+                                  <a class="btn btn-block btn-danger cart-btn"
+                                     href="{% url 'wishlist:create' pk=product.pk %}"><i class="fa fa-heart">&nbsp;&nbsp;
+                                      ADD
+                                      TO WISHLIST</i></a>
+
                                 {% endif %}
                             </div>
                         </div>
@@ -103,5 +107,14 @@
         </div>
     </section>
 
-    {% include 'base_footer_divider.html' %}
+    {% if request.user.is_authenticated and request.user.user_type == 2 %}
+      {% include 'dashboardFooter.html' %}
+    {% else %}
+      {% include 'base_footer_divider.html' %}
+    {% endif %}
+{% endblock %}
+{% block footer %}
+  {% if not request.user.is_authenticated or request.user.user_type == 1 %}
+    {% include 'footer.html' %}
+  {% endif %}
 {% endblock %}

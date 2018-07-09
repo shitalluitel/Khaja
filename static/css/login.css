@@ -45,6 +45,12 @@
     display: block;
 }
 
+@media (min-width: 992px) and (max-width: 1199px) {
+  .logo-height{
+    margin-left: -20px;
+  }
+}
+
 .alert-error {
     color: #a94442;
     background-color: #f2dede;

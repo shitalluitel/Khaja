@@ -8,10 +8,10 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="page-wrapper mt-5">
+  <div class="container">
+    <div class="page-wrapper mb-5 pt-5">
         <main class="main-wrapper">
-            <div class="container-fluid page-login-wrap">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="offset-md-6 col-md-6">
                         {% if form.non_field_errors %}
@@ -33,83 +33,83 @@
 
                 {% if messages %}
                 <div class="row">
-                    <div class="offset-md-3 col-md-6">
+                    <div class="offset-md-4 col-md-4">
 
                         {% for message in messages %}
                         <div class="alert alert-dismissible alert-{{ message.tags }}" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             {{ message }}
                         </div>
                         {% endfor %}
-
-
                     </div>
                 </div>
                 {% endif %}
 
-                <div class="row">
-                    <div class="offset-md-3 col-md-6 ">
-                        <div class="login-form-wrap">
-                            <div class="row school-title-wrap mb-3">
-                                <div class="col-md-12"><h3 class="text-center text-success">Khaja Login</h3></div>
-                            </div>
-                            <hr class="hr-small">
-                            <div class="row">
-                                <div class="col-md-5 school-logo-wrap">
-                                    <img class="logo-height"
-                                         src="/media/khaja1.png">
-                                </div>
-                                <div class="col-md-6">
-                                    <form class="login-form" method="POST">
 
-                                        {% csrf_token %}
+                  <div class="row">
+                      <div class="offset-md-4 col-md-4 ">
+                          <div class="login-form-wrap">
+                              <div class="row school-title-wrap  mt-3">
+                                  <img class="img-fluid rounded mx-auto d-block" src="/media/khaja_logo.png" alt="Flight Reservation">
+                                  <div class="col-md-12 mt-2"><h3 class="text-center" style="font-weight: 700; font-size: xx-large;"><span class="text-success">Khaja Ghar</span></h3></div>
+                                  <!--<div class="col-md-12">
+                                  </div>-->
+                              </div>
+                              <div class="mb-5 mt-3">
+                                <hr class="hr-small">
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <form class="login-form" method="POST">
+                                          {% csrf_token %}
+
+                                          <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+                                              <div class="input-group input-group-sm"><span class="input-group-addon"><em
+                                                      class="fa fa-user"></em></span>
+                                                  {{ form.username }}
+                                              </div>
+                                          </div>
+
+                                          <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+                                              <div class="input-group input-group-sm"><span class="input-group-addon"><em
+                                                      class="fa fa-lock"></em></span>
+                                                  {{ form.password }}
+                                              </div>
+                                          </div>
 
 
-                                        <div class="form-group {% if form.username.errors %}has-error{% endif %}">
-                                            <div class="input-group input-group-sm"><span class="input-group-addon"><em
-                                                    class="fa fa-user"></em></span>
-                                                {{ form.username }}
-                                            </div>
-                                        </div>
+                                          <div class="form-group">
+                                              <button class="btn btn-success btn-sm btn-block" name="submit"
+                                                      type="submit">
+                                                  <em class="fa fa-sign-in"></em> Login
+                                              </button>
+                                              <div class="mt-2 text-center">
+                                                <a class="text-decoration-none text-success" href="{% url 'users:send_password_reset_email' %}">Forgot password?</a>
+                                              </div>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
 
-                                        <div class="form-group {% if form.password.errors %}has-error{% endif %}">
-                                            <div class="input-group input-group-sm"><span class="input-group-addon"><em
-                                                    class="fa fa-lock"></em></span>
-                                                {{ form.password }}
-                                            </div>
-                                        </div>
+                              <div class="row">
+                                  <div class="col-md-12 text-center mt-3">
+                                      <a style="font-size: x-large; font-weight: 500;" class="text-decoration-none text-success" href="{% url 'users:user_register'%}">Create an account</a>
+                                  </div>
 
+                                  <div class="col-md-12 text-center">
+                                    <p class="mt-2 mb-4">Powered by <a href="#" target="_blank" class="text-decoration-none text-success">Khaja</a></p>
 
-                                        <div class="form-group">
-                                            <button class="btn btn-success btn-sm btn-block" name="submit"
-                                                    type="submit">
-                                                <em class="fa fa-sign-in"></em> Login
-                                            </button>
-                                            <a class="pull-right mt-2 text-decoration-none text-success "
-                                               href="{% url 'users:send_password_reset_email' %}">Forgot
-                                                password?</a>
-                                        </div>
+                                  </div>
 
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 text-center mt-3">
-                        <a style="font-size: large; " class="text-decoration-none text-success" href="{% url 'users:user_register'%}">Create a account</a>
-                    </div>
-                    <div class="col-md-12 text-center "><p class="mt-3">Powered by <a
-                            href="#" target="_blank" class="text-decoration-none text-success">TFC</a></p></div>
+                              </div>
+                      </div>
+                  </div>
+
                 </div>
             </div>
         </main>
-
     </div>
 </div>
-
 {% endblock %}
 
 {% block footer %}
