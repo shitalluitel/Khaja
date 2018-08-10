@@ -137,8 +137,54 @@ function view_daily_chart(){
   });
 }
 
-async function get_chart(){
+async function get_daily_chart(){
   var result = await view_daily_chart();
 }
 
-get_chart();
+get_daily_chart();
+
+
+function view_monthly_cart(){
+
+  $.ajax({
+    url: '/company/get-monthly-data',
+    cache: false,
+    error: function () {
+      console.log("error");
+    },
+    success: function (data) {
+      console.log(data);
+      myChart.data.labels = data.labels;
+      myChart.data.datasets[0].data = data.data
+      myChart.data.datasets[0].label = data.label
+      myChart.update();
+    },
+    type: 'GET'
+  });
+}
+
+
+function view_yearly_cart(){
+
+  $.ajax({
+    url: '/company/get-yearly-data',
+    cache: false,
+    error: function () {
+      console.log("error");
+    },
+    success: function (data) {
+      console.log(data);
+      myChart.data.labels = data.labels;
+      myChart.data.datasets[0].data = data.data
+      myChart.data.datasets[0].label = data.label
+      myChart.update();
+    },
+    type: 'GET'
+  });
+}
+
+// async function get_monthly_cart(){
+//   var result = await view_monthly_chart();
+// }
+//
+// get_monthly_cart();

@@ -9,6 +9,8 @@ from products.models import Product
 import json
 from .models  import Company
 from .forms import CompanyForm
+from dateutil.relativedelta import relativedelta
+
 
 status_list = ["New","Received","Preparing","Cooked","Delivered","Canceled"]
 
@@ -41,6 +43,8 @@ def check_notification(request):
     except Quantity.DoesNotExist:
         return render(request, 'company/notification.html',{'count': count})
 
+
+
 def company_product_list(request):
     company_id = request.GET.get("company")
     company_name = Company.objects.get(company_id= company_id)
@@ -62,6 +66,8 @@ def company_product_list(request):
 
     return render(request, 'company/company_product_list.html', {'products': products, 'company':company_name})
 
+
+
 @login_required
 @is_restaurant
 def order_new_list(request):
@@ -71,6 +77,8 @@ def order_new_list(request):
         status= "New"
     products, per_page = order_list_query(request=request, status=status)
     return render(request, 'company/order_list.html', {'datas': products, 'per_page': per_page, 'status': status })
+
+
 
 @login_required
 @is_restaurant
@@ -96,11 +104,14 @@ def order_list_query(request, status):
         products = paginator.page(paginator.num_pages)
     return products, per_page
 
+
+
 @login_required
 @is_restaurant
 def chart(request):
     request.session['order_no'] = Quantity.objects.filter(cart__is_active= False, product__company = request.user.company, status="New").count()
     return render(request, 'dashboard.html')
+
 
 
 @login_required
@@ -122,7 +133,7 @@ def get_day_total(request):
 @is_restaurant
 def get_month_total(request):
     month_total = Quantity.objects.filter(
-        timestamp__gte = (timezone.now() - timedelta(days=30)),
+        timestamp__gte = (timezone.now() - timedelta(weeks=4)),
         cart__is_active = False,
         product__company = request.user.company,
         status='Delivered'
@@ -132,11 +143,13 @@ def get_month_total(request):
         total += data.product.product_price * data.quantity
     return HttpResponse("<strong><i class=\"fa fa-money \"></i> &nbsp; %s </strong> "%(total))
 
+
+
 @login_required
 @is_restaurant
 def get_year_total(request):
     year_total = Quantity.objects.filter(
-        timestamp__gte = (timezone.now() - timedelta(days=365)),
+        timestamp__gte = (timezone.now() + relativedelta(years=-1)),
         cart__is_active = False,
         product__company = request.user.company,
         status='Delivered'
@@ -145,6 +158,8 @@ def get_year_total(request):
     for data in year_total:
         total += data.product.product_price * data.quantity
     return HttpResponse("<strong><i class=\"fa fa-money \"></i> &nbsp; %s </strong> "%(total))
+
+
 
 @login_required
 @is_restaurant
@@ -179,5 +194,75 @@ def get_day_data(request):
     response_data = {}
     response_data['labels'] = labels
     response_data['data'] = return_data
-    response_data['label'] = "Transaction within 24 hrs"
+    response_data['label'] = "Transaction within a day"
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
+@login_required
+@is_restaurant
+def get_month_data(request):
+    start_time = (timezone.now() - timedelta(weeks=4))
+    end_time = timezone.now()
+    datas = Quantity.objects.filter(
+        timestamp__range = (start_time, end_time),
+        cart__is_active = False,
+        product__company = request.user.company,
+        status='Delivered'
+        )
+
+    labels = []
+    return_data = [] # data that gets returned
+    temp_str = ""
+    for i in range(0,4):
+        total = 0
+        new_data = datas.filter(timestamp__range =(start_time + timedelta(weeks = i), start_time + timedelta(weeks=(i+1)) ))
+        for data in new_data:
+            total += data.product.product_price * data.quantity
+        if total > 0:
+            return_data.append(str(total))
+            if i + 1 == 1:
+                temp_str += "1st"
+            elif i + 1 == 2:
+                temp_str += "2nd"
+            elif i + 1 == 3:
+                temp_str += "3rd"
+            else:
+                temp_str += "4th"
+            labels.append(temp_str + " week")
+
+    response_data = {}
+    response_data['labels'] = labels
+    response_data['data'] = return_data
+    response_data['label'] = "Transaction within a month"
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
+@login_required
+@is_restaurant
+def get_yearly_data(request):
+    start_time = (timezone.now() + relativedelta(months=-12))
+    end_time = timezone.now()
+    datas = Quantity.objects.filter(
+        timestamp__range = (start_time, end_time),
+        cart__is_active = False,
+        product__company = request.user.company,
+        status='Delivered'
+        )
+
+    labels = []
+    return_data = [] # data that gets returned
+
+    for i in range(0,12):
+        total = 0
+        new_data = datas.filter(timestamp__range =(start_time + relativedelta(months = i), start_time + relativedelta(months=(i+1)) ))
+        for data in new_data:
+            total += data.product.product_price * data.quantity
+        if total > 0:
+            return_data.append(str(total))
+            labels.append("%s"%((timezone.now() - relativedelta(months = 12 -i)).strftime("%B")))
+
+    response_data = {}
+    response_data['labels'] = labels
+    response_data['data'] = return_data
+    response_data['label'] = "Transaction within a month"
     return HttpResponse(json.dumps(response_data), content_type="application/json")

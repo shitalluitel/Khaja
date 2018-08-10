@@ -20,7 +20,9 @@ $('body').on('change','select', function(){
   var queries = {};
   $.each(document.location.search.substr(1).split('&'), function(c,q){
       var i = q.split('=');
-      queries[i[0].toString()] = i[1].toString();
+      if(q.length > 0){
+        queries[i[0].toString()] = i[1].toString();
+      }
   });
     var id = $(this).attr('id');
     var value = $(this).val();
