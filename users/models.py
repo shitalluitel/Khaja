@@ -149,10 +149,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         print('http://khaja.herokuapp.com/users/confirm_email?token={}'.format(token))
 
         # for gmail mail confirmation api
-        email = EmailMessage('subject: Email Confirmation ', html, to=[self.email])
-        email.content_subtype = "html"
+        # email = EmailMessage('subject: Email Confirmation ', html, to=[self.email])
+        # email.content_subtype = "html"
         # # email.attach(html)
-        email.send()
+        # email.send()
 
     def generate_password_reset_token(self):
         payload = {
