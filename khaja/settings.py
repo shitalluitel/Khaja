@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 's0$n$+^sfk$1h7wl-tc3^q4mm72$p(^%!&y^b538sm2^8sdm&b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["khaja.com", 'localhost', '192.168.100.18','0.0.0.0',"khaja.herokuapp.com"]
 
