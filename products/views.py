@@ -7,9 +7,12 @@ from .forms import ProductCreateForm, ProductEditForm
 from company.models import Company
 from carts.models import Cart, Quantity
 from company.views import chart
+from delivery.views import deliveryDashboard
 from django.contrib import messages
 # from .tasks import *c
 
+
+#for creating product list  and adding item to menu
 @login_required
 @is_restaurant
 # @is_admin
@@ -30,6 +33,7 @@ def product_create(request):
     return render(request, 'products/product_edit.html', context)
 
 
+#to edit menu
 @login_required()
 # @is_admin
 @is_restaurant
@@ -50,6 +54,7 @@ def product_edit(request, pk):
     return render(request, 'products/product_edit.html', context)
 
 
+#display all items in menu
 # @login_required
 def product_list(request):
     # display.delay()
@@ -91,6 +96,7 @@ def product_list(request):
 
     return render(request, 'products/list.html', {'products': products, 'companies':companies})
 
+#delete item form menu
 @login_required
 @is_restaurant
 def product_delete(request, pk):
@@ -109,6 +115,7 @@ def product_delete(request, pk):
     }
     return render(request, 'delete.html', context)
 
+#detail information about item in a menu
 # @login_required
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
@@ -127,15 +134,16 @@ def product_detail(request, pk):
     return render(request, 'products/detail.html', content)
 
 
-# def company_product(request,pk):
-#     pass
+#used for redirecting the login user to resperictive pages
 
 def homeURL(request):
     if request.user.is_authenticated:
         if request.user.user_type == 1:
             return product_list(request=request)
-        else:
+        elif request.user.user_type == 2:
             return chart(request=request)
+        elif request.user.user_type == 3:
+            return deliveryDashboard(request= request)
     else:
         # return redirect('product:list')
         return product_list(request=request)

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'djcelery',
     'kombu.transport.django',
     'widget_tweaks',
+    'delivery',
 ]
 
 import djcelery
@@ -88,7 +89,7 @@ WSGI_APPLICATION = 'khaja.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+#
 # DATABASES = {
 #      'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -168,3 +169,9 @@ EMAIL_HOST_PASSWORD = 'c0d3r5@luitel.87'
 EMAIL_PORT = 587
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+AUTHENTICATION_BACKENDS = {
+    'django.contrib.auth.backends.RemoteUserBackend',
+    'django.contrib.auth.backends.ModelBackend',
+}

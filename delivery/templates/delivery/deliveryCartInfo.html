@@ -1,0 +1,73 @@
+{% load split %}
+{% load mathfilters %}
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="row">
+      <div class="col-3 col-lg-6 text-right">
+        <span> <i class="fa fa-user-circle fa-5x"></i> </span>
+      </div>
+      <div class="col-9 col-lg-6">
+        <h6>Country: {{address.country}}</h6>
+        <h6>City: {{address.city}}</h6>
+        <h6>Address: {{ address.address_line_1}}</h6>
+        <h6>Phone: {{ address.phone_number}}</h6>
+      </div>
+
+    </div>
+    <hr>
+  </div>
+
+  <div class="col-lg-12">
+    <table class="table table-bordered table-responsive-sm table-hover text-center">
+        <thead>
+          <tr>
+              <th>S.N.</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
+              <!--<th></th>-->
+          </tr>
+        </thead>
+        <tbody></tbody>
+        {% for product_item in quantity %}
+            <tr>
+                <td style="width: 5%;">{{ forloop.counter }}</td>
+                <td style="width: 30%;"><a target="_blank"
+                                           href="{% url 'product:detail' pk=product_item.product.id %}">
+                    {{ product_item.product.product_name }}</a>
+                </td>
+                <td style="width: 15%">{{ product_item.quantity }}</td>
+                <td style="width: 15%;">{{ product_item.product.product_price }}</td>
+                <td style="width: 15%;">
+                    {{ product_item.quantity|mul:product_item.product.product_price }}
+                </td>
+
+                <!--<td style="width: 10%">{% include "add_product_form.html" with product=product_item.product cart=cart cart_display=True %}-->
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3"></td>
+            <td style="border-right-style: hidden;" class="text-right"><b>Subtotal:</b></td>
+            <td colspan="2">{{ cart.subtotal }}</td>
+        </tr>
+
+        <tr>
+            <td style="border-top-style: hidden;" colspan="3" class="text-right"><strong class="text-success">Note: 10% of subtotal is added as delivery charge.</strong></td>
+            <td style="border-right-style: hidden;" class="text-right"><b>Grand Total:</b></td>
+            <td colspan="2">{{ cart.total }}</td>
+
+        </tr>
+
+        </tbody>
+    </table>
+    <div class="text text-right">
+        <a class="btn btn-danger" href="#">Cancel</a>
+        {% if not cart.is_active %}
+          <a class="btn btn-success" href="{% url 'delivery:confirmOrder'%}?cart_id={{cart.cart_id}}">Confirm</a>
+        {% endif %}
+    </div>
+  </div>
+</div>

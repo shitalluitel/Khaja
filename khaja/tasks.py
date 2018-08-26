@@ -8,7 +8,7 @@ from django.utils import timezone
 def display():
     date_from = timezone.now()
     while True:
-        date_from = timezone.now() - timedelta(minutes=10)
+        date_from = timezone.now() - timedelta(minutes=30)
         Cart.objects.filter(is_active=True, created_at__lte=date_from).delete()
         time.sleep(10)
 

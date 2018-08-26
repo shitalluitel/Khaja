@@ -13,6 +13,7 @@ def address_create(request):
             if form.is_valid():
                 address = form.save(commit=False)
                 address.user = request.user
+                address.cart = request.session.get('cart_id')
                 address.save()
                 return redirect(reverse("cart:checkout") + '?address=%s'%(address.id))
 

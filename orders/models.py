@@ -8,17 +8,18 @@ from users.models import User
 from addresses.models import Address
 
 ORDER_STATUS_CHOICES = (
-    ('shipped', 'Shipped'),
-    ('processing', 'Procecssing'),
-    ('paid', 'Paid'),
+    ('Processing', 'Processing'),
+    ('Prepared', 'Prepared'),
+    ('Shipped', 'Shipped'),
+    ('Paid', 'Paid'),
 )
 
 
 class Order(models.Model):
     order_id = models.CharField(max_length=120, blank=True)
     user = models.ForeignKey(User)
-    cart = models.OneToOneField(Cart, primary_key=True)
-    status = models.CharField(max_length=120, default="processing", choices=ORDER_STATUS_CHOICES)
+    cart = models.OneToOneField(Cart,on_delete=models.CASCADE, primary_key=True)
+    status = models.CharField(max_length=120, default="Recieved", choices=ORDER_STATUS_CHOICES)
     total = models.DecimalField(default=0.0, max_digits=100, decimal_places=2)
     address = models.ForeignKey(Address)
     created_at = models.DateField(auto_now_add=True)

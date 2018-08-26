@@ -1,6 +1,6 @@
 from django.db import models
 from users.models import User
-
+from carts.models import Cart
 
 # Create your models here.
 
@@ -11,6 +11,7 @@ class Address(models.Model):
     address_line_2 = models.CharField(max_length=120, null=True, blank=True)
     city = models.CharField(max_length=120)
     country = models.CharField(max_length=120, default='Nepal')
+    cart = models.ForeignKey(Cart, blank=True, null=True)
     state = models.CharField(max_length=120)
     phone_number = models.CharField(max_length=16)
     created_at = models.DateField(auto_now_add=True)

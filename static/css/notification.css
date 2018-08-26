@@ -26,3 +26,9 @@ a:hover, a:focus, a{
 .fa-size{
   font-size: 26px;
 }
+
+@media (min-width: 992px) {
+  .osh-btn.-plain.-cart > .notification-check{
+    right: 4.9%;
+  }
+}

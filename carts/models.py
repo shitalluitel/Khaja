@@ -34,6 +34,7 @@ class Cart(models.Model):
     total = models.DecimalField(default=-0.00, max_digits=100, decimal_places=2)
     subtotal = models.DecimalField(default=-0.00, max_digits=100, decimal_places=2)
     is_active = models.BooleanField(default=True)
+    # is_confirmed = models.BooleanField(default=False)
     cart_id = models.CharField(max_length=120, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -52,7 +53,7 @@ pre_save.connect(pre_save_create_cart_id, sender=Cart)
 
 class Quantity(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=1)
     status = models.CharField(max_length=32, default="New")
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)

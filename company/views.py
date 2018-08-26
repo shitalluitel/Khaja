@@ -71,7 +71,10 @@ def company_product_list(request):
 @login_required
 @is_restaurant
 def order_new_list(request):
-    request.session['order_no'] = Quantity.objects.filter(cart__is_active= False, product__company = request.user.company, status="New").count()
+    request.session['order_no'] = Quantity.objects.filter(
+                                            cart__is_active= False,
+                                            product__company = request.user.company,
+                                            status="New").count()
     status = request.GET.get("status")
     if status not in status_list:
         status= "New"
@@ -212,9 +215,9 @@ def get_month_data(request):
 
     labels = []
     return_data = [] # data that gets returned
-    temp_str = ""
     for i in range(0,4):
         total = 0
+        temp_str = ""
         new_data = datas.filter(timestamp__range =(start_time + timedelta(weeks = i), start_time + timedelta(weeks=(i+1)) ))
         for data in new_data:
             total += data.product.product_price * data.quantity

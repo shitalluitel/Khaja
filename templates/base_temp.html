@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" href=" {% static 'bower_components/jquery-ui/jquery-ui.min.css'%}">
-    {% if request.user.user_type == 2 %}
+    {% if request.user.user_type == 2 or request.user.user_type == 3 %}
       <link rel="stylesheet" href="{% static 'css/notification.css'%}">
     {% else %}
       <link rel="stylesheet" href="{% static 'css/user_notification.css'%}">
@@ -31,19 +31,22 @@
 <body>
 
 {% block navigaton %}
-{% if request.user.is_authenticated %}
-{% if request.user.user_type == 2 %}
-{% include 'navigation/navigation_resturent.html' %}
-{% endif %}
-{% if request.user.is_admin %}
-{% include 'navigation/navigation_admin.html' %}
-{% endif %}
-{% if request.user.user_type == 1 %}
-{% include 'navigation/navigation_user.html' %}
-{% endif %}
-{% else %}
-{% include 'navigation/navigation_user.html' %}
-{% endif %}
+  {% if request.user.is_authenticated %}
+    {% if request.user.user_type == 2 %}
+      {% include 'navigation/navigation_resturent.html' %}
+    {% endif %}
+    {% if request.user.is_admin %}
+      {% include 'navigation/navigation_admin.html' %}
+    {% endif %}
+    {% if request.user.user_type == 1 %}
+      {% include 'navigation/navigation_user.html' %}
+    {% endif %}
+    {% if request.user.user_type ==  3 %}
+      {% include 'navigation/navigation_delivery.html'%}
+    {% endif%}
+  {% else %}
+    {% include 'navigation/navigation_user.html' %}
+  {% endif %}
 {% endblock %}
 
 {% include 'login_model.html' %}
