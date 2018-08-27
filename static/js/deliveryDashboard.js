@@ -8,7 +8,6 @@ function get_new_order_data(){
       },
       success: function (data) {
         $('.new-order-table').html(data);
-        console.log(data);
       },
       type: 'GET'
     });
@@ -25,7 +24,6 @@ async function asyncCallNewOrder() {
     },
     success: function (data) {
       $('.new-order-table').html(data);
-      console.log(data);
     },
     type: 'GET'
   });
@@ -45,7 +43,6 @@ function get_order_prepared_data(){
       },
       success: function (data) {
         $('.prepared-order-table').html(data);
-        console.log(data);
       },
       type: 'GET'
     });
@@ -62,7 +59,6 @@ async function asyncCallOrderPrepared() {
     },
     success: function (data) {
       $('.prepared-order-table').html(data);
-      console.log(data);
     },
     type: 'GET'
   });
@@ -72,7 +68,9 @@ asyncCallOrderPrepared();
 
 
 $('body').on('click','.display-cart',function(){
+  // var id =$(this).closest('tr').attr("id");
   var id =$(this).attr("id");
+  // alert($(this).closest('tr').attr("id"));
   jQuery.ajax({
     url: '/delivery/cart-detail-info/?cart_id=' + id,
     cache: false,

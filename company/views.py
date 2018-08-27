@@ -95,7 +95,7 @@ def order_list_query(request, status):
     if request.GET.get('per_page'):
         per_page = request.GET.get('per_page')
     else:
-        per_page = 1
+        per_page = 10
     paginator = Paginator(data, per_page)
 
     page = request.GET.get('page')

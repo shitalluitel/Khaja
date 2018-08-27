@@ -8,6 +8,7 @@ from users.models import User
 from addresses.models import Address
 
 ORDER_STATUS_CHOICES = (
+    ('Recieved','Recieved'),
     ('Processing', 'Processing'),
     ('Prepared', 'Prepared'),
     ('Shipped', 'Shipped'),

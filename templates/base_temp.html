@@ -69,12 +69,20 @@
 <script src="{% static 'js/popper.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/toastr/toastr.js'%}"></script>
 <link rel="stylesheet" href="{% static 'bower_components/toastr/toastr.css'%}">
+<script src="{% static 'bower_components/bootstrap-4/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/autocomplete.js' %}"></script>
 {% if request.user.is_authenticated %}
   {% if request.user.user_type == 2 %}
     <script type="text/javascript" src="{% static 'js/async.js'%}"></script>
-  {% endif %}
+  {% endif%}
 {% endif %}
-<script src="{% static 'bower_components/bootstrap-4/dist/js/bootstrap.min.js' %}"></script>
+
+{% if request.user.is_authenticated %}
+  {% if request.user.user_type == 3 %}
+    <script type="text/javascript" src="{% static 'js/deliverysync.js'%}"></script>
+  {% endif%}
+{% endif %}
 <script>
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -85,9 +93,8 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'khaja'));
 
+    $('[data-toggle="tooltip"]').tooltip();
 </script>
-<script src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/autocomplete.js' %}"></script>
 {% block extra_script %}
 {% endblock %}
 </body>

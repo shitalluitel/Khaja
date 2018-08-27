@@ -80,7 +80,7 @@
                                 <li class="page-item active"><a class="page-link" href="#">{{ i }} <span
                                         class="sr-only">(current)</span></a>
                                 </li>
-                            {% else %}
+                            {% elif i > orders.number|add:'-5' and i < orders.number|add:'5' %}
                                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
                             {% endif %}
                         {% endfor %}

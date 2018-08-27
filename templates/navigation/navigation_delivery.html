@@ -41,8 +41,8 @@
 
             <li class="nav-item">
               <div class="pt-2">
-                <a class="nav-link osh-btn -plain -cart" href="{% url 'company:order_new_list' %}?status=New">
-                  <span class="label notification js-store"> {{ request.session.order_no }}</span>
+                <a class="nav-link osh-btn -plain -cart" data-toggle="tooltip" data-placement="left" title="New Order" href="{% url 'delivery:newOrder' %}?status=New">
+                  <span class="label notification-new js-store"> {{ request.session.order_no }}</span>
                   <i class="fa fa-bell " style="font-size: 32px;"></i>
 
                   {# <span style="font-size: 20px; font-weight: 700;"><sub>Order</sub></span> #}
@@ -52,8 +52,8 @@
 
             <li class="nav-item">
               <div class="pt-2">
-                <a class="nav-link osh-btn -plain -cart" href="{% url 'company:order_new_list' %}?status=New">
-                  <span class="label notification-check js-store"> {{ request.session.order_no }}</span>
+                <a class="nav-link osh-btn -plain -cart" data-toggle="tooltip" data-placement="left" title="Order Prepared" href="{% url 'delivery:preparedOrder' %}">
+                  <span class="label notification-prepared notification-check js-store"> {{ request.session.order_no }}</span>
                   <i class="fa fa-check-square" style="font-size: 32px;"></i>
 
                   {# <span style="font-size: 20px; font-weight: 700;"><sub>Order</sub></span> #}

@@ -18,6 +18,7 @@
     <hr>
   </div>
 
+{{address}}
   <div class="col-lg-12">
     <table class="table table-bordered table-responsive-sm table-hover text-center">
         <thead>
@@ -64,13 +65,5 @@
 
         </tbody>
     </table>
-    <div class="text text-right">
-        <a class="btn btn-danger" href="#">Cancel</a>
-        {% if cart.is_active %}
-          <a class="btn btn-success" href="{% url 'delivery:confirmOrder'%}?cart_id={{cart.cart_id}}">Confirm</a>
-        {% else %}
-          <a class="btn btn-success" href="{% url 'delivery:paidOrder'%}?cart_id={{cart.cart_id}}">Paid</a>
-        {% endif %}
-    </div>
   </div>
 </div>

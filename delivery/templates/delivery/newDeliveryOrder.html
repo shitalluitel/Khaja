@@ -1,0 +1,140 @@
+{% extends 'base_temp.html' %}
+{% load staticfiles %}
+{% load mul %}
+
+{% block extra_stylesheets %}
+    <link rel="stylesheet" href="{% static '/css/cart.css' %}">
+    <link rel="stylesheet" href="{% static '/css/order.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-dismissible alert-{{ message.tags }}">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <p>{{ message }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        {% if datas %}
+          <form>
+          <div class="form-group row">
+            <label class="control-label offset-md-8 col-md-2">Select Per Page</label>
+            <div class="col-md-2">
+              <select class="form-control per-page-selector">
+                  <option value="1">10</option>
+                  <option value="20">20</option>
+                  <option value="50">50</option>
+              </select>
+            </div>
+          </div>
+        </form>
+        {% endif %}
+
+        <div class="order-table">
+          {% if datas %}
+                <table class="table table-stripped table-hover table-responsive-sm">
+                    <thead style="background-color:#28a745; color: white;">
+                      <tr>
+                        <th>S.N.</th>
+                        <th>Order ID</th>
+                        <th>Time</th>
+                        <th>Total</th>
+                        <th>Phone Number</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for data in datas %}
+                        <tr data-toggle="tooltip" title="View Detail" id = "{{data.cart.cart_id}}">
+                          <td>{{ forloop.counter0|add:datas.start_index }}</td>
+                          <td>{{ data.order_id }} </td>
+                          <td>{{ data.created_at }} </td>
+                          <td>{{ data.total }} </td>
+                          <td>{{ data.address.phone_number }}</td>
+                          <td><a class="display-cart" id="{{ order.cart.cart_id}}" href="#" onclick=""> <i class="fa fa-eye fa-2x"></i> </a> </td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+
+                  {% if datas.has_next or datas.has_previous %}
+                      <nav aria-label="Page navigation example">
+                          <ul id="pagination-demo" class="pagination justify-content-center" max-size="10">
+                              {% if datas.has_previous %}
+                                  <li class="page-item"><a class="page-link" href="?page={{ datas.previous_page_number }}&per_page={{ per_page}}&status={{status}}">Previous</a></li>
+                              {% else %}
+                                  <li class="page-item disabled"><a class="page-link">&larr; Previous</a></li>
+                              {% endif %}
+
+                              {% if datas.number|add:'-4' > 1 %}
+                                  <li class="page-item"><a class="page-link" href="?page={{ datas.number|add:'-5' }}&per_page={{ per_page}}&status={{status}}">&laquo;</a></li>
+                              {% else %}
+                                  <li class="page-item disabled"><a class="page-link">&laquo;</a></li>
+                              {% endif %}
+
+                              {% for i in datas.paginator.page_range %}
+                                  {% if datas.number == i %}
+                                      <li class="page-item active"><a class="page-link" href="#">{{ i }} <span
+                                              class="sr-only">(current)</span></a>
+                                      </li>
+                                  {% elif i > datas.number|add:'-5' and i < datas.number|add:'5' %}
+                                      <li class="page-item"><a class="page-link" href="?page={{ i }}&per_page={{per_page}}&status={{status}}">{{ i }}</a></li>
+                                  {% endif %}
+                              {% endfor %}
+
+                              {% if datas.paginator.num_pages > datas.number|add:'4' %}
+                                  <li class="page-item"><a class="page-link" href="?page={{ datas.number|add:'5' }}&per_page={{ per_page}}&status={{status}}">&raquo;</a></li>
+                              {% else %}
+                                  <li class="page-item disabled"><a class="page-link">&raquo;</a></li>
+                              {% endif %}
+
+
+                              {% if datas.has_next %}
+                                  <li class="page-item"><a class="page-link" href="?page={{ datas.next_page_number }}&per_page={{per_page}}&status={{status}}">Next</a></li>
+                              {% else %}
+                                  <li class="page-item disabled"><a class="page-link">Next</a></li>
+                              {% endif %}
+                          </ul>
+                      </nav>
+                  {% endif %}
+
+            {% else %}
+               <div class="container my-2">
+                   <span class="text-center my-5"><h2 style="color:#4ba548; font-size: 32px; font-weight: 700;">NEW ORDERS</h2></span>
+                   <div class="text-center mb-4">
+                       <p style="font-size: 18px; font-weight: 500;">New Order list is empty!</p>
+                   </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+  {% include "dashboardFooter.html" %}
+{% endblock %}
+
+{% block extra_script %}
+    <script type="text/javascript" src="{% static 'js/delivery.js' %}"></script>
+    <script type="text/javascript">
+      var per_page = {{ per_page }};
+      $('body').on('change', '.per-page-selector', function () {
+          var get_data = $('.per-page-selector');
+          location.href = '{% url "delivery:newOrder" %}'+'?page=1&per_page=' + get_data.val();
+          console.log("Changed");
+      });
+
+      $("select option").each(function () {
+          if ($(this).val() == per_page)
+              $(this).attr("selected", "selected");
+      });
+    </script>
+{% endblock %}

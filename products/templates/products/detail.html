@@ -77,26 +77,32 @@
                     <h2 class="cursive-font detail-info">Related Khaja</h2>
                     <div class="row">
                         {% for data in related %}
-                        <div class="col-md-4 col-sm-6">
+                        <div class="col-md-4 col-sm-6 col-lg-4">
                             <div class="card">
-                                <img class="card-img-top" src="/media/{{ data.image }}"
-                                     alt="Card image"
-                                     style="width:100%">
+                                <div class="card-header" style="padding: .75rem 0; border: none; background-color: transparent">
+                                    <img class="card-img-top" src="/media/{{ data.image }}" alt="Card image"
+                                         style="width:100%;">
+                                </div>
                                 <div class="card-body text-center">
                                     <div style="margin-bottom: 10px; font-size: larger;">
-                                        <a href="{% url 'product:edit' pk=data.pk %}"> <span><i
-                                                class="fa fa-edit text-info"></i></span></a>
-                                        <span><i class="fa fa-trash text-danger"></i></span>
+                                    <span class="star-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i></span>
                                         </span>
                                     </div>
-                                    <h4 class="card-title"
-                                        style="font-weight: bold;">{{ data.product_name }}</h4>
+                                    <h4 class="card-title" style="font-weight: bold;">{{ data.product_name }}</h4>
                                     <p style="color: #696969;"><span><i
-                                            class="fa fa-inr"></i></span> {{ data.product_price }}
-                                    </p>
+                                            class="fa fa-inr"></i></span> {{ data.product_price }}</p>
                                     <a class="btn btn-block btn-success cart-btn"
-                                       href="{% url 'product:detail' pk=data.pk %}">Detail
-                                        Info</a>
+                                       href="{% url 'product:detail' pk=data.pk %}" style="margin-bottom:-5px"><i
+                                            class="fa fa-shopping-cart">&nbsp;&nbsp; ADD TO CART</i></a>
+                                    <a class="btn btn-block btn-danger cart-btn"
+                                       href="{% url 'wishlist:create' pk=data.pk %}"><i class="fa fa-heart">&nbsp;&nbsp;
+                                        ADD
+                                        TO WISHLIST</i></a>
                                 </div>
                             </div>
                         </div>

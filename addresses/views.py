@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 # from .models import Address
 from .forms import AddressForm
 from django.urls import reverse
-
+from carts.models import Cart
 # Create your views here.
 
 def address_create(request):
@@ -13,7 +13,7 @@ def address_create(request):
             if form.is_valid():
                 address = form.save(commit=False)
                 address.user = request.user
-                address.cart = request.session.get('cart_id')
+                address.cart = Cart.objects.get(id = request.session.get('cart_id'))
                 address.save()
                 return redirect(reverse("cart:checkout") + '?address=%s'%(address.id))
 

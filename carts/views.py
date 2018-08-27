@@ -65,7 +65,7 @@ def checkout_home(request):
         else:
             order_obj, new_order_obj = Order.objects.get_or_create(address=address, user=request.user, cart=cart)
             # cart.is_active = False
-            cart.save()
+            # cart.save()
             request.session["cart_item"] = 0
             request.session["cart_id"] = None
         return render(request, "checkout.html", {"order": order_obj})
@@ -101,6 +101,10 @@ def change_status(request):
             quantity = Quantity.objects.get(id=id)
             quantity.status = value
             quantity.save()
+            if value == 'Delivered':
+                order = Order.objects.get(cart__id = quantity.cart_id)
+                order.status = "Prepared"
+                order.save()
             # request.session['order_no'] = Quantity.objects.filter(cart__is_active= False, product__company = request.user.company, status="New").count()
             status = request.GET.get('next')
             products, per_page = order_list_query(request=request, status=status)
