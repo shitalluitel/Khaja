@@ -8,7 +8,7 @@ from carts.models import Quantity
 
 @login_required
 def order_list(request):
-    order_list = Order.objects.all().filter(user=request.user).order_by('created_at')
+    order_list = Order.objects.all().filter(user=request.user).order_by('-created_at')
     per_page = 5
     paginator = Paginator(order_list, per_page)
     page = request.GET.get('page')

@@ -36,7 +36,7 @@
       {% include 'navigation/navigation_resturent.html' %}
     {% endif %}
     {% if request.user.is_admin %}
-      {% include 'navigation/navigation_admin.html' %}
+      {% include 'navigation/navigation_resturent.html' %}
     {% endif %}
     {% if request.user.user_type == 1 %}
       {% include 'navigation/navigation_user.html' %}

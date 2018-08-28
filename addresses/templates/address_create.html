@@ -9,11 +9,79 @@
                     <form method="post">
                         {% csrf_token %}
                         <div class="form-group">
-                            {{ form }}
+                          <label>{{ form.address_line_1.label }} <span class="text-danger">*</span> </label>
+                          {% if form.address_line_1.errors %}
+                              {{ form.address_line_1}}
+                              <div class="invalid-feedback">
+                                  {{ form.address_line_1.errors }}
+                              </div>
+                          {% else %}
+                            {{form.address_line_1}}
+                          {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                          <label>{{ form.address_line_2.label }}</label>
+                          {% if form.address_line_2.errors %}
+                              {{ form.address_line_2}}
+                              <div class="invalid-feedback">
+                                  {{ form.address_line_2.errors }}
+                              </div>
+                          {% else %}
+                            {{form.address_line_2}}
+                          {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                          <label>{{ form.city.label }} <span class="text-danger">*</span> </label>
+                          {% if form.city.errors %}
+                              {{ form.city}}
+                              <div class="invalid-feedback">
+                                  {{ form.city.errors }}
+                              </div>
+                          {% else %}
+                            {{form.city}}
+                          {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                          <label>{{ form.country.label }} <span class="text-danger">*</span> </label>
+                          {% if form.country.errors %}
+                              {{ form.country}}
+                              <div class="invalid-feedback">
+                                  {{ form.country.errors }}
+                              </div>
+                          {% else %}
+                            {{form.country}}
+                          {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                          <label>{{ form.state.label }} <span class="text-danger">*</span> </label>
+                          {% if form.state.errors %}
+                              {{ form.state}}
+                              <div class="invalid-feedback">
+                                  {{ form.state.errors }}
+                              </div>
+                          {% else %}
+                            {{form.state}}
+                          {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                          <label>{{ form.phone_number.label }} <span class="text-danger">*</span> </label>
+                          {% if form.phone_number.errors %}
+                              {{ form.phone_number}}
+                              <div class="invalid-feedback">
+                                  {{ form.phone_number.errors }}
+                              </div>
+                          {% else %}
+                            {{form.phone_number}}
+                          {% endif %}
                         </div>
                         <div class="form-group">
-                            <a class="btn btn-primary" href="{% url 'cart:display' %}">Back</a>
-                            <input class="btn btn-primary" type="submit" value="Next">
+                            <a class="btn btn-secondary" href="{% url 'cart:display' %}">Back</a>
+                            <span class="text-right" ><input class="btn btn-success" type="submit" value="Next"></span>
                         </div>
                     </form>
                 </div>
