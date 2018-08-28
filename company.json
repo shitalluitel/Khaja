@@ -1,0 +1,1 @@
+[{"model": "company.company", "pk": 1, "fields": {"company_name": "Itsoch", "company_id": "bf4pkge45t", "location": "Ithari", "phone_no": "9842574872", "created_at": "2018-06-25T18:02:53.810Z", "updated_at": "2018-06-25T18:02:53.810Z"}}]

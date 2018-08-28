@@ -108,9 +108,9 @@
 
             {% else %}
                <div class="container my-2">
-                   <span class="text-center my-5"><h2 style="color:#4ba548; font-size: 32px; font-weight: 700;">NEW ORDERS</h2></span>
+                   <span class="text-center my-5"><h2 style="color:#4ba548; font-size: 32px; font-weight: 700;">{{orderName|upper}} ORDERS</h2></span>
                    <div class="text-center mb-4">
-                       <p style="font-size: 18px; font-weight: 500;">New Order list is empty!</p>
+                       <p style="font-size: 18px; font-weight: 500;">{{orderName}} Order list is empty!</p>
                    </div>
                 </div>
             {% endif %}

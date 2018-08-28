@@ -1,8 +1,14 @@
-{% for order in order%}
+{% if orders %}
+  {% for order in orders%}
   <tr data-toggle="tooltip" title="view" class="display-cart" id="{{order.cart.cart_id}}">
     <td>{{ order.order_id}}</td>
     <td>{{ order.created_at}}</td>
     <td>{{ order.total}}</td>
     <!--<td>{{ order.status}}</td>-->
   </tr>
-{% endfor%}
+  {% endfor%}
+{% else %}
+  <tr>
+    <td class="text-center" colspan="3">Waiting for orders...</td>
+  </tr>
+{% endif %}

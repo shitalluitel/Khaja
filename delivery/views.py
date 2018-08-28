@@ -22,14 +22,14 @@ def deliveryDashboard(request):
 def getNewOrder(request):
     orderData = Order.objects.filter(status="Recieved", cart__is_active = True).order_by('-created_at')[:5]
 
-    return render(request, 'delivery/deliveryTable.html', {'order': orderData})
+    return render(request, 'delivery/deliveryTable.html', {'orders': orderData})
 
 
 @login_required
 @is_delivery
 def getOrderPrepared(request):
     orderData = Order.objects.filter(status="Prepared", cart__is_active = False)[:5]
-    return render(request, 'delivery/deliveryTable.html', {'order': orderData})
+    return render(request, 'delivery/deliveryTable.html', {'orders': orderData})
 
 
 @login_required
@@ -125,6 +125,7 @@ def newDeliveryOrder(request):
     context = {
         'datas': newOrders,
         'per_page': per_page,
+        'orderName': 'New',
     }
     return render(request, "delivery/newDeliveryOrder.html", context)
 
@@ -150,6 +151,7 @@ def preparedDeliveryOrder(request):
     content = {
         'datas': preparedOrders,
         'per_page': per_page,
+        'orderName': 'Prepared',
     }
     return render(request, "delivery/newDeliveryOrder.html", content)
 
@@ -175,6 +177,7 @@ def paidOrderList(request):
     content = {
         'datas': preparedOrders,
         'per_page': per_page,
+        'orderName': 'Paid',
     }
     return render(request, "delivery/paidList.html", content)
 
