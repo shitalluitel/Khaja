@@ -24,7 +24,7 @@
     <div class="row">
         <div class="col-md-9">
             <div class="row">
-                <div class="col-md-5 image-container">                                    
+                <div class="col-md-5 image-container">
                     {% if product.image.path|imageExist %}
                       <a href="{{ product.image.url }}" target="_blank"><img src="{{ product.image.url }}"
                                                                               alt="{{ product.image|split }}"
@@ -86,8 +86,13 @@
                         <div class="col-md-4 col-sm-6 col-lg-4">
                             <div class="card">
                                 <div class="card-header" style="padding: .75rem 0; border: none; background-color: transparent">
-                                    <img class="card-img-top" src="/media/{{ data.image }}" alt="Card image"
+                                    {% if data.image.path|imageExist %}
+                                      <img class="card-img-top" src="{{ data.image.url }}" alt="Card image"
                                          style="width:100%;">
+                                    {% else %}
+                                      <img class="card-img-top" src="/media/foodlogo.png" alt="Card image"
+                                         style="width:100%;">
+                                    {% endif %}
                                 </div>
                                 <div class="card-body text-center">
                                     <div style="margin-bottom: 10px; font-size: larger;">
