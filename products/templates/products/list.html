@@ -1,6 +1,7 @@
 {% extends 'base_temp.html' %}
 
 {% load staticfiles %}
+{% load imageExist %}
 
 {% block extra_stylesheets %}
     <link rel="stylesheet" href="{% static 'css/product_css.css' %}">
@@ -74,8 +75,11 @@
                     <div class="col-md-4 col-sm-6 col-lg-3">
                         <div class="card">
                             <div class="card-header" style="padding: .75rem 0; border: none; background-color: transparent">
-                                <img class="card-img-top" src="/media/{{ product.image }}" alt="Card image"
-                                     style="width:100%;">
+                              {% if product.image.path|imageExist %}
+                                <img class="card-img-top" src="{{ product.image.url }}" alt="Card image" style="width:100%;">
+                              {% else %}
+                                <img src="/media/foodlogo.png" alt="{{ product.image|split }}" style="height: auto; width: 100%;">
+                              {% endif %}
                             </div>
                             <div class="card-body text-center">
                                 <div style="margin-bottom: 10px; font-size: larger;">
