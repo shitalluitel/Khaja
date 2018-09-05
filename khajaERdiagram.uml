@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>342dd029-bd65-410d-8a04-ba75de08ee15</OriginalElement>
+  <nodes>
+    <node x="-75.0" y="422.5">342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.users_groups</node>
+    <node x="797.0" y="1077.0">342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.wishlists_wishlist</node>
+    <node x="816.3811111111111" y="718.0">342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.products_product</node>
+    <node x="492.93277777777774" y="397.5">342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.company_company</node>
+    <node x="167.55555555555566" y="1024.7777777777778">342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.addresses_address</node>
+    <node x="119.17666666666668" y="251.0">342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.users</node>
+    <node x="464.0" y="1077.0">342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.carts_quantity</node>
+    <node x="294.0" y="730.0">342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.carts_cart</node>
+    <node x="-193.23000000000002" y="1104.0">342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.orders_order</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.carts_cart" target="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.users">
+      <point x="0.0" y="-112.5" />
+      <point x="453.5" y="698.0" />
+      <point x="342.47666666666674" y="698.0" />
+      <point x="63.80000000000007" y="208.5" />
+    </edge>
+    <edge source="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.users_groups" target="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.users">
+      <point x="0.0" y="-52.5" />
+      <point x="6.611111111111086" y="698.0" />
+      <point x="151.07666666666665" y="698.0" />
+      <point x="-127.60000000000002" y="208.5" />
+    </edge>
+    <edge source="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.products_product" target="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.company_company">
+      <point x="0.0" y="-124.5" />
+      <point x="938.8811111111111" y="226.0" />
+      <point x="732.1827777777778" y="224.75" />
+      <point x="79.75000000000001" y="100.5" />
+    </edge>
+    <edge source="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.addresses_address" target="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.users">
+      <point x="-62.75" y="-148.5" />
+      <point x="230.19444444444446" y="698.1111111111111" />
+      <point x="278.6766666666667" y="698.0" />
+      <point x="0.0" y="208.5" />
+    </edge>
+    <edge source="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.orders_order" target="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.users">
+      <point x="-68.0" y="-112.5" />
+      <point x="-160.3411111111111" y="1363.4444444444443" />
+      <point x="115.94444444444446" y="1364.5555555555554" />
+      <point x="120.05555555555554" y="729.0" />
+      <point x="214.87666666666672" y="729.1111111111111" />
+      <point x="-63.799999999999955" y="208.5" />
+    </edge>
+    <edge source="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.carts_quantity" target="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.products_product">
+      <point x="78.25000000000006" y="-88.5" />
+      <point x="698.75" y="997.0" />
+      <point x="877.6311111111111" y="997.0" />
+      <point x="-61.25" y="124.5" />
+    </edge>
+    <edge source="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.orders_order" target="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.carts_cart">
+      <point x="68.0" y="-112.5" />
+      <point x="-13.230000000000075" y="1417.888888888889" />
+      <point x="456.83333333333337" y="1417.8888888888891" />
+      <point x="0.0" y="112.5" />
+    </edge>
+    <edge source="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.wishlists_wishlist" target="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.products_product">
+      <point x="78.25" y="-88.5" />
+      <point x="1031.75" y="997.0" />
+      <point x="1000.1311111111111" y="997.0" />
+      <point x="61.25" y="124.5" />
+    </edge>
+    <edge source="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.users" target="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.company_company">
+      <point x="0.0" y="-208.5" />
+      <point x="278.6766666666667" y="226.0" />
+      <point x="580.1827777777777" y="228.5" />
+      <point x="-79.75" y="100.5" />
+    </edge>
+    <edge source="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.carts_quantity" target="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.carts_cart">
+      <point x="-78.24999999999994" y="-88.5" />
+      <point x="542.25" y="997.0" />
+      <point x="559.8333333333333" y="997.0" />
+      <point x="106.33333333333326" y="112.5" />
+    </edge>
+    <edge source="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.wishlists_wishlist" target="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.users">
+      <point x="-78.25" y="-88.5" />
+      <point x="875.25" y="1032.0" />
+      <point x="738.8811111111111" y="1033.0" />
+      <point x="742.8811111111111" y="700.0" />
+      <point x="406.2766666666667" y="688.0" />
+      <point x="127.60000000000002" y="208.5" />
+    </edge>
+    <edge source="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.addresses_address" target="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.carts_cart">
+      <point x="62.75" y="-148.5" />
+      <point x="346.91666666666674" y="1032.5555555555557" />
+      <point x="347.16666666666663" y="997.0" />
+      <point x="-106.33333333333337" y="112.5" />
+    </edge>
+    <edge source="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.orders_order" target="342dd029-bd65-410d-8a04-ba75de08ee15.TABLE:khaja.public.addresses_address">
+      <point x="0.0" y="-112.5" />
+      <point x="-92.34111111111116" y="1385.6666666666667" />
+      <point x="294.1666666666667" y="1386.7777777777778" />
+      <point x="0.0" y="148.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.44100895036615134" x="458.0" y="822.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+  </Categories>
+</Diagram>
+

@@ -8,7 +8,7 @@
 
 
 {% block content %}
-    <div class="container">
+    <div class="container-fluid">
         <!--{# <div class="row mt-4">
             <div class="col-md-12">
                 <div class="text-right">
@@ -18,7 +18,7 @@
             </div>
         </div> #} -->
 
-        <section id="product_list" class="mt-5">
+        <section id="product_list" class="mt-5 mx-4">
             <div class="row justify-content-center">
                 <table class="table table-sm table-stripped table-hover table-responsive-sm">
                   <thead style="background-color:#28a745; color: white;">
@@ -32,7 +32,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {% for product in  products.object_list %}
+                    {% if products %}
+                      {% for product in  products.object_list %}
                       <tr>
                         <td>
                           {{ forloop.counter0|add:products.start_index }}
@@ -54,14 +55,21 @@
                         </td>
 
                         <td>
-                          <a data-toggle="tooltip" title="View Details" data-placement="left" href="{% url 'product:detail' pk=product.pk %}">
-                            <span><i class="fa fa-eye text-success fa-size"></i></span>
-                          </a>
-                          &nbsp;&nbsp;
-                          <a data-toggle="tooltip" title="Edit" data-placement="left" href="{% url 'product:edit' pk=product.pk %}">
-                             <span><i class="fa fa-edit text-info fa-size"></i></span>
-                           </a>
-                           &nbsp;&nbsp;
+                          {% if  product.is_active %}
+                            <a data-toggle="tooltip" title="View Details" data-placement="left" href="{% url 'product:detail' pk=product.pk %}">
+                              <span><i class="fa fa-eye text-success fa-size"></i></span>
+                            </a>
+                            &nbsp;&nbsp;
+                            <a data-toggle="tooltip" title="Edit" data-placement="left" href="{% url 'product:edit' pk=product.pk %}">
+                               <span><i class="fa fa-edit text-info fa-size"></i></span>
+                             </a>
+                             &nbsp;&nbsp;
+                          {% else %}
+                              <a data-toggle="tooltip" title="View Details" data-placement="left" href="{% url 'product:restore' pk=product.pk %}">
+                                <span><i class="fa fa-undo text-success fa-size"></i></span>
+                              </a>
+                              &nbsp;&nbsp;
+                          {% endif %}
                           <a data-toggle="tooltip" title="Delete" data-placement="left" href="{% url 'product:delete' pk=product.pk%}">
                             <span><i class="fa fa-trash text-danger fa-size"></i></span>
                           </a>
@@ -70,6 +78,13 @@
                       </td>
                       </tr>
                     {% endfor %}
+                    {% else %}
+                      <tr>
+                        <td colspan="6">
+                          <span class="text-center"><h5>Products Not Found.</h4></span>
+                        </td>
+                      </tr>
+                    {% endif %}
                   </tbody>
                 </table>
             </div>

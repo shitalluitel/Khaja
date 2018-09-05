@@ -14,6 +14,7 @@ from dateutil.relativedelta import relativedelta
 
 status_list = ["New","Received","Preparing","Cooked","Delivered","Canceled"]
 
+# this method is used to edit the company details
 @login_required
 @is_restaurant
 def company_edit(request):
@@ -31,7 +32,8 @@ def company_edit(request):
     return render(request, 'company/company_profile.html', context)
 
 
-
+# this method helps to count number of new order_list
+# it response with html page which is managed by jquery in frontend
 @login_required
 @is_restaurant
 def check_notification(request):
@@ -44,7 +46,8 @@ def check_notification(request):
         return render(request, 'company/notification.html',{'count': count})
 
 
-
+# this method is used to query all the prodects associated with a company
+# after querying it returns html page as a result with list of associated product of a company
 def company_product_list(request):
     company_id = request.GET.get("company")
     company_name = Company.objects.get(company_id= company_id)
@@ -67,7 +70,7 @@ def company_product_list(request):
     return render(request, 'company/company_product_list.html', {'products': products, 'company':company_name})
 
 
-
+# this method is used to list orderd products with all type of status
 @login_required
 @is_restaurant
 def order_new_list(request):
@@ -82,7 +85,7 @@ def order_new_list(request):
     return render(request, 'company/order_list.html', {'datas': products, 'per_page': per_page, 'status': status })
 
 
-
+# this method accept status of order and return products object and number of items per pages
 @login_required
 @is_restaurant
 def order_list_query(request, status):
@@ -108,7 +111,7 @@ def order_list_query(request, status):
     return products, per_page
 
 
-
+# this method is used to redirect towards restaurant user dashboard
 @login_required
 @is_restaurant
 def chart(request):
@@ -116,7 +119,8 @@ def chart(request):
     return render(request, 'dashboard.html')
 
 
-
+# this method is used to find total amount of transaction on a day
+# it gives HttpResponse
 @login_required
 @is_restaurant
 def get_day_total(request):
@@ -132,6 +136,8 @@ def get_day_total(request):
     return HttpResponse("<strong><i class=\"fa fa-money \"></i> &nbsp; %s </strong> "%(total))
 
 
+# this method is used to find total amount of transaction on a month
+# it gives HttpResponse
 @login_required
 @is_restaurant
 def get_month_total(request):
@@ -147,7 +153,8 @@ def get_month_total(request):
     return HttpResponse("<strong><i class=\"fa fa-money \"></i> &nbsp; %s </strong> "%(total))
 
 
-
+# this method is used to find total amount of transaction on a year
+# it gives HttpResponse
 @login_required
 @is_restaurant
 def get_year_total(request):
@@ -163,13 +170,15 @@ def get_year_total(request):
     return HttpResponse("<strong><i class=\"fa fa-money \"></i> &nbsp; %s </strong> "%(total))
 
 
-
+# this methos returns number of total product for a restaurant
 @login_required
 @is_restaurant
 def total_product(request):
     return HttpResponse("<strong> %s</strong>" % (Product.objects.filter(company = request.user.company).count()))
 
 
+# this method is used to retrub json response containing hourly money transaction for a day
+# to display on a chart on a dash board
 @login_required
 @is_restaurant
 def get_day_data(request):
@@ -201,6 +210,8 @@ def get_day_data(request):
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
+# this method is used to retrub json response containing weekly money transaction for a month
+# to display on a chart on a dash board
 @login_required
 @is_restaurant
 def get_month_data(request):
@@ -240,6 +251,8 @@ def get_month_data(request):
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
+# this method is used to retrub json response containing monthly money transaction for a year
+# to display on a chart on a dash board
 @login_required
 @is_restaurant
 def get_yearly_data(request):

@@ -9,5 +9,8 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/edit/$', views.product_edit, name='edit'),
     url(r'^(?P<pk>\d+)/delete/$', views.product_delete, name='delete'),
     url(r'^(?P<pk>\d+)/$', views.product_detail, name='detail'),
+    url(r'^inactive/$', views.product_inactive_list, name="inactive"),
+    url(r'^(?P<pk>\d+)/restore/$', views.product_restore, name="restore")
+
     # url(r'^test/$', views.test, name='test'),
 ]

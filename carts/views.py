@@ -12,7 +12,9 @@ from company.views import order_list_query
 
 # Create your views here.
 
-
+# this method  is usd to get all the info about
+# the cart for an user and redirect it with that
+# info to html page
 def cart_home(request):
     # cart, new_obj = Cart.objects.new_or_get(request)
     cart_id = request.session.get('cart_id')
@@ -28,7 +30,7 @@ def cart_home(request):
     request.session["cart_item"] = quantity.count()
     return render(request, "display_cart.html", context=context)
 
-
+# this method is used to add item to cart and delete item from a cart
 @login_required
 def cart_update(request):
     product_id = request.GET.get('product')
@@ -52,6 +54,7 @@ def cart_update(request):
     return redirect("cart:display")
 
 
+# this is used to render the order list page for a user after successful checkout process
 @login_required
 def checkout_home(request):
     cart, new_obj = Cart.objects.new_or_get(request)
@@ -71,6 +74,7 @@ def checkout_home(request):
         return render(request, "checkout.html", {"order": order_obj})
 
 
+# this method is used to destroy cart
 @login_required
 def cart_destroy(request, pk):
     try:
@@ -90,6 +94,8 @@ def cart_destroy(request, pk):
     }
     return render(request, 'delete.html', context)
 
+
+# this method is used to change the status of the item whic are ordered
 @login_required
 @is_restaurant
 def change_status(request):

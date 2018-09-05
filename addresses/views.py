@@ -5,6 +5,7 @@ from django.urls import reverse
 from carts.models import Cart
 # Create your views here.
 
+# this method is used to control the process of adding address for a cart during checkout process
 def address_create(request):
     if not request.session.get('cart_id') == None and not request.session.get('cart_item') == 0:
         form = AddressForm()

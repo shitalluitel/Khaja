@@ -100,14 +100,12 @@ def product_list(request):
 @login_required
 @is_restaurant
 def product_delete(request, pk):
-    try:
-        item = Product.objects.get(company=request.user.company, id=pk)  # item is a database
-    except Product.DoesNotExist:
-        raise Http404()
-
+    item = Product.objects.get(company=request.user.company, id=pk)
     if request.method == 'POST':
-        item.delete()
-        # messages.success(request, "Transaction %s deleted." % (item.title))
+        try:
+            Product.objects.deleteItem(company=request.user.company, id=pk)  # item is a database
+        except Product.DoesNotExist:
+            raise Http404()
         return redirect('product:list')
 
     context = {
@@ -118,7 +116,7 @@ def product_delete(request, pk):
 #detail information about item in a menu
 # @login_required
 def product_detail(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+    product = Product.objects.get(id=pk)
     related = Product.objects.all().order_by('?')[:3]
     cart, new_obj = Cart.objects.new_or_get(request)
     content = {
@@ -133,6 +131,43 @@ def product_detail(request, pk):
 
     return render(request, 'products/detail.html', content)
 
+@login_required
+@is_restaurant
+def product_inactive_list(request):
+        try:
+            if request.user.is_admin:
+                product_list_data = Product.objects.inactive()
+            else:
+                product_list_data = Product.objects.inactive(company__id=request.user.company.id)
+        except Product.DoesNotExist:
+            return redirect("product:create")
+
+        per_page = 10
+
+        paginator = Paginator(product_list_data, per_page)
+        page = request.GET.get('page')
+
+        try:
+            products = paginator.page(page)
+        except PageNotAnInteger:
+            products = paginator.page(1)
+        except EmptyPage:
+            products = paginator.page(paginator.num_pages)
+
+
+        request.session["order_no"] = Quantity.objects.filter(cart__is_active= False, product__company = request.user.company, status='New').count()
+        return render(request, 'products/product_list.html', {'products': products})
+
+
+@login_required
+@is_restaurant
+def product_restore(request, pk):
+    try:
+        product = Product.objects.restore(company_id = request.user.company.id, id=pk)
+    except Product.DoesNotExist:
+        Http404()
+
+    return redirect("product:inactive")
 
 #used for redirecting the login user to resperictive pages
 
