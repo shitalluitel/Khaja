@@ -24,58 +24,67 @@
 
 
 {% block content %}
-    <p class="text-center cursive-font {% if request.user.user_type == 2 %} mt-5{% endif %}" style="font-size: xx-large;">Search Result</p>
-
-    <hr class="hr-small mt-3">
+    {% if object_list %}
+      <p class="text-center cursive-font {% if request.user.user_type == 2 %} mt-5{% endif %}" style="font-size: xx-large;">Search Result</p>
+      <hr class="hr-small mt-3">
+    {% endif %}
 
     <section class="mt-5" id="product_list">
         <div class="container">
-            <div class="row justify-content-center ">
-                {% for product in object_list %}
-                    <div class="col-md-4 col-sm-6 col-lg-3">
-                        <div class="card mt-3">
-                            <div class="card-header" style="border: none; background-color: transparent">
-                                <img class="card-img-top" src="/media/{{ product.image }}" alt="Card image"
-                                     style="width:100%;">
-                            </div>
-                            <div class="card-body text-center">
-                                <div style="margin-bottom: 10px; font-size: larger;">
-                                <span class="star-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i></span>
-                                    </span>
-                                </div>
-                                <h4 class="card-title" style="font-weight: bold;">{{ product.product_name }}</h4>
-                                <p style="color: #696969;"><span><i
-                                        class="fa fa-inr"></i></span> {{ product.product_price }}</p>
-                                {% if request.user.user_type == 2 and request.user.is_authenticated %}
 
-                                  <a class="btn btn-block btn-success cart-btn"
-                                     href="{% url 'product:detail' pk=product.pk %}" style="margin-bottom:-5px"><i
-                                          class="fa fa-eye">&nbsp;&nbsp; Details</i></a>
-                                  <a class="btn btn-block btn-danger cart-btn"
-                                     href="{% url 'product:edit' pk=product.pk %}"><i class="fa fa-edit">&nbsp;&nbsp;
-                                      Edit</i>
-                                    </a>
-                              {% else %}
-                                  <a class="btn btn-block btn-success cart-btn"
-                                     href="{% url 'product:detail' pk=product.pk %}" style="margin-bottom:-5px"><i
-                                          class="fa fa-shopping-cart">&nbsp;&nbsp; ADD TO CART</i></a>
-                                  <a class="btn btn-block btn-danger cart-btn"
-                                     href="{% url 'wishlist:create' pk=product.pk %}"><i class="fa fa-heart">&nbsp;&nbsp;
-                                      ADD
-                                      TO WISHLIST</i></a>
+                {% if object_list %}
+                  <div class="row justify-content-center ">
+                    {% for product in object_list %}
+                      <div class="col-md-4 col-sm-6 col-lg-3">
+                          <div class="card mt-3">
+                              <div class="card-header" style="border: none; background-color: transparent">
+                                  <img class="card-img-top" src="/media/{{ product.image }}" alt="Card image"
+                                       style="width:100%;">
+                              </div>
+                              <div class="card-body text-center">
+                                  <div style="margin-bottom: 10px; font-size: larger;">
+                                  <span class="star-rating">
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i></span>
+                                      </span>
+                                  </div>
+                                  <h4 class="card-title" style="font-weight: bold;">{{ product.product_name }}</h4>
+                                  <p style="color: #696969;"><span><i
+                                          class="fa fa-inr"></i></span> {{ product.product_price }}</p>
+                                  {% if request.user.user_type == 2 and request.user.is_authenticated %}
 
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
+                                    <a class="btn btn-block btn-success cart-btn"
+                                       href="{% url 'product:detail' pk=product.pk %}" style="margin-bottom:-5px"><i
+                                            class="fa fa-eye">&nbsp;&nbsp; Details</i></a>
+                                    <a class="btn btn-block btn-danger cart-btn"
+                                       href="{% url 'product:edit' pk=product.pk %}"><i class="fa fa-edit">&nbsp;&nbsp;
+                                        Edit</i>
+                                      </a>
+                                {% else %}
+                                    <a class="btn btn-block btn-success cart-btn"
+                                       href="{% url 'product:detail' pk=product.pk %}" style="margin-bottom:-5px"><i
+                                            class="fa fa-shopping-cart">&nbsp;&nbsp; ADD TO CART</i></a>
+                                    <a class="btn btn-block btn-danger cart-btn"
+                                       href="{% url 'wishlist:create' pk=product.pk %}"><i class="fa fa-heart">&nbsp;&nbsp;
+                                        ADD
+                                        TO WISHLIST</i></a>
 
-                {% endfor %}
-            </div>
+                                  {% endif %}
+                              </div>
+                          </div>
+                      </div>
+
+                  {% endfor %}
+                  </div>
+                {% else %}
+                  <div class="text-center">
+                    <h1>Sorry!!!</h1>
+                    <h3>No Results found.</h3>
+                  </div>
+                {% endif %}
             {% if is_paginated %}
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">

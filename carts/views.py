@@ -15,6 +15,7 @@ from company.views import order_list_query
 # this method  is usd to get all the info about
 # the cart for an user and redirect it with that
 # info to html page
+@login_required
 def cart_home(request):
     # cart, new_obj = Cart.objects.new_or_get(request)
     cart_id = request.session.get('cart_id')

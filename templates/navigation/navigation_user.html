@@ -54,16 +54,18 @@
                 </div>
                 {% endif %}
             </li>
-            <li class="nav-item">
-                <a class="nav-link osh-btn -plain -cart" href="{% url 'cart:display' %}"><i
-                    class="fa fa-shopping-cart fa-2x"></i>
-                {% if request.session.cart_item %}
-                <span class="label js-store">{{ request.session.cart_item }}</span>
-                {% endif %}
+            {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                  <a class="nav-link osh-btn -plain -cart" href="{% url 'cart:display' %}"><i
+                      class="fa fa-shopping-cart fa-2x"></i>
+                  {% if request.session.cart_item %}
+                  <span class="label js-store">{{ request.session.cart_item }}</span>
+                  {% endif %}
 
-                <span style="font-size: 20px; font-weight: 500;"><sub>Cart</sub></span>
-                </a>
-            </li>
+                  <span style="font-size: 20px; font-weight: 500;"><sub>Cart</sub></span>
+                  </a>
+              </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
