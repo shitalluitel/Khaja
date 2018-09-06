@@ -31,8 +31,10 @@ def user_register(request):
             messages.success(request, "We have sent you confirmation email \
                 Please confirm your account by clicking on the confirmation link \
                 sent to your email.")
+
             login(request, user)
-            return redirect('home')
+
+            return redirect('/')
 
     context = {
         'form': form

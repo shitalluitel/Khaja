@@ -1,6 +1,7 @@
 {% extends 'base_temp.html' %}
 {% load staticfiles %}
 {% block extra_stylesheets %}
+{% load widget_tweaks %}
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock %}
 
@@ -53,11 +54,13 @@
                                         <label class="control-label text-left">{{ form.first_name.label }}</label>
                                     </div>
                                     <div class="col-md-4">
-                                        {{ form.first_name }}
                                         {% if form.first_name.errors %}
-                                        <div class="has-error">
-                                            <div class="help-block">{{ form.first_name.errors }}</div>
-                                        </div>
+                                          {{ form.first_name|add_class:'is-invalid' }}
+                                          <div class="invalid-feedback">
+                                              {{ form.first_name.errors }}
+                                          </div>
+                                        {% else %}
+                                          {{ form.first_name }}
                                         {% endif %}
                                     </div>
 
@@ -65,12 +68,14 @@
                                         <label class="control-label text-left">{{ form.last_name.label }}</label>
                                     </div>
                                     <div class="col-md-4">
-                                        {{ form.last_name }}
-                                        {% if form.last_name.errors %}
-                                        <div class="has-error">
-                                            <div class="help-block">{{ form.last_name.errors }}</div>
+                                      {% if form.last_name.errors %}
+                                        {{ form.last_name| add_class:'is-invalid' }}
+                                        <div class="invalid-feedback">
+                                            {{ form.last_name.errors }}
                                         </div>
-                                        {% endif %}
+                                      {% else %}
+                                        {{ form.last_name }}
+                                      {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -82,12 +87,14 @@
                                         <label class="control-label text-left">{{ form.email.label }}</label>
                                     </div>
                                     <div class="col-md-10">
-                                        {{ form.email }}
-                                        {% if form.email.errors %}
-                                        <div class="has-error">
-                                            <div class="help-block">{{ form.email.errors }}</div>
+                                      {% if form.email.errors %}
+                                        {{ form.email| add_class:'is-invalid' }}
+                                        <div class="invalid-feedback">
+                                            {{ form.email.errors }}
                                         </div>
-                                        {% endif %}
+                                      {% else %}
+                                        {{ form.email }}
+                                      {% endif %}
                                     </div>
                                 </div>
 
@@ -99,11 +106,13 @@
                                         <label class="control-label text-left">{{ form.username.label }}</label>
                                     </div>
                                     <div class="col-md-10">
-                                        {{ form.username }}
                                         {% if form.username.errors %}
-                                        <div class="has-error">
-                                            <div class="help-block">{{ form.username.errors }}</div>
-                                        </div>
+                                          {{ form.username| add_class:'is-invalid' }}
+                                          <div class="invalid-feedback">
+                                              {{ form.username.errors }}
+                                          </div>
+                                        {% else %}
+                                          {{ form.username }}
                                         {% endif %}
                                     </div>
                                 </div>
@@ -116,11 +125,10 @@
                                         <label class="control-label text-left">{{ form.password.label }}</label>
                                     </div>
                                     <div class="col-md-4">
-                                        {{ form.password }}
-                                        {% if form.password.errors %}
-                                        <div class="has-error">
-                                            <div class="help-block">{{ form.password.errors }}</div>
-                                        </div>
+                                        {% if form.confirm_password.errors %}
+                                          {{ form.password|add_class:'is-invalid' }}
+                                        {% else %}
+                                          {{ form.password }}
                                         {% endif %}
                                     </div>
 
@@ -128,11 +136,13 @@
                                         <label class="control-label text-left">{{ form.confirm_password.label }}</label>
                                     </div>
                                     <div class="col-md-4">
-                                        {{ form.confirm_password }}
                                         {% if form.confirm_password.errors %}
-                                        <div class="has-error">
-                                            <div class="help-block">{{ form.confirm_password.errors }}</div>
-                                        </div>
+                                          {{ form.confirm_password|add_class:'is-invalid' }}
+                                          <div class="invalid-feedback">
+                                              {{ form.confirm_password.errors }}
+                                          </div>
+                                        {% else %}
+                                          {{ form.confirm_password }}
                                         {% endif %}
                                     </div>
                                 </div>

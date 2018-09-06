@@ -171,7 +171,7 @@ EMAIL_PORT = 587
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-AUTHENTICATION_BACKENDS = {
-    'django.contrib.auth.backends.RemoteUserBackend',
-    'django.contrib.auth.backends.ModelBackend',
-}
+# AUTHENTICATION_BACKENDS = {
+#     'django.contrib.auth.backends.RemoteUserBackend',
+#     'django.contrib.auth.backends.ModelBackend',
+# }

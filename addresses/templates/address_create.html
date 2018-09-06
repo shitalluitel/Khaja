@@ -1,5 +1,5 @@
 {% extends 'base_temp.html' %}
-
+{% load widget_tweaks %}
 {% block  content %}
     {#    {% if not form.instance %}#}
     <div class="container">
@@ -11,7 +11,7 @@
                         <div class="form-group">
                           <label>{{ form.address_line_1.label }} <span class="text-danger">*</span> </label>
                           {% if form.address_line_1.errors %}
-                              {{ form.address_line_1}}
+                              {{ form.address_line_1|add_class:"is-invalid"}}
                               <div class="invalid-feedback">
                                   {{ form.address_line_1.errors }}
                               </div>
@@ -23,7 +23,7 @@
                         <div class="form-group">
                           <label>{{ form.address_line_2.label }}</label>
                           {% if form.address_line_2.errors %}
-                              {{ form.address_line_2}}
+                              {{ form.address_line_2|add_class:"is-invalid"}}
                               <div class="invalid-feedback">
                                   {{ form.address_line_2.errors }}
                               </div>
@@ -35,7 +35,7 @@
                         <div class="form-group">
                           <label>{{ form.city.label }} <span class="text-danger">*</span> </label>
                           {% if form.city.errors %}
-                              {{ form.city}}
+                              {{ form.city|add_class:"is-invalid"}}
                               <div class="invalid-feedback">
                                   {{ form.city.errors }}
                               </div>
@@ -47,7 +47,7 @@
                         <div class="form-group">
                           <label>{{ form.country.label }} <span class="text-danger">*</span> </label>
                           {% if form.country.errors %}
-                              {{ form.country}}
+                              {{ form.country|add_class:"is-invalid"}}
                               <div class="invalid-feedback">
                                   {{ form.country.errors }}
                               </div>
@@ -59,7 +59,7 @@
                         <div class="form-group">
                           <label>{{ form.state.label }} <span class="text-danger">*</span> </label>
                           {% if form.state.errors %}
-                              {{ form.state}}
+                              {{ form.state|add_class:"is-invalid"}}
                               <div class="invalid-feedback">
                                   {{ form.state.errors }}
                               </div>
@@ -71,7 +71,7 @@
                         <div class="form-group">
                           <label>{{ form.phone_number.label }} <span class="text-danger">*</span> </label>
                           {% if form.phone_number.errors %}
-                              {{ form.phone_number}}
+                              {{ form.phone_number|add_class:"is-invalid"}}
                               <div class="invalid-feedback">
                                   {{ form.phone_number.errors }}
                               </div>

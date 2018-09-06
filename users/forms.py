@@ -1,7 +1,7 @@
 from django import forms
 from django.conf import settings
 from django.contrib.auth import password_validation
-
+import re
 from .models import User
 
 
@@ -41,10 +41,21 @@ class RegisterForm(forms.ModelForm):
     def clean_confirm_password(self):
         password = self.cleaned_data['password']
         confirm_password = self.cleaned_data['confirm_password']
+        first_name = self.cleaned_data['first_name']
+        last_name = self.cleaned_data['last_name']
+
         if password and confirm_password and password != confirm_password:
             raise forms.ValidationError('Password mismatch')
+        if first_name.lower() in password.lower() or last_name.lower() in password.lower():
+            raise forms.ValidationError('Password similar to name of user.')
         password_validation.validate_password(confirm_password, self.instance)
         return confirm_password
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        if not re.match(r"^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$", email):
+            raise forms.ValidationError('Invalid Email format')
+        return email
 
     def save(self, commit=True):
         user = super(RegisterForm, self).save(commit=False)
