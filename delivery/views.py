@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, reverse
 from django.contrib.auth.decorators import login_required
 from users.decorators import is_delivery
 from orders.models import Order
@@ -6,6 +6,7 @@ from carts.models import Cart, Quantity
 from addresses.models import Address
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 import json
+from django.http import Http404
 from django.http import JsonResponse
 # Create your views here.
 
@@ -15,6 +16,23 @@ from django.http import JsonResponse
 @is_delivery
 def deliveryDashboard(request):
     return render(request, 'delivery/dashboard.html')
+
+
+@login_required
+@is_delivery
+def deleteOrder(request, cart_id):
+    # if request.method == "POST":
+    try:
+        cart = Cart.objects.get(cart_id=cart_id)
+    except Order.DoesNotExist:
+        raise Http404()
+    except Cart.DoesNotExist:
+        raise Http404()
+    cart.delete()
+    return redirect('home')
+
+    # next = reverse('delivery:newOrders')
+    # return render(request, 'delete.html', {'next': next})
 
 
 @login_required

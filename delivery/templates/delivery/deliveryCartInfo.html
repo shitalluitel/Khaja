@@ -65,7 +65,7 @@
         </tbody>
     </table>
     <div class="text text-right">
-        <a class="btn btn-danger" href="#">Cancel</a>
+        <a class="btn btn-danger" href="{% url 'delivery:deleteOrder' cart_id=cart.cart_id%}">Cancel</a>
         {% if cart.is_active %}
           <a class="btn btn-success" href="{% url 'delivery:confirmOrder'%}?cart_id={{cart.cart_id}}">Confirm</a>
         {% else %}

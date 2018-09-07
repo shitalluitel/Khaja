@@ -14,3 +14,6 @@ class WishList(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+    class Meta:
+        db_table = "wishlists"

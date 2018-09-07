@@ -24,8 +24,14 @@ def order_list(request):
 
 @login_required
 def order_chart_list(request,pk):
-    order = Order.objects.get(order_id=pk)
-    quantity = Quantity.objects.filter(cart_id = order.cart_id)
+    try:
+        order = Order.objects.get(order_id=pk)
+        quantity = Quantity.objects.filter(cart_id = order.cart_id)
+    except Quantity.DoesNotExist:
+        quantity = None
+    except Order.DoesNotExist:
+        order = None
+
     context = {
         'cart' : order.cart,
         'quantity': quantity,

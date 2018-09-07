@@ -59,12 +59,12 @@
                         <div class="form-group">
                           <label>{{ form.state.label }} <span class="text-danger">*</span> </label>
                           {% if form.state.errors %}
-                              {{ form.state|add_class:"is-invalid"}}
+                              {% render_field form.state|add_class:"form-control is-invalid" disabled="True" %}
                               <div class="invalid-feedback">
                                   {{ form.state.errors }}
                               </div>
                           {% else %}
-                            {{form.state}}
+                            {% render_field form.state|add_class:"form-control" disabled="True" %}
                           {% endif %}
                         </div>
 

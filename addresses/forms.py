@@ -10,8 +10,7 @@ class AddressForm(forms.ModelForm):
         widgets = {
             'address_line_1': TextInput(attrs={'class': 'form-control'}),
             'address_line_2': TextInput(attrs={'class': 'form-control'}),
-            'city': TextInput(attrs={'class': 'form-control'}),
-            'country': TextInput(attrs={'class': 'form-control'}),
-            'state': TextInput(attrs={'class': 'form-control'}),
+            'city': TextInput(attrs={'class': 'form-control', 'disabled': True}),
+            'country': TextInput(attrs={'class': 'form-control', 'disabled': True}),
             'phone_number': TextInput(attrs={'class': 'form-control'}),
         }

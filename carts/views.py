@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, reverse
 from products.models import Product
 from .models import Cart, Quantity
 from orders.models import Order
@@ -79,7 +79,7 @@ def checkout_home(request):
 @login_required
 def cart_destroy(request, pk):
     try:
-        cart = Cart.objects.get(user=request.user, id=pk)  # item is a database
+        cart = Cart.objects.get(user=request.user, id=pk)
     except Cart.DoesNotExist:
         raise Http404()
 
@@ -91,7 +91,7 @@ def cart_destroy(request, pk):
         return redirect('home')
 
     context = {
-        'cart': cart
+        'next': reverse('/')
     }
     return render(request, 'delete.html', context)
 

@@ -44,6 +44,9 @@ class Cart(models.Model):
     def __str__(self):
         return str(self.id)
 
+    class Meta:
+        db_table = "carts"
+
 def pre_save_create_cart_id(sender, instance, *args, **kwargs):
     if not instance.cart_id:
         instance.cart_id = unique_cart_id_generator(instance)
@@ -60,6 +63,9 @@ class Quantity(models.Model):
 
     def __str__(self):
         return str(id)
+
+    class Meta:
+        db_table = "quantities"
 
     def calculate_total(self):
         try:

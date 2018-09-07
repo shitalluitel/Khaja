@@ -14,6 +14,8 @@ class Company(models.Model):
     def __str__(self):
         return self.company_name
 
+    class Meta:
+        db_table="compinies"
 
 def pre_save_create_company_id(sender, instance, *args, **kwargs):
     if not instance.company_id:

@@ -67,7 +67,7 @@ class Product(models.Model):
         return smart_text(self.product_name)
 
     class Meta:
-        db_table = "Product"
+        db_table = "products"
         verbose_name = "Product"
         verbose_name_plural = "Products"
 

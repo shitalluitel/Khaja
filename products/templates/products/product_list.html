@@ -65,7 +65,7 @@
                              </a>
                              &nbsp;&nbsp;
                           {% else %}
-                              <a data-toggle="tooltip" title="View Details" data-placement="left" href="{% url 'product:restore' pk=product.pk %}">
+                              <a data-toggle="tooltip" title="Undo" data-placement="left" href="{% url 'product:restore' pk=product.pk %}">
                                 <span><i class="fa fa-undo text-success fa-size"></i></span>
                               </a>
                               &nbsp;&nbsp;
@@ -81,7 +81,7 @@
                     {% else %}
                       <tr>
                         <td colspan="6">
-                          <span class="text-center"><h5>Products Not Found.</h4></span>
+                          <span class="text-center my-5 text-success"><h5>Products Not Found.</h4></span>
                         </td>
                       </tr>
                     {% endif %}

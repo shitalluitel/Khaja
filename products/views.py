@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from .models import Product
 from users.decorators import is_restaurant, is_admin
 from .forms import ProductCreateForm, ProductEditForm
@@ -100,7 +100,6 @@ def product_list(request):
 @login_required
 @is_restaurant
 def product_delete(request, pk):
-    item = Product.objects.get(company=request.user.company, id=pk)
     if request.method == 'POST':
         try:
             Product.objects.deleteItem(company=request.user.company, id=pk)  # item is a database
@@ -108,10 +107,8 @@ def product_delete(request, pk):
             raise Http404()
         return redirect('product:list')
 
-    context = {
-        'item': item
-    }
-    return render(request, 'delete.html', context)
+    next = reverse('product:list')
+    return render(request, 'delete.html', {'next': next})
 
 #detail information about item in a menu
 # @login_required

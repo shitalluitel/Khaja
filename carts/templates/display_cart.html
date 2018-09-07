@@ -70,8 +70,9 @@
 
                         </tbody>
                     </table>
+                    <a class="btn btn-danger" href="{% url 'cart:destroy' pk=cart.id %}">Clear Cart</a>
                     <div class="text text-right">
-                        <a class="btn btn-danger" href="{% url 'cart:destroy' pk=cart.id %}">Destroy Cart</a>
+                        <a class="btn btn-secondary" href="{% url 'home'%}">Shop More</a>
                         <a class="btn btn-success" href="{% url 'address:create' %}">Checkout</a>
                     </div>
 

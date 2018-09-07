@@ -29,6 +29,9 @@ class Order(models.Model):
     def __str__(self):
         return self.order_id
 
+    class Meta:
+        db_table = "orders"
+
     def update_total(self):
         new_total = self.cart.total
         self.total = new_total

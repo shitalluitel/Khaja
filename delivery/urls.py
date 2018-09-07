@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^order/paid/$', views.paidOrder, name="paidOrder"),
     url(r'^order/paid-list/$', views.paidOrderList, name="paidOrderList"),
     url(r'^notification/$', views.checkDeliveryNotification, name="checkDeliveryNotification"),
-    url(r'^paid/cart-detail-info/$', views.deliveryPaidCartDetail, name="deliveryPaidCartDetail")
+    url(r'^paid/cart-detail-info/$', views.deliveryPaidCartDetail, name="deliveryPaidCartDetail"),
+    url(r'^delete/order/(?P<cart_id>\w+)/$', views.deleteOrder, name="deleteOrder"),
 ]
