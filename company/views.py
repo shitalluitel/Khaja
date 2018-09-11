@@ -256,7 +256,7 @@ def get_month_data(request):
 @login_required
 @is_restaurant
 def get_yearly_data(request):
-    start_time = (timezone.now() + relativedelta(months=-12))
+    start_time = (timezone.now() + relativedelta(months=-12)) + relativedelta(days= -int(timezone.now().strftime('%d'))+1)
     end_time = timezone.now()
     datas = Quantity.objects.filter(
         timestamp__range = (start_time, end_time),
@@ -267,15 +267,29 @@ def get_yearly_data(request):
 
     labels = []
     return_data = [] # data that gets returned
-
+    count = 0
     for i in range(0,12):
         total = 0
         new_data = datas.filter(timestamp__range =(start_time + relativedelta(months = i), start_time + relativedelta(months=(i+1)) ))
+        count = count + 1
+        end_time = start_time + relativedelta(months= (i+1))
+        print("%s.  %s    ,,,,,,    %s" % (count,(start_time + relativedelta(months = i)).strftime('%B %d'), (start_time + relativedelta(months=(i+1))).strftime('%B %d') ))
+        print(new_data)
         for data in new_data:
             total += data.product.product_price * data.quantity
         if total > 0:
             return_data.append(str(total))
             labels.append("%s"%((timezone.now() - relativedelta(months = 12 -i)).strftime("%B")))
+
+    new_data = datas.filter(timestamp__range = (end_time, timezone.now()))
+    print("%s.  %s    ,,,,,,    %s" % (count + 1,end_time.strftime('%B %d'), timezone.now().strftime('%B %d') ))
+    print(new_data)
+    total = 0
+    for data in new_data:
+        total += data.product.product_price * data.quantity
+    if total > 0:
+        return_data.append(str(total))
+        labels.append("%s"%((timezone.now()).strftime("%B")))
 
     response_data = {}
     response_data['labels'] = labels

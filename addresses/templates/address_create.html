@@ -59,24 +59,26 @@
                         <div class="form-group">
                           <label>{{ form.state.label }} <span class="text-danger">*</span> </label>
                           {% if form.state.errors %}
-                              {% render_field form.state|add_class:"form-control is-invalid" disabled="True" %}
+                              <!--{% render_field form.state|add_class:"form-control is-invalid" disabled="True" %}-->
+                              {{ form.state|add_class:"form-control is-invalid" }}
                               <div class="invalid-feedback">
                                   {{ form.state.errors }}
                               </div>
                           {% else %}
-                            {% render_field form.state|add_class:"form-control" disabled="True" %}
+                            <!--{% render_field form.state|add_class:"form-control" disabled="True" %}-->
+                            {{ form.state|add_class:"form-control" }}
                           {% endif %}
                         </div>
 
                         <div class="form-group">
                           <label>{{ form.phone_number.label }} <span class="text-danger">*</span> </label>
                           {% if form.phone_number.errors %}
-                              {{ form.phone_number|add_class:"is-invalid"}}
+                              {{ form.phone_number|add_class:"form-control is-invalid"}}
                               <div class="invalid-feedback">
                                   {{ form.phone_number.errors }}
                               </div>
                           {% else %}
-                            {{form.phone_number}}
+                            {{form.phone_number|add_class:"form-control"}}
                           {% endif %}
                         </div>
                         <div class="form-group">

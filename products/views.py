@@ -61,7 +61,7 @@ def product_list(request):
     try:
         if request.user.is_authenticated:
             if request.user.user_type == 1:
-                product_list_data = Product.objects.all()
+                product_list_data = Product.objects.all().order_by('product_name')
                 companies = Company.objects.all()
             else:
                 product_list_data = Product.objects.filter(company=request.user.company)
