@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'khaja.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
+'''DATABASES = {
     'default': {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
        'NAME': 'khaja',
@@ -99,9 +99,9 @@ DATABASES = {
        'HOST': 'localhost',
        'PORT': '5432',
 	}
-}
+}'''
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd73r6tk635hhs0',
@@ -110,7 +110,7 @@ DATABASES = {
         'HOST': 'ec2-54-247-100-44.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
-}'''
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
